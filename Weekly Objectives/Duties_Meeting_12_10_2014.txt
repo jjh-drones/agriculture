@@ -1,0 +1,50 @@
+To Keep in Mind:
+
+1. Make sure everything is where it needs to be before powering up the ardupilot.
+2. Make sure the connections are tight, specially the ones going from the receiver to the ardupilot.
+
+Tasks:
+
+1. Start doing calculations regarding duration of flight, altitude, and flight path.
+2. Try to find out how the auto-takeoff (catapult) or auto-land (landing gear) works
+3. Make an easy access to the USB drive on the Ardupilot
+4. Figure out how to place the camera inside the fuselage.
+5. Check out a separate mechanism for the gimbal of the camera in ardupilot.
+6. Explore the possibility of using the WiFi capabilities of the digital camera.
+7. Size: L = 4 and 6/8 W = 2 and 1/4 H = 14/16. Weight 4.3 oz.
+
+Duties for Juanma (Jan 12th):
+
+1. Camera communication with Ardupilot (arducam or canon).
+2. Filter replacement (with infrared)
+3. Gymbal Exploration
+4. Wireless Communication for telemetry (Wifi, or other technology).
+
+Duties for David (Jan 12th):
+
+1. Ardupilot Auto-takeoff Auto-land
+2. Explore Mission planner trimming & Preparation (simplification).
+3. Learn the fuck out of C#
+4. Work on the Repository
+
+
+Duties for Julio (Jan 12th):
+
+1. Design of the camera location on the Bixler (Catia model).
+2. Ortomosaic processing
+3. Learn how to fly the airplane.
+
+
+IF SOMEBODY DOESNT FULLFILL THE OBJECTIVES, LARGE PIZZA
+
+
+_______________________
+
+
+
+_______________________
+
+
+
+_______________________
+
