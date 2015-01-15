@@ -1,0 +1,575 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\rightmargin 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Precission Agriculture
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Subsection
+Concept
+\end_layout
+
+\begin_layout Standard
+Precision agriculture recognizes the inherent spatial and temporal variability
+ associated with soil and crop factors, and uses this information to prescribe
+ the most appropriate management strategy on a site specific basis.
+\end_layout
+
+\begin_layout Standard
+Precision agriculture is seen to be the correct way ahead for crop producers
+ in the next millennium because crop production is more precise, because
+ inputs are optimized leading to reduced costs and environmental impact,
+ and because the concept provides the audit trail that consumers and legislation
+ increasingly require.
+\end_layout
+
+\begin_layout Standard
+Precision agriculture is based in the combined use of a set of technologies:
+\end_layout
+
+\begin_layout Itemize
+Variable Rate Technology
+\end_layout
+
+\begin_layout Itemize
+Remote sensing 
+\end_layout
+
+\begin_layout Itemize
+Positioning system
+\end_layout
+
+\begin_layout Subsection
+Stages
+\end_layout
+
+\begin_layout Standard
+There four general stages of PA practice (remote sensing could be involved
+ in the first three stages):
+\end_layout
+
+\begin_layout Itemize
+data collection
+\end_layout
+
+\begin_layout Itemize
+field variability mapping
+\end_layout
+
+\begin_layout Itemize
+decision making
+\end_layout
+
+\begin_layout Itemize
+finally management practice 
+\end_layout
+
+\begin_layout Subsection
+Limitations
+\end_layout
+
+\begin_layout Standard
+The limitations identified for applications of remote sensing systems in
+ farm management include: 
+\end_layout
+
+\begin_layout Itemize
+the lack of high spatial resolution data
+\end_layout
+
+\begin_layout Itemize
+the collection and delivery of images in a timely manner
+\end_layout
+
+\begin_layout Itemize
+image interpretation and data extraction issues
+\end_layout
+
+\begin_layout Itemize
+the integration of these data with agronomic data into expert systems.
+\end_layout
+
+\begin_layout Section
+Variable Rate Technology
+\end_layout
+
+\begin_layout Standard
+Variable Rate Technology, probably the best developed part of the PA system,
+ applies production inputs at rates appropriate to soil and crop conditions
+ within fields.
+ Variable rate systems have been demonstrated for several materials, including:
+\end_layout
+
+\begin_layout Itemize
+herbicide (Mortensen et al., 1995)
+\end_layout
+
+\begin_layout Itemize
+fertilizer (Fergusen et al., 1995; Schueller, 1992)
+\end_layout
+
+\begin_layout Itemize
+insecticide (Fleischer et al., 1996)
+\end_layout
+
+\begin_layout Itemize
+seeds 
+\end_layout
+
+\begin_layout Standard
+Hanson et al.
+ (1995) described a herbicide application system mounted on a tractor with
+ a GPS guidance system which was linked to a digital weed map, allowing
+ only weed-infested areas of the field to be sprayed.
+ 
+\end_layout
+
+\begin_layout Standard
+Brown and Steckler (1995) described a system combined image-derived weed
+ maps with a GIS-based decision model to determine optimum herbicide mix
+ and application rates for no-till corn and resulted in reductions of herbicide
+ use by more than 40%.
+\end_layout
+
+\begin_layout Standard
+Long et al.
+ (1998) have shown that nitrogen fertilizer can be targeted according to
+ a previous season grain quality (protein content) map to improve the efficiency
+ of uptake and reduce spatial variation in quality in the current season.
+\end_layout
+
+\begin_layout Section
+Remote Sensing
+\end_layout
+
+\begin_layout Standard
+Environmental remote sensing essentially makes use of radiant energy, captured
+ by radiometric and sensing devices mounted on platforms ranging from field
+ vehicle to satellite, to extract information on ground features along large
+ swath areas within a short period of time.
+ The basic underlying premise of remote sensing applications in PA is that
+ differences in crop and soil factors can be detected through variations
+ within the spectral responses.
+ 
+\end_layout
+
+\begin_layout Standard
+In the case of crops, multispectral reflectances and temperatures of crop
+ canopies relate to two basic physiological processes: photosynthesis and
+ evapotranspiration.
+ In both processes, LAI, the ratio of leaf surface area to ground area,
+ is the fundamental canopy parameter.
+ Therefore, LAI is a basic parameter that can link multi-spectral remote
+ sensing to crop growth and condition for biological measurements.
+ 
+\end_layout
+
+\begin_layout Standard
+Remotely sensed images obained with aircraft and satellite-based sensors
+ have the potential to provide the input maps required by variable rate
+ technologies, for the whole field (not just sample sites) and within the
+ time and space requirements of PA applications.
+ The operational success of VRT requires accurate maps of: 
+\end_layout
+
+\begin_layout Itemize
+weeds
+\end_layout
+
+\begin_layout Itemize
+crop nutrient deficiencies
+\end_layout
+
+\begin_layout Itemize
+insect infestations
+\end_layout
+
+\begin_layout Itemize
+other crop and soil conditions
+\end_layout
+
+\begin_layout Section
+Positioning Systems
+\end_layout
+
+\begin_layout Standard
+The satellite constellation is complete and receivers typically receive
+ signals from 8 to 12 satellites above the horizon.
+ Most receivers used in precision agriculture are 12 channel and use 
+\emph on
+phase smoothed pseudo-range positioning
+\emph default
+ with claimed sub-metre accuracies.
+ A typical example is the Trimble Ag132 receiver with integral differential
+ receiver.
+\end_layout
+
+\begin_layout Standard
+Positioning resolution is seriously limited by the deliberate downgrading,
+ known as 
+\emph on
+selective availability
+\emph default
+ (SA), of satellite signals by the US Department of Defense (Langley, 1997a).
+ Although diferential mode compensates for much of the downgrading, there
+ will be significant gains when SA is turned off.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Kinematic GPS
+\emph default
+, where position is determined by measuring the phase shift in the satellite
+ carrier signal between transmission and reception, gives the potential
+ for centimetre accuracy.
+ Phase shift smoothing is, however, being used in current pseudorange receivers
+ to improve position resolution.
+ By using a double-diferencing technique (Spilker and Parkinson, 1996; Langley,
+ 1998), real-time kinematic (RTK) GPS is possible to provide high resolution
+ dynamic positioning.
+ 
+\end_layout
+
+\begin_layout Standard
+Concurrent advances in GPS technology have provided the moderately priced,
+ accurate positioning system necessary for field implementation of VRT.
+\end_layout
+
+\begin_layout Section
+Remote Sensing Platforms
+\end_layout
+
+\begin_layout Subsection
+Airborne
+\end_layout
+
+\begin_layout Subsubsection*
+Examples
+\end_layout
+
+\begin_layout Itemize
+A high-resolution airborne remote sensing system has been developed by SpecTerra
+ Services of Perth, Western Australia.
+ Their data, known as Digital Multi-Spectral Imagery (DMSI) can be applied
+ for mapping and monitoring crop and soil variability
+\end_layout
+
+\begin_layout Subsection
+Satellite
+\end_layout
+
+\begin_layout Subsubsection*
+Limitations
+\end_layout
+
+\begin_layout Itemize
+timeliness of images because of cloud cover
+\end_layout
+
+\begin_layout Itemize
+poor revisiting times
+\end_layout
+
+\begin_layout Itemize
+cost
+\end_layout
+
+\begin_layout Itemize
+poor spatial resolution 
+\end_layout
+
+\begin_layout Itemize
+lack of processing to produce imPositioning Systemsage data of use to the
+ crop manager
+\end_layout
+
+\begin_layout Subsubsection*
+Examples
+\end_layout
+
+\begin_layout Itemize
+The LACIE and AgRISTARS programs not only produced ro-bust methods for regional
+ crop identification and condi-tion assessment, but also defined the physics
+ of relations between spectral measurements and biophysical proper-ties
+ of crop canopies and soils.
+\end_layout
+
+\begin_layout Itemize
+X-Star project, led by Matra Marconi Space, plans to launch a high-spatial
+ resolution satellite with a 10 spectral band scanner in 2004.
+\end_layout
+
+\begin_layout Itemize
+IKONOS, a high-spatial resolution satellite with frequent revisit time satellite
+, was launched in September 1999.
+\end_layout
+
+\begin_layout Itemize
+ESR2, a satellite with a synthetic aperture radar (SAR), which have the
+ advantage of penetrating clouds.
+\end_layout
+
+\begin_layout Itemize
+medium resolution satellite imagery (e.g.,LandsatTM, ASTER, SPOT5), are only
+ useful for large scale studies
+\end_layout
+
+\begin_layout Itemize
+higher resolution satellite imagery (e.g.,WorldView-2 and GeoEye-1) cannot
+ provide high frequency data for emergent situation (e.g., nutrient stress
+ monitoring, disease)with a limited 1–2 day revisit period
+\end_layout
+
+\begin_layout Itemize
+RADARSAT-1, SPOT, and CASI
+\end_layout
+
+\begin_layout Subsubsection*
+Instruments
+\end_layout
+
+\begin_layout Itemize
+high resolution (1 – 2 m) images from AeroCam (AeroCam 2003), a multispectral
+ airborne camera that was developed and is operated by UMAC
+\end_layout
+
+\begin_layout Itemize
+medium resolution (20 – 250 m) multispectral images from Landsat Multispectral
+ Scanner (MSS)
+\end_layout
+
+\begin_layout Itemize
+Thematic Mapper (TM) and Enhanced Thematic Mapper Plus (ETM+)
+\end_layout
+
+\begin_layout Itemize
+Advanced Spaceborne Thermal Emission and Reflection Radiometer (ASTER)
+\end_layout
+
+\begin_layout Itemize
+Moderate Resolution Imaging Spectroradiometer (MODIS)
+\end_layout
+
+\begin_layout Itemize
+surface relief from the Shuttle Radar Topography Mission (SRTM)
+\end_layout
+
+\begin_layout Subsection
+UAV
+\end_layout
+
+\begin_layout Subsubsection*
+Advantages
+\end_layout
+
+\begin_layout Itemize
+utra high spatial resolution
+\end_layout
+
+\begin_layout Itemize
+relatively low operational costs
+\end_layout
+
+\begin_layout Itemize
+near real time image acquisition
+\end_layout
+
+\begin_layout Section
+Decision Support Systems
+\end_layout
+
+\begin_layout Standard
+Future work should be focused on assimilating remotely sensed information
+ into existing decision support systems (DSS), and conducting economic and
+ technical analysis of remote sensing applications with season-long pilot
+ projects.
+\end_layout
+
+\begin_layout Subsection
+Standarized file and data formats
+\end_layout
+
+\begin_layout Itemize
+ISO 11787: referred to as ADIS (agricultural data interchange standard)
+\end_layout
+
+\begin_layout Itemize
+ISO 11783: data bus standardization for tractors and attached implements,
+ based on the Controller Area Network (CAN) protocol
+\end_layout
+
+\begin_layout Subsection
+Geographic Information System (GIS)
+\end_layout
+
+\begin_layout Subsubsection*
+Comercial
+\end_layout
+
+\begin_layout Itemize
+LORIS from Kemira
+\end_layout
+
+\begin_layout Itemize
+AMAIS from Farmade 
+\end_layout
+
+\begin_layout Itemize
+Agromap from Claas
+\end_layout
+
+\begin_layout Itemize
+Digital Northern Great Plains (DNGP), a web-based remote sensing system
+ available at http://dnpg.umac.org
+\end_layout
+
+\begin_layout Itemize
+Zone Mapping Application for Precision-farming, a decision support tool
+ based on DNGP available at http://zonemap.umac.org,
+\end_layout
+
+\begin_layout Itemize
+Geospatial Data Abstraction Library (GDAL) for raster data
+\end_layout
+
+\begin_layout Itemize
+OpenGIS Simple Features Reference Implementation (OGR) library for vector
+ data
+\end_layout
+
+\begin_layout Itemize
+MapServer to combine various raster and vector layers into a final image
+ 
+\end_layout
+
+\begin_layout Itemize
+PROJ.4 Cartographic Projections Library for coordinate conversion between
+ different projections and datum.
+\end_layout
+
+\begin_layout Subsubsection*
+Opensource
+\end_layout
+
+\begin_layout Itemize
+Digital Northern Great Plains (DNGP), a web-based remote sensing system
+ available at http://dnpg.umac.org
+\end_layout
+
+\begin_layout Itemize
+Zone Mapping Application for Precision-farming, a decision support tool
+ based on DNGP available at http://zonemap.umac.org,
+\end_layout
+
+\begin_layout Itemize
+Geospatial Data Abstraction Library (GDAL) for raster data
+\end_layout
+
+\begin_layout Itemize
+OpenGIS Simple Features Reference Implementation (OGR) library for vector
+ data
+\end_layout
+
+\begin_layout Itemize
+MapServer to combine various raster and vector layers into a final image
+ 
+\end_layout
+
+\begin_layout Itemize
+PROJ.4 Cartographic Projections Library for coordinate conversion between
+ different projections and datum.
+\end_layout
+
+\begin_layout Section
+Marketing
+\end_layout
+
+\begin_layout Itemize
+to promoting their use among the end user community, we followed the innovation
+ adoption/diffusion model of Rogers (Rogers 2003).
+\end_layout
+
+\begin_layout Itemize
+to identify and engage early adopters, we followed a learning community
+ approach (Seelan et al.
+ 2003), where producers were treated as full partners and not as clients
+ of researchers.
+\end_layout
+
+\end_body
+\end_document

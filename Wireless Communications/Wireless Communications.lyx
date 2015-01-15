@@ -1,0 +1,209 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\rightmargin 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Wireless Communications
+\end_layout
+
+\begin_layout Section
+Cellular Networks
+\end_layout
+
+\begin_layout Standard
+In celullar networks, the data is not transmited along a direct path, but
+ uses an external network to relay the signal.
+ Different technologies are already commercially deployed, such as HSCD,
+ GPRS, EDGE or UMTS, and other still under developtment such as LTE or WIMAX
+ (IEEE 802.16).
+\end_layout
+
+\begin_layout Standard
+In theory, the range of 2G and 3G networks is unlimited, as they essentially
+ consist of countless smaller networks that are linked together.
+ In practice, these networks do not cover remote, sparsely populated areas.
+ When considering the data rate, it appears that 2G is designed for speech
+ purposes and therefore the data rate is insufficient to support image transmiss
+ion.
+ Although 3G is better suited for such puposes, the commercial costs of
+ a privately operated network are high.
+\end_layout
+
+\begin_layout Standard
+It is possible to implement the cellular concept with a self-created network
+ in which a cellular base station such as an IP.Access nanoBTS module represents
+ the fixed infrastructure side of the network.
+ In combination with a 2G or 3G device attached to a UAV, a fully functional
+ network can then be established.
+ 
+\end_layout
+
+\begin_layout Section
+Satellite Communication
+\end_layout
+
+\begin_layout Standard
+In satellite communication, the data is not transmited along a direct path,
+ but uses a constellation of satellites to relay the signal, such as Globalstar,
+ Orbcomm or Iridium.
+ 
+\end_layout
+
+\begin_layout Standard
+Satellite communication finds many applications in remote areas where the
+ range of other forms of wireless communication is a limiting factor.
+ A drawback of satellite communication is the high cost and low data rate.
+ 
+\end_layout
+
+\begin_layout Section
+Free Space Optical Communication
+\end_layout
+
+\begin_layout Standard
+In pointing-acquisition-tracking (PAT) systems, the data is transmited along
+ a direct path, by using a modulated light beam.
+ 
+\end_layout
+
+\begin_layout Standard
+The advantage of PAT systems is the difficulty of signal interception and
+ high data rates of up to 1 Gbps.
+ However, drawbacks of such a line-of-sight (LOS) system are dependence
+ on the weather condition (humidity, clouds) and limited range due to pointing
+ inaccuracy, even with expensive hardware.
+\end_layout
+
+\begin_layout Section
+Wireless LAN
+\end_layout
+
+\begin_layout Standard
+WLAN (IEEE 802.11) is a replacement or extension for wired LAN such as Ethernet
+ (IEEE 802.3).
+ The original IEEE 802.11 protocol was amended with several subprotocols
+ when the 1–2 Mbps data rate of the original standard could be extended.
+\end_layout
+
+\begin_layout Standard
+The most widely used protocols are 802.11b/g/n, of which the recently introduced
+ 802.11n protocol has become increasingly popular due to its high data rate
+ and reliability.
+ Despite high data rates the range of WLAN is limited to 100 m, even with
+ line-of-sight communication.
+\end_layout
+
+\begin_layout Section
+Wireless PAN
+\end_layout
+
+\begin_layout Standard
+WPAN (IEEE 802.15) were created to provide the means for power-efficient
+ wireless communication within the personal operating space (spherical region
+ that surrounds a wireless device).
+ Depending of the data rate, WPANs are divided into three common classes:
+ high rate, medium rate (Bluetooth) and low rate (ZigBee)
+\end_layout
+
+\begin_layout Standard
+Bluetooth (IEE 802.15.1) was designed as a short-range (often <10 m), low-power
+ wireless connection protocol between two computers or portable devices
+ with a data rate of up to 1Mps.
+ Long-range Bluetooth adapters with a range of over 1000 m are commercially
+ available, although the transmission power of these modules does not comply
+ with European Union (EU) regulations.
+\end_layout
+
+\begin_layout Standard
+ZigBee (IEE 802.15.4) allows data rates of up to 250 kbps over roughly 1.6
+ km in free space.
+ An advantage of the ZigBee protocol is that a link between two endpoints
+ can easily be extended to include multiple nodes, and that it can be implemente
+d using low-cost hardware such as XBee (<50 per module).
+\end_layout
+
+\begin_layout Section
+Comparison
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/comparison.png
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

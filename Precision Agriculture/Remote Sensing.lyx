@@ -1,0 +1,629 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\rightmargin 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Remote Sensing 
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+There are three basic types of information required for PA: 
+\end_layout
+
+\begin_layout Itemize
+information on seasonally stable conditions, i.e, those that are relatively
+ constant through the crop growing season, such as yield-based or soil-based
+ management units, and only need to be determined preseason and simply updated,
+ when and if necessary.
+ 
+\end_layout
+
+\begin_layout Itemize
+information on seasonally variable conditions, i.e, those that change continually
+ within the season, such as soil moisture, weed or insect infestations,
+ and crop disease, and need to be determined numerous times during the season
+ for proper management.
+\end_layout
+
+\begin_layout Itemize
+information required to diagnose the cause of the crop yield variability
+ and develop a management strategy.
+\end_layout
+
+\begin_layout Itemize
+in nearly every application of PA and in every agro-meteorological model,
+ knowledge of spatial variations in meteorological conditions is crucial.
+ Multispectral images of coarse spatial resolution and fine temporal resolution
+ should be used to produce local or regional maps of meteorological parameters
+ such as insolation, PAR, rainfall, and others.
+\end_layout
+
+\begin_layout Standard
+There are to approach to meet the information requirements of PA:
+\end_layout
+
+\begin_layout Itemize
+tractor based sensors which control variable rate applicators in near-real
+ time
+\end_layout
+
+\begin_layout Itemize
+satellite, airborne or uav spectral observations
+\end_layout
+
+\begin_layout Subsubsection*
+Tractor-based sensors
+\end_layout
+
+\begin_layout Standard
+Several such sensors have been developed for measuring:
+\end_layout
+
+\begin_layout Itemize
+soil organic matter (Tyler, 1994)
+\end_layout
+
+\begin_layout Itemize
+soil nitrate levels (Adsett and Zoerb, 1991) 
+\end_layout
+
+\begin_layout Itemize
+soil clay content and thickness (Sudduth et al., 1995).
+\end_layout
+
+\begin_layout Itemize
+weed sensors to discriminate weeds from standing crops (Thompson et al.,
+ 1990; Gu-yer et al., 1993)
+\end_layout
+
+\begin_layout Itemize
+a tractor-based charged couple device (CCD) camera to discriminate plants
+ from soil and trash for guiding most-beneficial chemical applications (Cai
+ and Palmer, 1994)
+\end_layout
+
+\begin_layout Itemize
+a sensor for assessing crop nitrogen status based on an in-field reference
+ of known nitro-gen status (Blackmer et al., 1996).
+ 
+\end_layout
+
+\begin_layout Itemize
+a fluorescence technique that allowed discrimination of residue from bare
+ soil, and a commercial prototype that could be mounted on a trailer (Daughtry
+ et al.
+ 1995) 
+\end_layout
+
+\begin_layout Subsubsection*
+Satellite, airborne or uav spectral observations
+\end_layout
+
+\begin_layout Standard
+Spectral observed imnages are usually transformed pixel by pixel according
+ to certain vegetation indexes, which are more suitable for the analysis
+ of crop and soil conditions.
+ 
+\end_layout
+
+\begin_layout Itemize
+Normalized Difference Vegetation Index (NDVI)
+\end_layout
+
+\begin_layout Itemize
+Normalized Difference Vegetation Index – Green (NDVI-green)
+\end_layout
+
+\begin_layout Itemize
+Soil Adjusted Vegetation Index (SAVI)
+\end_layout
+
+\begin_layout Itemize
+Photosynthetic Vigor Ratio (PVR)
+\end_layout
+
+\begin_layout Itemize
+Plant Pigment Ratio (PPR)
+\end_layout
+
+\begin_layout Section
+Mapping Seasonally Stable Conditions
+\end_layout
+
+\begin_layout Subsubsection*
+Grain Yield Monitor
+\end_layout
+
+\begin_layout Standard
+Yield maps collected for several growing seasons can provide an integrated
+ expression of relative productivity that is a property of the field and
+ unchanging from year-to-year and from crop-to-crop.
+ Yield maps have been used directly for management of:
+\end_layout
+
+\begin_layout Itemize
+fertilizer application (Schueller and Bae, 1987; Eliason et al., 1995), 
+\end_layout
+
+\begin_layout Itemize
+water application (King et al., 1995)
+\end_layout
+
+\begin_layout Itemize
+planting and soil engaging operations (Schueller, 1988)
+\end_layout
+
+\begin_layout Itemize
+have important indirect applications in management of weeds, insects, and
+ crop diseases.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Conventional Approach
+\end_layout
+
+\begin_layout Standard
+The production of grain yield maps generally requires that instantaneous
+ grain yields acquired at coarse and/or variant resolutions with DGPS positionin
+g be interpolated to obtain average yields at a given, finer resolution.
+ Generally, geostatistical analysis is used for this interpolation, based
+ on kriging or the simpler inverse distance technique (Murphy et al., 1995).
+ Long et al.
+ (1995) compared four methods for deriving yield maps from combine-based
+ yield measurements: 
+\end_layout
+
+\begin_layout Itemize
+interpreting soil survey maps
+\end_layout
+
+\begin_layout Itemize
+interpreting aerial photographs (transformed to NDVI?)
+\end_layout
+
+\begin_layout Itemize
+two kriging-based methods.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Multispectral images
+\end_layout
+
+\begin_layout Standard
+Most studies suggest that NDVI can be effective for providing information
+ on germination and vegetative stages, but this information must be combined
+ with input from an agrometeorological model to accurately determine crop
+ yields (Patel et al., 1991; Rudorff and Batista, 1991).
+\end_layout
+
+\begin_layout Subsubsection*
+Soil Fertility Properties
+\end_layout
+
+\begin_layout Standard
+Nielsen et al.
+ (1995) identified several of the most important soil fertility attributes
+ that could be mapped and managed for improved yield: available soil nitrogen
+ or some other macro or micro plant nutrient, relative position and slope
+ of the terrain, soil organic matter content.
+ Maps of soil fertility and physical attributes are being used in PA to
+ determine the responsive and nonresponsive parts of fields (Wolkowski and
+ Wollenhaupt, 1995):
+\end_layout
+
+\begin_layout Itemize
+Soil organic matter content has been directly related to the efficacy and
+ rate of fertilizer applications
+\end_layout
+
+\begin_layout Itemize
+Soil physical properties or landscape may be even more important than soil
+ fertility in explaining yield variations
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Conventional Approach
+\end_layout
+
+\begin_layout Standard
+Bell et al.
+ (1995) outlined three approaches for mapping soil variability for PA: 
+\end_layout
+
+\begin_layout Itemize
+county soil surveys at 1:12,000 to 1:24,000 scales
+\end_layout
+
+\begin_layout Itemize
+geostatistical interpolation techniques (e.g., kriging) to map soil properties
+ from a grid of point samples
+\end_layout
+
+\begin_layout Itemize
+use of soil/landscape models with input from either remote sensing or a
+ digital elevation map (DEM)
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Multispectral images
+\end_layout
+
+\begin_layout Standard
+Despite the relations among soil reflectance and soil properties, remotely
+ sensed images are not currently being used to map soil characteristics
+ on a routine basis.
+ This is because the reflectance characteristics of the desired soil properties
+ (e.g., organic matter, texture, iron content) are often confused by variability
+ in soil moisture content, surface roughness, climate factors, solar zenith
+ angle, and view angle.
+\end_layout
+
+\begin_layout Section
+Mapping Seasonally Variable Conditions
+\end_layout
+
+\begin_layout Subsubsection*
+Soil Moisture Content
+\end_layout
+
+\begin_layout Standard
+Information on within-field soil moisture variation throughout the season
+ has been shown to be relevant to decisions made about:
+\end_layout
+
+\begin_layout Itemize
+tillage activities (Lindstrom et al., 1995)
+\end_layout
+
+\begin_layout Itemize
+nitrogen applications (Hug-gins and Alderfer, 1995; Sadler et al., 1995)
+\end_layout
+
+\begin_layout Standard
+Soil Moisture Content has been usually monitory through SAR technology.
+\end_layout
+
+\begin_layout Subsubsection*
+Crop Phenology
+\end_layout
+
+\begin_layout Standard
+Knowledge of the stage of the crop development is useful for time-specific
+ crop management such as:
+\end_layout
+
+\begin_layout Itemize
+minimizing or maximizing crop stress during crucial periods (e.g., grain filling
+ in wheat, anthesis of corn, or sugar development in cantaloupe).
+ 
+\end_layout
+
+\begin_layout Standard
+For example, the vegetative, reproductive and senescing phases of wheat
+ crops have been discriminated based on:
+\end_layout
+
+\begin_layout Itemize
+seasonal shifts in the red edge (Railyan and Korobov, 1993)
+\end_layout
+
+\begin_layout Itemize
+bidirectional reflectance measurements (Zipoli and Grifoni, 1994)
+\end_layout
+
+\begin_layout Itemize
+measurements of reflected polarized light (Ghosh et al., 1993)
+\end_layout
+
+\begin_layout Itemize
+temporal monitoring of NDVI (Boissard et al., 1993).
+\end_layout
+
+\begin_layout Subsubsection*
+Crop Growth
+\end_layout
+
+\begin_layout Standard
+The most common approach in remote sensing for measuring or monitoring crop
+ growth is the empirical correlation of VI with such crop variables as LAI,
+ percent veg-etation cover, vegetation phytomass and fraction of absorbed
+ photosynthetically active radiance.
+ The basic theory of this approach is well understood (Jackson and Huete,
+ 1991); and recent improvements to this approach include developing VIs
+ are that insensitive to soil/atmosphere/sensor noise (e.g., Huete, 1988;
+ Malthus et al., 1993) and developing empirical relations that are robust
+ for application to a variety of crops, locations, and conditions (Richardson
+ et al., 1992; 1993; Wie-gand et al., 1992).
+\end_layout
+
+\begin_layout Standard
+Other approach is based on crop growth models.
+ An example of the former was presented by Clevers et al.
+ (1994) using optical reflectance measurements to calibrate the SUCROS crop
+ growth model and improve estimates of crop yield.
+ 
+\end_layout
+
+\begin_layout Standard
+Other approach is based on canopy radiative transfer models (RTM).
+ An example of the latter was presented by Kimes et al.
+ (1991) in the development of a knowledge-based system (VEG) to infer reflectanc
+es of a vegetation target, or inversely, to derive vegetation characteristics
+ from multiband or multiview reflectance measurements.
+\end_layout
+
+\begin_layout Subsubsection*
+Crop Stress through Evapotranspiration Rate
+\end_layout
+
+\begin_layout Standard
+Crop stress be a consequence of:
+\end_layout
+
+\begin_layout Itemize
+nutrient deficiency
+\end_layout
+
+\begin_layout Itemize
+crop disease 
+\end_layout
+
+\begin_layout Itemize
+water deficiency 
+\end_layout
+
+\begin_layout Itemize
+some insect infestations
+\end_layout
+
+\begin_layout Itemize
+other problems
+\end_layout
+
+\begin_layout Standard
+Due to the fact that crop stress is often manifested by a decrease in the
+ transpiration rate of the crop, some work has been conducted to use remote
+ sensing for monitoring crop evapotranspiration rates.
+ 
+\end_layout
+
+\begin_layout Standard
+One of the more promising approaches for operational application is the
+ use of remotely sensed 
+\emph on
+crop coefficients
+\emph default
+ (the ratio of actual crop evapotranspiration and that of a reference crop)
+ for estimation of actual, site-specific crop evapotranspiration rate from
+ readily available meteorological information.
+ This approach requires only a measure of spectral vege-tation index like
+ NDVI.
+ (e.g., Bausch, 1993)
+\end_layout
+
+\begin_layout Standard
+Another approach that has obtained commercial success is the 
+\emph on
+crop water stress index
+\emph default
+ (CWSI), which provides a measure of crop stress from 0 to 1 based on the
+ difference between surface and air temperature with reference to the vapor
+ pressure deficit and a crop-specific baseline (Jackson et al., 1981, Moran
+ and Jackson (1991) and Norman et al.
+ (1995)].
+\end_layout
+
+\begin_layout Subsubsection*
+Crop Nutrient Deficiency
+\end_layout
+
+\begin_layout Standard
+Plant nitrogen content and canopy nitrogen deficits have been related to
+ reflectance measurements in the green (0.545 pm), red (0.66 pm), and NIR
+ (0.80 pm) spectrum (Fernandez et al., 1994; Buschmann and Nagel, 1993).
+ However, most such relations are sensitive to variations in soil reflectance,
+ and the best bandwidths are narrow and unavailable with satellite-based
+ wide-band sensors.
+\end_layout
+
+\begin_layout Subsubsection*
+Crop Disease
+\end_layout
+
+\begin_layout Standard
+Though wide visible and near-infrared bands may be helpful for discriminating
+ healthy and diseased crops (due to changes in foliage density, leaf area,
+ leaf angles, or canopy structure), the best results for identifying diseases
+ were obtained with hyperspectral information in the visible and near-infrared
+ spectrum.
+ Discrimination of diseases may be possible with knowledge of the physiological
+ effect of the disease on leaf and canopy elements.
+ For example:
+\end_layout
+
+\begin_layout Itemize
+necrotic diseases can cause a darkening of leaves in the visible spectrum
+ and a cell collapse that would decrease near-infrared reflectance.
+\end_layout
+
+\begin_layout Itemize
+chlorosis inducing diseases (mildews and some virus) cause marked changes
+ in the visible reflectance (similar to N deficiency).
+\end_layout
+
+\begin_layout Itemize
+other diseases may be detected by their ef-fects on canopy geometry (wilting
+ or decreases in LAI).
+\end_layout
+
+\begin_layout Subsubsection*
+Weed Infestation
+\end_layout
+
+\begin_layout Standard
+For precision management of pre-plant applications, the information requirement
+ is simply determination of presence or absence of plants, and the remote
+ sensors (e.g., Richardson et al., 1985) should be comparably simple, such
+ as:
+\end_layout
+
+\begin_layout Itemize
+the tractor-based sensors 
+\end_layout
+
+\begin_layout Itemize
+interpretation of digital images based on VI 
+\end_layout
+
+\begin_layout Itemize
+supervised classification 
+\end_layout
+
+\begin_layout Standard
+For precision management of postemergence herbicide applications, it is
+ required discrimination between weeds and crops.
+ This is generally accomplished based on:
+\end_layout
+
+\begin_layout Itemize
+the differences in the visible/NIR spectral signatures of crops and specific
+ weeds (Brown et al., 1994) 
+\end_layout
+
+\begin_layout Itemize
+by acquiring images at specific times during the season when weed coloring
+ is particularly distinctive (i.e., during flowering).
+\end_layout
+
+\begin_layout Subsubsection*
+Insect Infestation
+\end_layout
+
+\begin_layout Standard
+Indirectly, insect damage to plants has been detected through remote sensing
+ of:
+\end_layout
+
+\begin_layout Itemize
+insect habitat (Hugh-Jones et al., 1992)
+\end_layout
+
+\begin_layout Itemize
+growth and yield of plants (Vogelmann and Rock, 1989)
+\end_layout
+
+\begin_layout Itemize
+changes in plant chemistry
+\end_layout
+
+\begin_layout Section
+Determining Causes of Yield Variability
+\end_layout
+
+\begin_layout Standard
+Remote sensing has a variety of roles in determining the cause of spatial
+ and temporal crop and soil variability.
+ 
+\end_layout
+
+\begin_layout Itemize
+use of hyperspectral imagers for direct crop diagnosis.
+ In this review we have cited examples where hyperspectral data in the visible
+ and NIR wavelengths have been used successfully for discrimination of crop
+ stress caused by nutrient deficiency, crop disease, water stress, and more.
+\end_layout
+
+\begin_layout Itemize
+use of remote sensing information to improve the capacity and accuracy of
+ DSS and agronomic models by providing accurate input information or as
+ a means of model calibration or validation.
+ The link between remote sensing and simulation modeling has been illustrated
+ through examples of the use of remote sensing for parameterization of models
+ (Wiegand et al., 1986b), within-season model calibration (Maas, 1993), and
+ model validation (Fischer, 1994).
+ 
+\end_layout
+
+\end_body
+\end_document
