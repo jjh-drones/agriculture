@@ -1,0 +1,211 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\rightmargin 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+SURF
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Enumerate
+Interest points are selected at distinctive locations in the image, such
+ as corners, blobs, and T-junctions.
+\end_layout
+
+\begin_layout Enumerate
+The neighbourhood of every interest point is represented by a feature vector.
+\end_layout
+
+\begin_layout Enumerate
+The descriptor vectors are matched between different images.
+\end_layout
+
+\begin_layout Standard
+We focus on scale and in-plane rotation-invariant detectors and descriptors.
+\end_layout
+
+\begin_layout Section
+Detectors
+\end_layout
+
+\begin_layout Standard
+The most valuable property of an interest point detector is its repeatability,
+ i.e, the reliability of a detector for finding the same physical interest
+ points under different viewing conditions.
+\end_layout
+
+\begin_layout Subsubsection*
+Integral images
+\end_layout
+
+\begin_layout Standard
+Integral images allow for fast computation of box type convolution filters.
+ Once the integral image has been computed, it takes three additions to
+ calculate the sum of the intensities over any upright, rectangular area.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $I_{\sum}\left(\bar{x}\right)=\sum_{i=0}^{i\leq x}\sum_{j=0}^{j\leq x}I\left(i,j\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Hessian Matrix
+\end_layout
+
+\begin_layout Standard
+We detect blob-like structures at locations where the determinant is maximum.
+\end_layout
+
+\begin_layout Standard
+Given a point 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ in an image 
+\begin_inset Formula $I$
+\end_inset
+
+ the Hessian matrix 
+\begin_inset Formula $H\left(\bar{x},\sigma\right)$
+\end_inset
+
+ in 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ at scale 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ is defined as follows
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $H\left(\bar{x},\sigma\right)=\left[\begin{array}{cc}
+L_{xx}\left(\bar{x},\sigma\right) & L_{xy}\left(\bar{x},\sigma\right)\\
+L_{xy}\left(\bar{x},\sigma\right) & L_{yy}\left(\bar{x},\sigma\right)
+\end{array}\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $L_{xx}\left(\bar{x},\sigma\right)$
+\end_inset
+
+ is the convolution of the gaussian second order derivative 
+\begin_inset Formula $\frac{\partial^{2}}{\partial x^{2}}g\left(\sigma\right)$
+\end_inset
+
+ with the image 
+\begin_inset Formula $I$
+\end_inset
+
+ in point 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Descriptors
+\end_layout
+
+\begin_layout Standard
+The descriptor has to be distinctive and at the same time robust to noise,
+ detection displacements and geometric and photometric deformations.
+\end_layout
+
+\begin_layout Section
+Matching
+\end_layout
+
+\begin_layout Standard
+The matching is based on a distance between the vectors, e.g.
+ the Mahalanobis or Euclidean distance.
+ The dimension of the descriptor has a direct impact on the time this takes,
+ and less dimensions are desirable for fast interest point matching.
+ However, lower dimensional feature vectors are in general less distinctive
+ than their high-dimensional counterparts.
+\end_layout
+
+\end_body
+\end_document

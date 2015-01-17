@@ -1,0 +1,415 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\rightmargin 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Sensors
+\end_layout
+
+\begin_layout Section
+Pixels
+\end_layout
+
+\begin_layout Standard
+A digital image sensor is a grid of small light-sensing elements called
+ picture elements, or pixels.
+\end_layout
+
+\begin_layout Standard
+The pixel's detector (shown in blue) is generally made of silicon and is
+ "sensitive" to light.
+ When light strikes the pixel, some of its energy is transferred to the
+ electrons inside the silicon atoms.
+ If the energy is high enough, the electrons dislodge from their parent
+ atoms.
+ This is called the photoelectric effect.
+\end_layout
+
+\begin_layout Standard
+The freed electrons are collected in a bucket-like region known as the potential
+ well.
+ The number of freed electrons − the amount of charge that builds up in
+ the potential well − directly depends on how much light falls on the pixel.
+ The stronger the light, the more electrons are freed.
+ Therefore, the voltage in the potential well is a measure of the image
+ brightness at that pixel.
+\end_layout
+
+\begin_layout Standard
+In CMOS sensors, each pixel has its own circuitry for measuring the voltage
+ of its potential well, and is equipped with a microlens (a tiny lens) that
+ focuses the incoming light away from the circuitry and onto the detector.
+ Thus, each pixel is able to capture all the light focused by the imaging
+ lens onto it.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Images/sensors01.png
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Grid of Pixels
+\end_layout
+
+\begin_layout Standard
+An image sensor is usually a two-dimensional grid of pixels.
+ The number of pixels on the grid is called the resolution of the image
+ sensor.
+ The voltages of the entire grid of pixels are read out one pixel at a time
+ and converted to numbers by the analog-to-digital converter (ADC).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Images/sensors02.png
+	scale 80
+
+\end_inset
+
+-
+\end_layout
+
+\begin_layout Standard
+The end result of the read-out process is a two-dimensional array of numbers
+ that is called a digital image.
+ Each number represents the light energy falling at the corresponding pixel.
+ In an 8-bit sensor, black is 0, white is 255, and all the numbers in between
+ are shades of gray.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Images/sensors03.png
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Colors
+\end_layout
+
+\begin_layout Standard
+Most image sensors, employs a mosaic of tiny red, green and blue color filters,
+ each filter positioned just beneath the microlens of a pixel.
+ A popular design for the mosaic is the Bayer pattern.
+ Now the question is, how do we estimate the red, blue and green light falling
+ on any given pixel, if it is able to receive only one of the three colors
+ − red, blue or green?
+\end_layout
+
+\begin_layout Standard
+Let us assume the number at each pixel to be the amount of red, green, or
+ blue light it detects.
+ For example, the red component of the center pixel is 246, but its green
+ and blue components are unknown.
+ The two missing colors are estimated using the green and blue measurements
+ made by neighboring pixels.
+ This process is called interpolation.
+\end_layout
+
+\begin_layout Standard
+The simplest way to interpolate the missing values is to average the values
+ of neighboring pixels of the same color.
+ This way, each pixel will have three values − the actual value of the color
+ it measures through its filter, as well as two interpolated values for
+ the two missing colors.
+ The interpolation is applied to each and every pixel to obtain a full color
+ image.
+ The color interpolation process is known as demosaicing.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Images/sensors04.png
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+CMOS vs CCD
+\end_layout
+
+\begin_layout Standard
+Both CCD (charge-coupled device) and CMOS (complementary metal-oxide semiconduct
+or) image sensors start at the same point: they have to convert light into
+ electrons.
+ The next step is to read the value (accumulated charge) of each cell in
+ the image.
+ In a CCD device, the charge is actually transported across the chip and
+ read at one corner of the array.
+ An analog-to-digital converter turns each pixel's value into a digital
+ value.
+ In most CMOS devices, there are several transistors at each pixel that
+ amplify and move the charge using more traditional wires.
+ The CMOS approach is more flexible because each pixel can be read individually.
+\end_layout
+
+\begin_layout Itemize
+CCD sensors create high-quality, low-noise images.
+ CMOS sensors, traditionally, are more susceptible to noise.
+ Because each pixel on a CMOS sensor has several transistors located next
+ to it, the light sensitivity of a CMOS chip tends to be lower.
+ Many of the photons hitting the chip hit the transistors instead of the
+ photodiode.
+ 
+\end_layout
+
+\begin_layout Itemize
+CMOS traditionally consumes little power.
+ Implementing a sensor in CMOS yields a low-power sensor.
+ CCDs use a process that consumes lots of power.
+ CCDs consume as much as 100 times more power than an equivalent CMOS sensor.
+ 
+\end_layout
+
+\begin_layout Itemize
+CMOS chips can be fabricated on just about any standard silicon production
+ line, so they tend to be extremely inexpensive compared to CCD sensors.
+ CCD sensors have been mass produced for a longer period of time, so they
+ are more mature.
+ They tend to have higher quality and more pixels.
+\end_layout
+
+\begin_layout Section
+NDVI
+\end_layout
+
+\begin_layout Standard
+Vegetation is green because plant leaves reflect green light.
+ Instead they use lots of the blue and red wavelengths in sunlight.
+ The pigments in leaves absorb this light to power photosynthesis which
+ converts CO2, water, and nutrients into carbohydrates (food).
+ In general, you can estimate the productivity or vigor of vegetation by
+ how much blue and red light it is absorbing.
+ Photosynthetic pigments do not use the longer, invisible wavelengths of
+ near infrared light and reflect almost all of it away (this helps prevent
+ the leaves from overheating).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Images/sensors05.png
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Shortly after the launch of the first Landsat satellite in 1972, scientists
+ began using the data from its sensors to estimate the productivity of vegetatio
+n by comparing the amount of red light reflected (there is not much from
+ healthy plants) to the amount of near infrared light reflected (there is
+ a lot).
+ The amount of infrared light reflected from vegetation is a good indicator
+ of how bright the sunlight was at any moment (leaves reflect almost all
+ IR).
+ Comparing that to the amount of reflected red light can suggest what proportion
+ of the sunlight was being absorbed by the plants.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Images/sensors06.png
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+That relationship is a good measure of the amount of photosynthetically
+ active biomass.
+ They quickly settled on an index of plant productivity called NDVI for
+ Normalized Difference Vegetation Index.
+ Instead of just using the difference between the amounts of red and near
+ infrared light, they normalized that difference by dividing it by the total
+ amount of red plus infrared light.
+ That allowed the index from different areas and different times of the
+ day or year to be compared with each other.
+\end_layout
+
+\begin_layout Section
+NDVI from Digital Cameras
+\end_layout
+
+\begin_layout Standard
+Unlike the human eye, the silicon-based sensors in digital cameras are sensitive
+ to both visible and near infrared light.
+ To prevent infrared light from being recorded in standard digital cameras,
+ a filter opaque to IR is placed in front of the sensor.
+ The resulting color sensitivity of digital cameras mimics human vision.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Solution A
+\end_layout
+
+\begin_layout Standard
+It is possible to produce a good approximation of NDVI by using a normal
+ consumer grade digital camera to capture visible light (by applying photo
+ manipulation software to isolate the red channel in a digital image file),
+ and another similar camera modified to capture only near infrared light
+ (by filtering the visible wavelenghts with the usage of a color negative
+ film in front of the sensor).
+ 
+\end_layout
+
+\begin_layout Standard
+Notice that in the modified IR cameras, any one or any combination of the
+ color channels from these cameras could be used for near IR information,
+ although more IR light might be available in one of the channels.
+\end_layout
+
+\begin_layout Subsubsection*
+Solution B
+\end_layout
+
+\begin_layout Standard
+It is also possible to capture all the information needed to compute NDVI
+ in just one camera.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Images/sensors07.png
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+SUPERBLUE FILTER
+\end_layout
+
+\begin_layout Standard
+The standard IR block filter is replaced by a Blue Filter that passes IR
+ and blocks only red light, so the red channel will record mostly IR light.
+ The blue channel which will record normally can be used to represent wavelength
+s that are absorbed by plants.
+ 
+\end_layout
+
+\begin_layout Standard
+The available superblue filters do not block all red light, so the channel
+ used for infrared light will be contaminated with visible red wavelengths.
+ The blue channel which is used to represent wavelengths absorbed by photosynthe
+tic pigments will also record some green light and probably some infrared
+ light.
+ Much testing is required to learn the biological meaning of these versions
+ of NDVI.
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+RED FILTER
+\end_layout
+
+\begin_layout Standard
+The standard IR block filter is replaced by a Blue Filter that passes IR
+ and blocks all visible light except for red, so the blue channel captures
+ a very pure NIR signal.
+ To compute NDVI, the blue channel is used for NIR and the red channel is
+ used for red visible light.
+\end_layout
+
+\begin_layout Standard
+Interpreting vegetation health is often more straightforward when the red
+ channel is used to represent the light that plants use for photosynthesis,
+ and red light is not scattered by the atmosphere as much as blue.
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,926 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\rightmargin 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Photogrammetry
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+Photogrammetry is the art, science, and technology of obtaining reliable
+ information about physical objects and the environment through processes
+ of recording, measuring, and interpreting photographic images and patterns
+ of recorded radiant electromagnetic energy and other phenomena.
+ The basic principle behind all photogrammetric measurements is the geometrical–
+mathematical reconstruction of the paths of rays from the object to the
+ sensor at the moment of exposure.
+\end_layout
+
+\begin_layout Section
+Geometry of Single Photographs
+\end_layout
+
+\begin_layout Subsection
+Vertical Photographs Taken Over a Flat Terrain
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Images/photogrammetry01.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Spatial Resolution
+\end_layout
+
+\begin_layout Standard
+The triangles established by a ground distance
+\begin_inset Formula $D$
+\end_inset
+
+ and the flying height above ground 
+\begin_inset Formula $H_{g}$
+\end_inset
+
+ on the terrain side, and by the corresponding photo distance 
+\begin_inset Formula $d$
+\end_inset
+
+ and the focal length 
+\begin_inset Formula $f$
+\end_inset
+
+ on the camera side, are geometrically similar for any given 
+\begin_inset Formula $D$
+\end_inset
+
+ and 
+\begin_inset Formula $d$
+\end_inset
+
+, so the scale 
+\begin_inset Formula $S$
+\end_inset
+
+ of the photograph is the same at any point.
+ For digital images, the ground sample distance 
+\begin_inset Formula $GSD$
+\end_inset
+
+ determines the spatial resolution or smallest visible detail in the photograph,
+ and can be computed as follows:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $S=\frac{d}{D}=\frac{f}{H_{g}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $GSD=\frac{PIXEL\ ELEMENT\ SIZE}{S}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $DISPLAY\ SCALE=\frac{MONITOR\ DOT\ PITCH}{GSD}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Example (
+\begin_inset Formula $H_{g}=100m$
+\end_inset
+
+ , 
+\begin_inset Formula $f=35mm$
+\end_inset
+
+ , 
+\begin_inset Formula $PIXEL\ ELEMENT\ SIZE=0.009mm$
+\end_inset
+
+ , 
+\begin_inset Formula $MONITOR\ DOT\ PITCH=0.26mm$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $S=\frac{0.35}{100}=0.035$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $GSD=\frac{0.000009}{0.035}=0.026m$
+\end_inset
+
+ (2,5cm per pixel)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $MONITOR\ DOT\ PITCH=\frac{0.00026}{0.26}=0.01m$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Radiometric Resolution
+\end_layout
+
+\begin_layout Standard
+The term radiometric resolution refers to the number of digital levels,
+ also called precision, that the sensor uses for recording different intensities
+ of radiationdusually 
+\begin_inset Formula $0–255$
+\end_inset
+
+ or 
+\begin_inset Formula $2^{8}$
+\end_inset
+
+ per image band for SFAP cameras.
+\end_layout
+
+\begin_layout Subsection
+Vertical Photographs Taken Over a Variable Terrain
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Images/photogrammetry02.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Relief Displacement
+\end_layout
+
+\begin_layout Standard
+The elevation of the principal point 
+\begin_inset Formula $P$
+\end_inset
+
+ determines the horizontal plane of local datum.
+ Points lying on this plane remain undistorted, whereas points above or
+ below are shifted radially with respect to the image center.
+ Note that the horizontal distances 
+\begin_inset Formula $D1–D4$
+\end_inset
+
+ are the same in the object space but not in the image.
+ This effect is called Relief Displacement.
+\end_layout
+
+\begin_layout Standard
+The Relief Displacement or distorting effects of the central perspective
+ are usually undesirable for the analysis of single photographs, but they
+ also have their virtues.
+ Because the magnitude of radial distortion is directly dependent on the
+ terrain’s elevation differences, the latter can be determined if the former
+ can be measured.
+ 
+\end_layout
+
+\begin_layout Subsection
+Tilted Photograph
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Images/photogrammetry03.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Oblique images are useful for providing overviews of an area and they are
+ easier to understand and interpret for most people.
+ However, obliqueness undermines the validity of many principles and algorithms
+ used in photogrammetry.
+ For many practical applications, the errors resulting in simple measurements
+ from slightly tilted images (
+\begin_inset Formula $\nu<3$
+\end_inset
+
+) can be considered negligible.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Geometry of Stereo Photographs
+\end_layout
+
+\begin_layout Subsection
+Principles of Stereoscopic Viewing
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Images/photogrammetry04.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When the eyes focus on an object, their optical axes converge on that point
+ at an angle (the parallactic angle 
+\begin_inset Formula $\gamma$
+\end_inset
+
+).
+ Objects at different distances appear under different parallactic angles.
+ Because the eye’s central perspective causes radial distortion for objects
+ at different distances, the two images on the retinae are distorted.
+ The amount of displacement parallel to our eye base, however, is not equal
+ in the two images because of the different positions of the eyes relative
+ to the object.
+ This difference between the two displacement measures is the stereoscopic
+ parallax 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ The stereoscopic parallax and thus 3D perception increase with increasing
+ parallactic angle 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, making it easier to judge differences in distances for closer objects.
+ 
+\end_layout
+
+\begin_layout Standard
+Stereoscopic vision of objects, may be created by viewing not the objects
+ themselves, but a couple of images of the objects, provided that they appear
+ under different angles in the images.
+ Such combination of images are called Stereomodels or Stereopairs.
+ 
+\end_layout
+
+\begin_layout Subsection
+3D Measurements from Stereomodels
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Images/photogrammetry05.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In order to be able of measuring the position of a point 
+\begin_inset Formula $A$
+\end_inset
+
+, with respect to the ground coordinate system, from a Stereomodel, it is
+ needed to know beforehand the exterior parameters of the camera (position
+ 
+\begin_inset Formula $X,Y,Z$
+\end_inset
+
+ and orientation 
+\begin_inset Formula $\kappa,\varphi,\omega$
+\end_inset
+
+ with respect to the ground coordinate system) at the time of acquisition
+ of both images.
+ This can be achieved in two ways: 
+\end_layout
+
+\begin_layout Itemize
+with the usage of Ground Control Points in the ground 
+\end_layout
+
+\begin_layout Itemize
+with onboard accurate GPS and attitude sensors (this method is treated in
+ other document)
+\end_layout
+
+\begin_layout Subsubsection*
+Ground Control Points (GCPs)
+\end_layout
+
+\begin_layout Standard
+With the known 3D coordinates of three ground control points and their correspon
+ding 2D image coordinates, the position 
+\begin_inset Formula $X,Y,Z$
+\end_inset
+
+ of the exposure center at the intersection of the three rays and the three
+ rotations of the camera 
+\begin_inset Formula $\kappa,\varphi,\omega$
+\end_inset
+
+ relative to the ground coordinate system can be calculated.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Measuring Position of Point A
+\end_layout
+
+\begin_layout Standard
+The position of an object point 
+\begin_inset Formula $A$
+\end_inset
+
+ in the landscape can be reconstructed by tracing the rays from the homologous
+ image points 
+\begin_inset Formula $a1$
+\end_inset
+
+ and 
+\begin_inset Formula $a2$
+\end_inset
+
+ back through the lens.
+ With a single image (the left photo in the figure), no unique solution
+ can be found for the position of 
+\begin_inset Formula $A$
+\end_inset
+
+ along the reconstructed ray.
+ By adding a second (stereo) image on which 
+\begin_inset Formula $A$
+\end_inset
+
+ also appears, a second ray intersecting the first can be reconstructed
+ and the position of 
+\begin_inset Formula $A$
+\end_inset
+
+ can be determined.
+ This method is called a 
+\emph on
+Space-Forward Intersection
+\emph default
+; it is based on the formulation of collinearity equations describing the
+ straight-line relationship between object point, corresponding image point
+ and exposure station.
+\end_layout
+
+\begin_layout Subsection
+Creating Stereomodels with Aerial Triangulation
+\end_layout
+
+\begin_layout Subsubsection*
+Acquisition of Images
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Images/photogrammetry06.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Stereomodels from professional aerial surveys are acquired in blocks of
+ multiple flightlines in such a way that full stereoscopic coverage of the
+ area is ensured with multiple stereopairs.
+ Each photograph overlaps the next photograph in a line by approximately
+ 
+\begin_inset Formula $60\%$
+\end_inset
+
+ (forward overlap or endlap), while adjacent lines overlap by 
+\begin_inset Formula $20-30\%$
+\end_inset
+
+ (sidelap).
+\end_layout
+
+\begin_layout Standard
+The required air base or distance between exposure stations 
+\begin_inset Formula $B$
+\end_inset
+
+ is dependent on the dimensions of the image footprint and the desired endlap.
+ If 
+\begin_inset Formula $D$
+\end_inset
+
+ is the image coverage in direction of the flightline and 
+\begin_inset Formula $PE$
+\end_inset
+
+ the percent endlap, 
+\begin_inset Formula $B$
+\end_inset
+
+ calculates as: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $B=D\left(1-\frac{PE}{100}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\Delta t=\frac{V_{g}}{B}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The same equation can be used for calculating the required distance between
+ adjacent flightlines for a desired sidelap 
+\begin_inset Formula $PS$
+\end_inset
+
+; keep in mind, however, that SFAP cameras most probably feature a rectangular
+ image format (
+\begin_inset Formula $d_{L}$
+\end_inset
+
+ , 
+\begin_inset Formula $d_{W}$
+\end_inset
+
+) and a decision has to be made as to its longitudinal or transversal orientatio
+n along the flightline (substituting 
+\begin_inset Formula $D$
+\end_inset
+
+ in the equation by 
+\begin_inset Formula $D_{L}$
+\end_inset
+
+ or 
+\begin_inset Formula $D_{W}$
+\end_inset
+
+, respectively).
+\end_layout
+
+\begin_layout Standard
+Difficulties with stereoscopic viewing and image matching may arise if the
+ image scales differ more than 
+\begin_inset Formula $10\%$
+\end_inset
+
+ or so.
+\end_layout
+
+\begin_layout Subsubsection*
+Bundle Block Adjustment
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Images/photogrammetry07.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In praxis, photogrammetric analysis is mostly done using not one, but several
+ or even many stereopairs for covering larger areas.
+ In order to avoid the individual orientation of each stereomodel with according
+ly large numbers of ground control points, multiple overlapping images forming
+ a so-called block can be oriented simultaneously with fewer ground control
+ points using aerial triangulation techniques.
+ One of the most commonly used and most rigorous aerial triangulation methods
+ is the bundle adjustment or bundle-block adjustment.
+ 
+\end_layout
+
+\begin_layout Standard
+In theory, bundle-block adjustment allows the absolute orientation of an
+ entire block of an unlimited number of photographs using only three GCPs.
+ This requires that the relative orientation of the individual images within
+ the block first be established by additional tie points (image points with
+ unknown ground coordinates which appear on two or more images and serve
+ as connections between them).
+ These tie points can be identified either manually or with automatic 
+\emph on
+image-matching techniques
+\emph default
+ (SURF or SIFT procedures).
+\end_layout
+
+\begin_layout Subsection
+Automatic DEM Extraction from Stereomodels
+\end_layout
+
+\begin_layout Standard
+A digital elevation model (DEM) is a digital representation of terrain heights.
+ The most common forms are a regular grid (usually saved in raster format)
+ or a triangular irregular network (TIN) of triangle facets (vector format).
+\end_layout
+
+\begin_layout Standard
+With the advent of digital photogrammetry, it has become possible to extract
+ elevation information automatically from stereomodels using stereo-correlation
+ or 
+\emph on
+image-matching techniques
+\emph default
+ (SURF or SIFT procedures).
+ 
+\end_layout
+
+\begin_layout Standard
+Once a set of corresponding points in the overlapping images has been identified
+, their 3D coordinates are computed by space-forward intersection using
+ the block triangulation results.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Mapping
+\end_layout
+
+\begin_layout Standard
+Mapping involves the following phases:
+\end_layout
+
+\begin_layout Itemize
+Aerial Survey with Overlapping
+\end_layout
+
+\begin_layout Itemize
+Geometrial Correction and Georeferencing
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Polynomial Rectification (requires ground control points)
+\end_layout
+
+\begin_layout Itemize
+Orthorectification (requires a digital elevation model)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Additional Corrections 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Atmospheric
+\end_layout
+
+\begin_layout Itemize
+Vignetting 
+\end_layout
+
+\begin_layout Itemize
+Bidirectional reflectance effects
+\end_layout
+
+\begin_layout Itemize
+Intra-date and date-to-date calibration
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Mosaicing
+\end_layout
+
+\begin_layout Subsection
+Aerial Survey with Overlapping
+\end_layout
+
+\begin_layout Standard
+Most aerial photographs deviate from the situation showed in Vertical Photos
+ Taken Over a Flat Terrain for three reasons:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Relief Displacement:
+\emph default
+ the ground is not completely flat.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Image Obliqueness:
+\emph default
+ the photograph is not completely vertical.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Lens Distortions:
+\emph default
+ the paths of rays are bent when passing through the lens.
+ 
+\end_layout
+
+\begin_layout Standard
+All three situations spoil the similarity of the triangles and result in
+ scale variations and hence 
+\emph on
+Geometric Distortions
+\emph default
+ of the objects within the image.
+ The first problem, geometric distortions caused by varied terrain, does
+ not depend on camera specifications and occurs with any remote sensing
+ images.
+ The last two problems can be minimized with modern survey and manufacturing
+ techniques for professional high-tech survey cameras and mounts, but may
+ be quite severe for the platforms and cameras often used in small-format
+ aerial photography.
+ 
+\end_layout
+
+\begin_layout Subsection
+Geometrical Correction and Georeferencing
+\end_layout
+
+\begin_layout Standard
+The photographs, in order to be suitable as a base for mapping, have to
+ be geometrically corrected and georeferenced.
+ This can be done by one of the following methods.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Polynomial Rectification
+\end_layout
+
+\begin_layout Standard
+Polynomial equations formed by ground control point coordinates and their
+ corresponding image-point coordinates are used in order to scale, offset,
+ rotate and warp images and fit them into the ground coordinate system.
+ This approach has several inconvenient:
+\end_layout
+
+\begin_layout Itemize
+Because the polynomials are computed from the GCP points only and then applied
+ to the entire image, they only produce good results if the GCP locations
+ and distribution adequately represent the geometric distortions of an image.
+ 
+\end_layout
+
+\begin_layout Itemize
+The rectification of the image areas between the GCPs is interpolated by
+ the polynomial equation and not a direct function of radial Relief Displacement.
+ Vertical or oblique images of flat terrain can be quite successfully rectified
+ with 1st or 2nd order polynomials, but the relief distortions present in
+ images of variable terrain are much more difficult to correct.
+\end_layout
+
+\begin_layout Standard
+While polynomial rectification by GCPs may well be sufficient for low-distortion
+ images or applications with limited demand for accuracy, seriously distorted
+ images and more precise applications require full modelling of the distortion
+ parameters (relief displacement, image obliqueness, lens distortion).
+\end_layout
+
+\begin_layout Subsubsection*
+Orthorectification
+\end_layout
+
+\begin_layout Standard
+Orthorectification procedures make use of digital elevation models (DEMs)
+ in relation to which the photographs are oriented in space so that the
+ relief displacement (with the added effect of image obliqueness and lens
+ distortion) of each single pixel can be determined.
+ In the new, orthorectified image file, each pixel is then placed in its
+ correct planimetric position.
+ For orthorectifying SFAP images, a DEM with appropriately high resolution
+ is normally not available from external sourcesdthus, the best solution
+ would be to generate a DEM from the SFAP images themselves first and subsequent
+ly use this for orthophoto correction.
+\end_layout
+
+\begin_layout Subsection
+Additional Corrections
+\end_layout
+
+\begin_layout Subsubsection*
+Atmospheric Correction
+\end_layout
+
+\begin_layout Standard
+Given the low-height operation for most SFAP (below 300 m or even <100 m),
+ acquired images suffered minimal degradation from atmospheric scattering
+ or absorption.
+ This is an important consideration in terms of spectral signatures of objects
+ depicted in SFAP images.
+\end_layout
+
+\begin_layout Subsubsection*
+Vignetting Correction
+\end_layout
+
+\begin_layout Standard
+Vignetting is the image darkening in circular gradient from the image centre
+ to its borders, due to light obstruction and differences in light path
+ in some parts of the optics combination (lens + filters + neutral glasses).
+ It is typical a decrease of about 5% in the visible bands and 35% in the
+ infrared one.
+ 
+\end_layout
+
+\begin_layout Standard
+A three-step method usually adopted in astronomy can be used for vignetting
+ correction (see Lelong et all 2008):
+\end_layout
+
+\begin_layout Itemize
+vignetting characterization of each sensor with an illumination radial profile
+\end_layout
+
+\begin_layout Itemize
+antivignetting filter production
+\end_layout
+
+\begin_layout Itemize
+application of the filter to the images
+\end_layout
+
+\begin_layout Subsubsection*
+Bidirectional Reflectance Effects Correction
+\end_layout
+
+\begin_layout Standard
+Surface reflectance varies with the incidence and view angles, following
+ the Bidirectional Reflectance Distribution Function (BRDF).
+ A given object will thus reflect different intensities of light in different
+ directions.
+ 
+\end_layout
+
+\begin_layout Standard
+A five-step method that regularizes the received light quantity on any part
+ of the image can be applied (see Lelong et all 2008):
+\end_layout
+
+\begin_layout Itemize
+sub-sampling of the original image
+\end_layout
+
+\begin_layout Itemize
+gaussian filtering on a 3x3 pixels window
+\end_layout
+
+\begin_layout Itemize
+over-sampling to the original size by bicubic interpolation
+\end_layout
+
+\begin_layout Itemize
+inversion of the resulting image by subtracting it to 255, then scaling
+ it to null origin
+\end_layout
+
+\begin_layout Itemize
+application of the filter to the images
+\end_layout
+
+\begin_layout Subsubsection*
+Intra-date and date-to-date calibration
+\end_layout
+
+\begin_layout Standard
+BRDF causes radiometric variations inside a single image and thus generates
+ differences between a given object radiometry on two consecutive images:
+ the observation configurations are not equivalent for the two acquisitions.
+ This effect was corrected based on common features comparison (see Lelong
+ et all).
+\end_layout
+
+\begin_layout Subsection
+Mosaicing
+\end_layout
+
+\begin_layout Standard
+If a single rectified photograph or orthophoto does not fully cover the
+ study area, an Aerial Mosaic or Orthomosaic may be constructed by stitching
+ the georeferenced images together.
+\end_layout
+
+\end_body
+\end_document
