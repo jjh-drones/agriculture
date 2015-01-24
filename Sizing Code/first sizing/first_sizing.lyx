@@ -1,0 +1,218 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\rightmargin 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Mission
+\end_layout
+
+\begin_layout Standard
+Mapping a field of 
+\begin_inset Formula $5000ha$
+\end_inset
+
+ within a day
+\end_layout
+
+\begin_layout Section
+Design Requirements
+\end_layout
+
+\begin_layout Subsubsection*
+Constraints (C)
+\end_layout
+
+\begin_layout Enumerate
+Camera Specifications (Canon Powershot ELPH 130 IS)
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $16Mpix$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $1/2.3inch$
+\end_inset
+
+ CCD (sensor size: 
+\begin_inset Formula $l=6.16mm$
+\end_inset
+
+ and 
+\begin_inset Formula $w=4.62$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $5-40mm$
+\end_inset
+
+ focal length 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Minimum 
+\begin_inset Formula $2pix$
+\end_inset
+
+ to cover the space between seeds
+\end_layout
+
+\begin_layout Subsubsection*
+Assumptions (A)
+\end_layout
+
+\begin_layout Enumerate
+operational focal lenght 
+\begin_inset Formula $f=5mm$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+exposure time 
+\begin_inset Formula $t_{exposure}=3s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+endlap 
+\begin_inset Formula $PE=60\%$
+\end_inset
+
+ and sidelap 
+\begin_inset Formula $PS=30\%$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+seedband 
+\begin_inset Formula $seed=6cm$
+\end_inset
+
+ (typical in canola crop)
+\end_layout
+
+\begin_layout Enumerate
+window of time to operate 
+\begin_inset Formula $t_{window}=8h$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+size of the field covered by each flight 
+\begin_inset Formula $S_{field}=250ha$
+\end_inset
+
+ (square)
+\end_layout
+
+\begin_layout Enumerate
+takeoff and landing angle 
+\begin_inset Formula $45\text{°}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Wanted Values
+\end_layout
+
+\begin_layout Enumerate
+Altitude
+\end_layout
+
+\begin_layout Enumerate
+Cruise Velocity
+\end_layout
+
+\begin_layout Enumerate
+Flight Time
+\end_layout
+
+\end_body
+\end_document
