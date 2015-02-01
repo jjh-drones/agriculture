@@ -1,0 +1,229 @@
+Miura UAV
+#Mach
+0.06                             
+#IYsym  IZsym  Zsym
+0        0     0.0   
+#Sref   Cref   Bref   reference area, chord, span       
+2.63605  0.636  4.496    
+#Xref   Yref   Zref   moment reference location (arb.)    
+1.08  0.0    0.0           
+#CDoref
+0.015                          
+#
+#==============================================================
+#
+#
+#
+#
+#WING COMPONENTS
+#
+#
+#
+#
+SURFACE 
+WING
+#Nchord   Cspace   Nspan  Sspace
+18          1.0     30     -2.0  
+#
+ANGLE
+0
+#
+#
+COMPONENT
+2
+#
+# x,y,z bias for whole surface
+TRANSLATE
+0.847708333     0.00000     0.1475
+#-------------------------------------------------------------------------------
+SECTION
+#    Xle         Yle         Zle         chord       angle   Nspan  Sspace
+     0.00000     0.0000     0.000000     0.644         0      0      0
+AFIL
+uav_wing.dat
+#-------------------------------------------------------------------------------
+SECTION
+#    Xle         Yle         Zle         chord       angle   Nspan  Sspace
+     0.01825    0.97983     0.00000    0.62575        0        0      0
+AFIL
+uav_wing.dat
+#
+
+
+
+
+
+
+
+SURFACE
+WING2
+#Nchord   Cspace   Nspan  Sspace
+18         1.0      30    2.0  
+#
+ANGLE
+0
+#
+#
+COMPONENT
+2
+#
+TRANSLATE
+0.847708333     0.00000     0.1475
+#------------------------------------------------------------------------------------------------
+SECTION
+#    Xle         Yle         Zle         chord       angle   Nspan  Sspace
+     0.01825     -0.97983     0.00000    0.62575        0        0      0
+AFIL
+uav_wing.dat
+#------------------------------------------------------------------------------------------------
+SECTION
+#    Xle         Yle         Zle         chord       angle   Nspan  Sspace
+     0.00000     0.000      0.00000      0.644       0       0      0
+AFIL
+uav_wing.dat
+#-------------------------------------------------------------------------------
+#
+#
+
+
+
+
+
+
+
+
+SURFACE 
+WING3
+#Nchord   Cspace   Nspan  Sspace
+18          1.0     30     -2.0  
+#
+ANGLE
+0
+#
+#
+COMPONENT
+2
+#
+# x,y,z bias for whole surface
+TRANSLATE
+0.847708333     0.00000     0.1475
+#-------------------------------------------------------------------------------
+SECTION
+#    Xle         Yle         Zle         chord       angle   Nspan  Sspace
+     0.01825     0.97983     0.000000  0.62575         0      0      0
+AFIL
+uav_wing.dat
+#-------------------------------------------------------------------------------
+SECTION
+#    Xle         Yle         Zle         chord       angle   Nspan  Sspace
+     0.0816904   1.757833 0.00000     0.531833        0        0      0
+AFIL
+uav_wing.dat
+#
+#Cname   Cgain  Xhinge    HingeVec     SgnDup
+CONTROL
+aileron  1.0     0.7186      0. 1. 0.     -1.0
+#-------------------------------------------------------------------------------
+#
+#
+
+
+
+SURFACE 
+WING4
+#Nchord   Cspace   Nspan  Sspace
+18          1.0     30     -2.0  
+#
+ANGLE
+0
+#
+#
+COMPONENT
+2
+#
+# x,y,z bias for whole surface
+TRANSLATE
+0.847708333     0.00000     0.1475
+#-------------------------------------------------------------------------------
+SECTION
+#    Xle         Yle         Zle         chord       angle   Nspan  Sspace
+     0.0816904   -1.757833  0.000000    0.531833         0      0      0
+AFIL
+uav_wing.dat
+#-------------------------------------------------------------------------------
+SECTION
+#    Xle         Yle         Zle         chord       angle   Nspan  Sspace
+     0.01825     -0.97983  0.00000     0.62575        0        0      0
+AFIL
+uav_wing.dat
+#
+#Cname   Cgain  Xhinge    HingeVec     SgnDup
+CONTROL
+aileron  1.0     0.7186      0. 1. 0.   -1.0
+#-------------------------------------------------------------------------------
+#
+#
+
+
+
+SURFACE 
+WING5
+#Nchord   Cspace   Nspan  Sspace
+18          1.0     30     -2.0  
+#
+ANGLE
+0
+#
+#
+COMPONENT
+2
+#
+# x,y,z bias for whole surface
+TRANSLATE
+0.847708333     0.00000     0.1475
+#-------------------------------------------------------------------------------
+SECTION
+#    Xle         Yle         Zle         chord       angle   Nspan  Sspace
+     0.0816904   1.757833    0.000000    0.531833         0      0      0
+AFIL
+uav_wing.dat
+#-------------------------------------------------------------------------------
+SECTION
+#    Xle         Yle         Zle         chord       angle   Nspan  Sspace
+     0.52519     2.282833    0.25833     0.088333        0        0      0
+AFIL
+uav_wing.dat
+#-------------------------------------------------------------------------------
+#
+#
+
+
+SURFACE 
+WING6
+#Nchord   Cspace   Nspan  Sspace
+18          1.0     30     -2.0  
+#
+ANGLE
+0
+#
+#
+COMPONENT
+2
+#
+# x,y,z bias for whole surface
+TRANSLATE
+0.847708333     0.00000     0.1475
+#-------------------------------------------------------------------------------
+SECTION
+#    Xle         Yle         Zle         chord       angle   Nspan  Sspace
+     0.52519   -2.282833    0.25833    0.088333         0      0      0
+AFIL
+uav_wing.dat
+#-------------------------------------------------------------------------------
+SECTION
+#    Xle         Yle         Zle         chord       angle   Nspan  Sspace
+     0.0816904  -1.757833  0.00000     0.531833        0        0      0
+AFIL
+uav_wing.dat
+#-------------------------------------------------------------------------------
+#
