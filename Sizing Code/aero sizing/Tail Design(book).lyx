@@ -1,0 +1,372 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\rightmargin 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Tail Design
+\end_layout
+
+\begin_layout Section
+Trim Conditions
+\end_layout
+
+\begin_layout Subsection
+Longitudinal
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/trim_longitudinal.png
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\sum M_{cg}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $M_{0wf}+L_{wf}\left(x_{cg}-x_{ac}\right)-L_{h}l_{h}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{1}{2}\rho V^{2}ScC_{m0wf}+\frac{1}{2}\rho V^{2}SC_{Lwf}\left(x_{cg}-x_{ac}\right)-\frac{1}{2}\rho V_{h}^{2}S_{h}C_{Lh}l_{h}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C_{m0wf}+C_{Lwf}\left(\bar{x}_{cg}-\bar{x}_{ac}\right)-C_{Lh}\frac{V_{h}^{2}}{V^{2}}\frac{S_{h}}{S}\frac{l_{h}}{c}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C_{m0wf}+C_{Lwf}\left(\bar{x}_{cg}-\bar{x}_{ac}\right)-C_{Lh}\eta_{h}\frac{S_{h}}{S}\frac{l_{h}}{c}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using the following relationship:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $l+x_{ac}=l_{h}+x_{cg}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $l_{h}=l-\left(x_{cg}-x_{ac}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{l_{h}}{c}=\frac{l}{c}-\left(\bar{x}_{cg}-\bar{x}_{ac}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Entering in the longitudinal trim equation:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C_{m0wf}+C_{Lwf}\left(\bar{x}_{cg}-\bar{x}_{ac}\right)-\eta_{h}\frac{S_{h}}{S}C_{Lh}\left[\frac{l}{c}-\left(\bar{x}_{cg}-\bar{x}_{ac}\right)\right]=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C_{m0wf}+\left(C_{Lwf}+\frac{V_{h}^{2}}{V^{2}}\frac{S_{h}}{S}C_{Lh}\right)\left(\bar{x}_{cg}-\bar{x}_{ac}\right)-\eta_{h}\frac{S_{h}}{S}C_{Lh}\frac{l}{c}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using the following relationship:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $L=L_{wf}+L_{h}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C_{L}=C_{Lwf}+\frac{V_{h}^{2}}{V^{2}}\frac{S_{h}}{S}C_{Lh}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Entering in the longitudinal trim equation:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C_{m0wf}+C_{L}\left(\bar{x}_{cg}-\bar{x}_{ac}\right)-\eta_{h}C_{Lh}\frac{S_{h}}{S}\frac{l}{c}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Lateral - Directional
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/trim_lateral.png
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\sum N_{cg}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $T_{R}Y_{T}+L_{v}l_{v}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/trim_directional.png
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\sum L_{cg}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $L_{E}+L_{v}z_{v}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Estability Requirements
+\end_layout
+
+\begin_layout Subsection
+Longitudinal
+\end_layout
+
+\begin_layout Standard
+Static Longitudinal Stability
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C_{m\alpha}<0$
+\end_inset
+
+ (
+\begin_inset Formula $-0.3$
+\end_inset
+
+ to 
+\begin_inset Formula $-1.5$
+\end_inset
+
+) 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C_{m\alpha}=C_{L\alpha wf}\left(\bar{x}_{cg}-\bar{x}_{ac}\right)-C_{L\alpha h}\eta_{h}\frac{S_{h}}{S}\left(\frac{l}{c}-\bar{x}_{cg}\right)\left(1-\frac{\partial\varepsilon}{\partial\alpha}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\varepsilon=\varepsilon_{0}+\frac{\partial\varepsilon}{\partial\alpha}\alpha_{w}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\varepsilon_{0}=\frac{2C_{Lw}}{\pi A}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{\partial\varepsilon}{\partial\alpha}=\frac{2C_{L\alpha w}}{\pi A}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dynamic Longitudinal Stability
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C_{mq}$
+\end_inset
+
+ (
+\begin_inset Formula $-5$
+\end_inset
+
+ to 
+\begin_inset Formula $-40$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Subsection
+Lateral - Directional
+\end_layout
+
+\begin_layout Standard
+Static Directional Stability
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C_{n\beta}>0$
+\end_inset
+
+ (
+\begin_inset Formula $0.05$
+\end_inset
+
+ to 
+\begin_inset Formula $0.4$
+\end_inset
+
+) 
+\end_layout
+
+\begin_layout Standard
+Dynamic Directional Stability
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C_{nr}$
+\end_inset
+
+ (
+\begin_inset Formula $-0.1$
+\end_inset
+
+ to 
+\begin_inset Formula $-1$
+\end_inset
+
+)
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,482 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\rightmargin 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Sizing Procedure
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Subsubsection*
+Pitching Moment
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $M_{A}=M_{acwf}+L_{wf}\left(x_{cg}-x_{ac}\right)-L_{h}l_{h}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{1}{2}\rho V^{2}ScC_{mA}=\frac{1}{2}\rho V^{2}ScC_{macwf}+\frac{1}{2}\rho V^{2}SC_{Lwf}\left(x_{cg}-x_{ac}\right)-\frac{1}{2}\rho V_{h}^{2}S_{h}C_{Lh}l_{h}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C_{mA}=C_{macwf}+C_{Lwf}\left(\bar{x}_{cg}-\bar{x}_{ac}\right)-C_{Lh}\frac{V_{h}^{2}}{V^{2}}\frac{S_{h}}{S}\frac{l_{h}}{c}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C_{mA}=C_{macwf}+C_{Lwf}\left(\bar{x}_{cg}-\bar{x}_{ac}\right)-C_{Lh}\eta_{h}\bar{V}_{h}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C_{mA}=C_{macwf}+a_{wf}\alpha_{wf}\left(\bar{x}_{cg}-\bar{x}_{ac}\right)-a_{h}\alpha_{h}\eta_{h}\bar{V}_{h}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C_{mA}=C_{macwf}+a_{wf}\alpha_{wf}\left(\bar{x}_{cg}-\bar{x}_{ac}\right)-a_{h}\left(\alpha_{wf}-i_{wf}+i_{h}-\varepsilon_{0}-\frac{d\varepsilon}{d\alpha}\alpha_{wf}\right)\eta_{h}\bar{V}_{h}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C_{mA}=C_{m0}+C_{m\alpha}\alpha_{wf}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{cases}
+C_{m0}= & C_{macwf}-a_{h}\eta_{h}\bar{V}_{h}\left(i_{t}-i_{wf}-\varepsilon_{0}\right)\\
+C_{m\alpha}= & a_{wf}\left(\bar{x}_{cg}-\bar{x}_{ac}\right)-a_{h}\eta_{h}\bar{V}_{h}\left(1-\frac{d\varepsilon}{d\alpha}\right)
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Longitudinal Stability
+\end_layout
+
+\begin_layout Standard
+Neutral Point (
+\begin_inset Formula $\bar{x}_{cg}$
+\end_inset
+
+ so that 
+\begin_inset Formula $C_{m\alpha}=0$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $NP=\bar{x}_{ac}+\frac{a_{h}}{a_{wf}}\eta_{h}\bar{V}_{h}\left(1-\frac{d\varepsilon}{d\alpha}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Static Margin
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $SM=NP-\bar{x}_{cg}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Wetted Area after CG
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $S_{wet-aft}=S_{wet-aft-fus}+S_{wet-h}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $S_{wet-aft}=4D_{f}d+S_{wet-rear-fus}+2S_{h}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $S_{wet-aft}=4D_{f}d+S_{wet-rear-fus}+2\frac{\bar{V}_{h}Sc_{w}}{l_{h}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $S_{wet-aft}=4D_{f}d+S_{wet-rear-fus}+2\frac{\bar{V}_{h}Sc_{w}}{d+L_{frear}-(1-xMAC_{h})c_{h}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{\partial S_{wet-aft}}{\partial d}=4D_{f}-2\frac{\bar{V}_{h}Sc}{\left[d+L_{frear}-(1-xMAC_{h})MAC_{h}\right]^{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Positioning Procedure
+\end_layout
+
+\begin_layout Standard
+Unknowns:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x\left(1\right)=x_{ac}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x\left(2\right)=L_{fbody}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x\left(3\right)=d$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Constraints to satisfy:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $SM=0.2$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{\partial S_{wet-aft}}{\partial d}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $d=L_{fnose}+L_{fbody}-x_{CG}\left(L_{fbody}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nonlinear system of equations:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y\left(1\right)=\frac{x\left(1\right)}{c_{w}}+\frac{a_{h}}{a_{wf}}\eta_{h}\bar{V}_{h}\left(1-\frac{d\varepsilon}{d\alpha}\right)-\frac{x_{CG}\left(x\left(2\right)\right)}{c_{w}}-0.2=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y\left(2\right)=4D_{f}-2\frac{\bar{V}_{h}Sc}{\left[x\left(3\right)+L_{frear}-(1-xMAC_{h})c_{h}\right]^{2}}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y\left(3\right)=x\left(3\right)-\left[L_{fnose}+x\left(2\right)-x_{CG}\left(x\left(2\right)\right)\right]=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Assumptions:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $V_{h}=0.5$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $a_{h}=2\pi$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\eta_{h}=0.98$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $A_{h}=\frac{2}{3}A_{w}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $D_{f}=0.12$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $L_{fnose}=1.5D_{f}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $L_{frear}=2D_{f}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $c_{h}=c_{w}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $xMAC_{h}=xMAC_{w}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $xTE_{h}=L_{f}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+relative position of the parts within the plane
+\end_layout
+
+\begin_layout Section
+Hstab Sizing Procedure
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x_{CG}=f\left(L_{fbody}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $l_{h}=L_{f}-(1-xMAC_{h})c_{h}-x_{CG}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $S_{h}=\frac{\bar{V}_{h}Sc_{w}}{l_{h}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Required 
+\begin_inset Formula $C_{Lh}$
+\end_inset
+
+ for longitudinal trim: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C_{macwf}+C_{Lwf}\left(\bar{x}_{cg}-\bar{x}_{ac}\right)-C_{Lh}\eta_{h}\bar{V}_{h}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C_{Lh}=\frac{C_{macwf}+C_{Lwf}\left(\bar{x}_{cg}-\bar{x}_{ac}\right)}{\eta_{h}\bar{V}_{h}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Required 
+\begin_inset Formula $\alpha_{h}$
+\end_inset
+
+ for longitudinal trim (iterate to find 
+\begin_inset Formula $\alpha_{h}$
+\end_inset
+
+ so that 
+\begin_inset Formula $C_{Lh}=C_{Lh}'$
+\end_inset
+
+):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C_{Lh}\approx a_{h}\alpha_{h}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\alpha_{h}=\frac{C_{Lh}}{a_{h}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C_{Lh}'=LiftingLine\left(\alpha_{h}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Required 
+\begin_inset Formula $i_{h}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\alpha_{h}=\alpha_{wf}-i_{wf}+i_{h}-\varepsilon_{0}-\frac{d\varepsilon}{d\alpha}\alpha_{wf}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $i_{h}=\alpha_{h}-\alpha_{wf}+i_{wf}+\varepsilon_{0}+\frac{d\varepsilon}{d\alpha}\alpha_{wf}$
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
