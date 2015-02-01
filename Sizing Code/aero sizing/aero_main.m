@@ -38,8 +38,9 @@ assumptions.eta_h         = 0.98;
 assumptions.tail_Cd0      = 0.00338; %Based on NACA0006
 assumptions.StaticMargin  = 0.2;
 assumptions.battery_m     = 808;
-assumptions.Lf_nose       = assumptions.mul_nose*assumptions.Df;
-assumptions.Lf_rear       = assumptions.mul_rear*assumptions.Df;
+assumptions.Lf_nose       = 1.5*assumptions.Df;
+assumptions.Lf_nose       = 62.5;
+assumptions.Lf_rear       = 2.0*assumptions.Df;
 % assumptions.Lf_rear       = 33;
 
 %% COMPUTATION

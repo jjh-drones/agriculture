@@ -37,9 +37,9 @@ Cf = 0.455/(log10(Re))^2.58;
 
 % Wetted area of the fuselage
 
-Lf_nose = 18/100;
-Lf_body = 62.13/100;
-Lf_rear = 33/100;
+% Lf_nose = 18/100;
+% Lf_body = 62.13/100;
+% Lf_rear = 33/100;
 
 Swet = fus_wetted(Df,Lf_nose,Lf_body,Lf_rear);
 
