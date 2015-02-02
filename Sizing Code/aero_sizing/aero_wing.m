@@ -75,7 +75,9 @@ for kk = 1:size(Airfoil_List,1),
     cla_alpha_max = 7;
 
     Tag = zeros(2,1);
-
+    Tag2 = zeros(2,1);
+    kfactor_min = -5;
+    kfactor_max = 5;
 
     for j = 1:size(normalized_params,1)
         if normalized_params(j,1,1) == cla_alpha_min,
@@ -83,6 +85,12 @@ for kk = 1:size(Airfoil_List,1),
         end
         if normalized_params(j,1,1) == cla_alpha_max,
             Tag(2,1) = j;
+        end
+        if normalized_params(j,1,1) == kfactor_min,
+            Tag2(1,1) = j;
+        end
+        if normalized_params(j,1,1) == kfactor_max,
+            Tag2(2,1) = j;
         end
     end
     Cl0 = zeros(4,size(normalized_params,3)); %[index, alpha at Cl = 0, 0, Cl at alpha=0]
