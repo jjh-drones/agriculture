@@ -22,10 +22,10 @@ Re_options          = [50000, 100000, 200000, 500000, 1000000];
 delta               = 0.25;
 
 if 1
-for k = 1:size(Airfoil_List,1),
+for kk = 1:size(Airfoil_List,1),
     normalized_params = [];
     P                 = zeros(250,7,size(Re_options,2));
-    airfoil_name      = char(Airfoil_List(k));
+    airfoil_name      = char(Airfoil_List(kk));
 
     for i = 1:size(Re_options,2),
         fileID = fopen([pwd,'\',airfoil_name,'\',num2str(Re_options(i)),'.txt']);
@@ -183,8 +183,15 @@ for k = 1:size(Airfoil_List,1),
 
         end
     end
+    if kk == 1,
+        optimized_wing = wing;
+    elseif wing.D <= optimized_wing.D,
+       optimized_wing = wing;
+       index_winner   = kk;
+    end
 end
-
+    wing = optimized_wing;
+    wing.airfoil_name = Airfoil_List(index_winner);
 else
 %% HARCODED VALUES
 wing.CLalpha      = 4.671;
