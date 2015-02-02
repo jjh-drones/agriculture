@@ -113,6 +113,26 @@ for kk = 1:size(Airfoil_List,1),
             Cl0(3,j) = 0;
         end
     end
+        %%Calculate the K Factor
+    for j = 1:size(normalized_params,3)
+        for i = 1:size(normalized_params,1)
+            if normalized_params(i,1,j) == 0,
+                zero_a = i;
+            end
+        end
+        Cl_0(j) = normalized_params(zero_a,2,j);
+        for i = 1:size(normalized_params,1)
+            Cl_Diff(i) = (normalized_params(i,2,j)-Cl_0(j))^2;
+            Cd_nom(i)  = normalized_params(i,3,j);
+        end
+        Cl_Diff = Cl_Diff';
+        Cd_nom = Cd_nom';
+        x = Cl_Diff(Tag2(1,1):Tag2(2,1));
+        y = Cd_nom(Tag2(1,1):Tag2(2,1));
+        cx = cov(x,y);
+        vx = var(x);
+        k_factor(j) = cx(1,2)/vx;
+    end    
     G = 1;
     %% Run calculations
     for i = Re_min:delta_Re:Re_max,
@@ -122,6 +142,7 @@ for kk = 1:size(Airfoil_List,1),
         CL_req(G) = g*weight/(q*wing_area(G));                  
         CL_req_secondary(G) = g*weight/(q_secondary*wing_area(G));
         Cla_temp(G) = interp1(Re_options,Cla(1,:),i)*180/(pi);
+        K_Factor = interp1(Re_options,k_factor(1,:),i);
         a0_temp = interp1(Re_options,Cl0(2,:),i);
         CL_Cutoff_Specific = interp1(Re_options,CL_Cutoff,i);
         k = Cla_temp(G)/(2*pi); 
@@ -151,7 +172,8 @@ for kk = 1:size(Airfoil_List,1),
 
         e_total_wing(G) = (e_invicid + e_viscous*pi*AR)^(-1);
         K_wing     = (pi*AR*e_total_wing(G))^(-1);
-        CD_Wing(G) = CD_airfoil(G) + (K_wing)*(CL_req(G))^2;
+        CD_Wing(G) = CD_airfoil(G) + (K_wing)*(CL_req(G))^2+K_Factor*(CL_req(G)-Cl0_temp)^2;
+%         CD_Wing(G) = CD_airfoil(G) + (K_wing)*(CL_req(G))^2; %No K Factor for comparison
         D_Wing(G)  = q*wing_area(G)*CD_Wing(G);
         G = G + 1;
     end
