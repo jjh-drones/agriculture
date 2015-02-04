@@ -4,7 +4,7 @@ name               = 'brick';
 f                  = '%8.4f';
 d                  = '%2d';
 fid                = fopen([name,'.avl'],'w');
-path_wing_airfoil  = 'Eppler_560.dat'; 
+path_wing_airfoil  = 'SD7062.dat'; 
 path_hstab_airfoil = 'NACA0006.dat';
 
 % GLOBAL
