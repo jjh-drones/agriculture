@@ -13,7 +13,7 @@ q                   = mission.q;
 q_secondary         = mission.q_second;
 kinematic_viscosity = mission.mu;
 M                   = mission.M;
-delta_CL            = 0.3;                                   %Additional CL with FLAPS
+delta_CL            = 0.0;                                   %Additional CL with FLAPS
 Re_min              = 100000;                                %other values NOT POSSIBLE
 Re_max              = 1000000;
 step_size           = 2000;
@@ -21,7 +21,7 @@ delta_Re            = floor((Re_max-Re_min)/step_size);
 Re_options          = [50000, 100000, 200000, 500000, 1000000];
 delta               = 0.25;
 
-if 0
+if 1
 for kk = 1:size(Airfoil_List,1),
     normalized_params = [];
     P                 = zeros(250,7,size(Re_options,2));
