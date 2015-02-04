@@ -1,6 +1,6 @@
 %% MISSION REQUIREMENTS
 mission.V          = 18.4;
-mission.V_second   = 6;
+mission.V_second   = 7;
 mission.H          = 112;
 mission.H_second   = 3;
 mission.t          = 31*60;
