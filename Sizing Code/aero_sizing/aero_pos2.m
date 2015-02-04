@@ -27,7 +27,9 @@ SM        = assumptions.StaticMargin;
 xAC_norm    = - CLalpha_h/CLalpha_w*eta_h*V_h*(1-eps_dalpha) + xCG_norm + SM;
 pos.xAC     = xAC_norm*c_w;
 pos.xCG     = cg.x;
+pos.zCG     = cg.z;
 pos.Lf_body = Lf_body;
+pos.Iyy     = cg.Iyy;
 
 
 end

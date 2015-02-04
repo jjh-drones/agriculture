@@ -21,7 +21,7 @@ delta_Re            = floor((Re_max-Re_min)/step_size);
 Re_options          = [50000, 100000, 200000, 500000, 1000000];
 delta               = 0.25;
 
-if 1
+if 0
 for kk = 1:size(Airfoil_List,1),
     normalized_params = [];
     P                 = zeros(250,7,size(Re_options,2));
@@ -144,20 +144,21 @@ for kk = 1:size(Airfoil_List,1),
     G = 1;
     %% Run calculations
     for i = Re_min:delta_Re:Re_max,
-        chord(G) = i*kinematic_viscosity/(target_speed);
-        wing_area(G) = AR*chord(G)^2;    %Assuming rectangular wing
-        span(G) = AR*chord(G);
-        CL_req(G) = g*weight/(q*wing_area(G));                  
+        chord(G)            = i*kinematic_viscosity/(target_speed);
+        wing_area(G)        = AR*chord(G)^2;    %Assuming rectangular wing
+        span(G)             = AR*chord(G);
+        CL_req(G)           = g*weight/(q*wing_area(G));                  
         CL_req_secondary(G) = g*weight/(q_secondary*wing_area(G));
-        Cla_temp(G) = interp1(Re_options,Cla(1,:),i)*180/(pi);
-        K_Factor = interp1(Re_options,k_factor(1,:),i);
-        a0_temp = interp1(Re_options,Cl0(2,:),i);
-        CL_Cutoff_Specific = interp1(Re_options,CL_Cutoff,i);
-        k = Cla_temp(G)/(2*pi); 
-        CLa(G)     = ((2*pi*AR)/(2+(((AR^2*(1-M^2)/k^2))+4)^0.5))*(pi/180);
-        alpha_cruise(G) = (CL_req(G))/CLa(G) + a0_temp;
+        Cla_temp(G)         = interp1(Re_options,Cla(1,:),i)*180/(pi);
+        K_Factor            = interp1(Re_options,k_factor(1,:),i);
+        a0_temp             = interp1(Re_options,Cl0(2,:),i);
+        CL_Cutoff_Specific  = interp1(Re_options,CL_Cutoff,i);
+        k                   = Cla_temp(G)/(2*pi); 
+        CLa(G)              = ((2*pi*AR)/(2+(((AR^2*(1-M^2)/k^2))+4)^0.5))*(pi/180);
+        alpha_cruise(G)     = (CL_req(G))/CLa(G) + a0_temp;
         CL_req_secondary(G) = g*weight/(q_secondary*wing_area(G));
-        alpha_takeoff(G) = (CL_req_secondary(G)-0.3)/CLa(G) + a0_temp;
+        alpha_takeoff(G)    = (CL_req_secondary(G)-0.3)/CLa(G) + a0_temp;
+        
         if CL_req_secondary(G) > CL_Cutoff_Specific,
             alpha_cruise(G) = 35;   %If the secondary contrains are NOT MET, just discard the iteration
         end
@@ -172,17 +173,20 @@ for kk = 1:size(Airfoil_List,1),
             CD_airfoil(G)   = interp1(Re_options,Cd_temp_airfoil,i);
             CM_airfoil(G)   = interp1(Re_options,Cm_temp_airfoil,i);
         end
-        s = 1-2*(fuselage_thickness/span(G))^2;
-        u = 0.99; %Theoretical oswald efficiency factor
-        e_invicid = 1/(u*s);
-        K = 0.38;  %Factor from flight test data
-        e_viscous = K*CD_airfoil(G);
-
-        e_total_wing(G) = (e_invicid + e_viscous*pi*AR)^(-1);
-        K_wing     = (pi*AR*e_total_wing(G))^(-1);
-        CD_Wing(G) = CD_airfoil(G) + (K_wing)*(CL_req(G))^2+K_Factor*(CL_req(G)-Cl0_temp)^2;
-%         CD_Wing(G) = CD_airfoil(G) + (K_wing)*(CL_req(G))^2; %No K Factor for comparison
-        D_Wing(G)  = q*wing_area(G)*CD_Wing(G);
+        s                    = 1-2*(fuselage_thickness/span(G))^2;
+        u                    = 0.99; %Theoretical oswald efficiency factor
+        e_invicid            = 1/(u*s);
+        K                    = 0.38;  %Factor from flight test data
+        e_viscous            = K*CD_airfoil(G);
+        e_total_wing(G)      = (e_invicid + e_viscous*pi*AR)^(-1);
+        K_wing               = (pi*AR*e_total_wing(G))^(-1);
+        CD_Wing(G)           = CD_airfoil(G) + (K_wing)*(CL_req(G))^2 + K_Factor*(CL_req(G)-Cl0_temp)^2;
+        CD_Wing_secondary(G) = CD_airfoil(G) + (K_wing)*(CL_req_secondary(G))^2 + K_Factor*(CL_req_secondary(G)-Cl0_temp)^2;        
+        D_Wing(G)            = q*wing_area(G)*CD_Wing(G);
+        D_Wing_secondary(G)  = q_secondary*wing_area(G)*CD_Wing_secondary(G);
+        L_req(G)             = q*wing_area(G)*CL_req(G);
+        L_req_secondary(G)   = q_secondary*wing_area(G)*CL_req_secondary(G);  %assuming rectangular (no MAC, but chord)
+        %         CD_Wing(G) = CD_airfoil(G) + (K_wing)*(CL_req(G))^2; %No K Factor for comparison
         G = G + 1;
     end
     D_Min = 500;
@@ -195,19 +199,23 @@ for kk = 1:size(Airfoil_List,1),
             wing.CL_cruise    = CL_req(i);
             wing.CL_launch    = CL_req_secondary(i);
             wing.CD_cruise    = CD_Wing(i);
-            wing.D            = D_Wing(i);
-            wing.CM_cruise    = CM_airfoil(i);
+            wing.CD_launch    = CD_Wing_secondary(i);
+            wing.CM           = CM_airfoil(i);
+            wing.L_cruise     = L_req(i);
+            wing.L_launch     = L_req_secondary(i);
+            wing.D_cruise     = D_Wing(i);
+            wing.D_launch     = D_Wing_secondary(i);
+            wing.M_cruise     = q*wing_area(i)*chord(i)*CM_airfoil(i);
+            wing.M_launch     = q_secondary*wing_area(i)*chord(i)*CM_airfoil(i);
             wing.S            = wing_area(i);
             wing.A            = AR;
             wing.croot        = chord(i); 
             wing.b            = span(i);
-            wing.alpha_cruise = 0;
             wing.MAC          = chord(i);
             wing.xMAC         = 0.25;
             wing.taper        = 1;
             wing.sweep        = 0;
-            wing.dihedral     = 0;
-            
+            wing.dihedral     = 0;         
             wing.alpha_cruise = alpha_cruise(i)*pi/180;
             wing.incidence    = 0;
 
@@ -215,7 +223,7 @@ for kk = 1:size(Airfoil_List,1),
     end
     if kk == 1,
         optimized_wing = wing;
-    elseif wing.D <= optimized_wing.D,
+    elseif wing.D_cruise <= optimized_wing.D_cruise,
        optimized_wing = wing;
        index_winner   = kk;
     end
@@ -224,26 +232,31 @@ end
     wing.airfoil_name = Airfoil_List(index_winner);
 else
 %% HARCODED VALUES
-wing.CLalpha      = 4.671;
-wing.Clalpha      = 6.1505;
-wing.CL_cruise    = 0.316;
-wing.CL_launch    = 1.6535;
-wing.CD_cruise    = 0.0161;
-wing.CM_cruise    = -0.0820;
-wing.D            = 1.04;
-wing.S            = 0.3027;
+wing.CLalpha      = 5.2624387526601;
+wing.Clalpha      = 7.27716986010425;
+wing.CL_cruise    = 0.123400636242163;
+wing.CL_launch    = 1.16051442794852;
+wing.CD_cruise    = 0.00834891688932221;
+wing.CD_launch    = 0.0919920522227005;
+wing.CM           = -0.0156084668090136;
+wing.L_cruise     = 19.62;
+wing.L_launch     = 19.62;
+wing.D_cruise     = 1.32743034685046;
+wing.D_launch     = 1.55524483034643;
+wing.M_cruise     = -0.825753741680214;
+wing.M_launch     = -0.0878046275416107;
+wing.S            = 0.775024518186342;
 wing.A            = 7;
-wing.croot        = 0.2080;
-wing.b            = 1.4557;
-wing.alpha_cruise = 0;
-wing.MAC          = 0.2080;
+wing.croot        = 0.332742826086957; 
+wing.b            = 2.3291997826087;
+wing.MAC          = 0.332742826086957;
 wing.xMAC         = 0.25;
 wing.taper        = 1;
 wing.sweep        = 0;
-wing.dihedral     = 0;
-
-wing.alpha_cruise = -0.3557*pi/180;
+wing.dihedral     = 0;         
+wing.alpha_cruise = 0.0234493249312946;
 wing.incidence    = 0;
+airfoil_name      = {'NACA0009'};
 
 end
 

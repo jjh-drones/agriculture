@@ -6,7 +6,7 @@ rad2deg = 180/pi;
 %% PARAMETERS
 CL_w          = wing.CL_cruise;
 CLalpha_w     = wing.CLalpha;
-Cmo_wf        = wing.CM_cruise;
+Cmo_wf        = wing.CM;
 S_w           = wing.S;
 A_w           = wing.A;
 c_w           = wing.MAC;
@@ -22,6 +22,8 @@ Clalpha_h     = assumptions.tail_Clalpha;
 CD0_h         = assumptions.tail_Cd0;
 q             = mission.q;
 L_hinge       = assumptions.tail_Lhinge;
+xCG           = pos.xCG;
+zCG           = pos.zCG;
 
 Ah_mul = assumptions.Ah_mul; 
 ch_mul = assumptions.ch_mul;
@@ -62,6 +64,11 @@ eps_dalpha  = 2*CLalpha_w/(pi*A_w);
 eps         = eps0 + eps_dalpha*alpha_w;
 incidence_h = alpha_h - alpha_w + incidence_w + eps;
 
+% Positioning
+xLE_h       = pos.xCG + l_h - wing.xMAC*croot_h;
+xAC_h       = xLE_h + wing.xMAC*croot_h;
+zAC_h       = assumptions.tail_height;
+
 %% DRAG COMPUTATION
 s         = 1-2*(Df/b_h)^2;
 u         = 0.99;                                     
@@ -73,6 +80,34 @@ K_surf    = (pi*A_h*e_total)^(-1);
 CD_h      = CD0_h + (K_surf)*(CL_h)^2;
 D_h       = q*S_h*CD_h;
 
+%% ELEVATOR SIZING (TAKE-OFF)
+T_excess   = 5;
+Iyy        = pos.Iyy;
+theta_ddot = 10*deg2rad;
+xAC_w      = pos.xAC;
+zAC_w      = Df/2;
+z_prop     = Df/2;
+Lw         = wing.L_launch;       
+Dw         = wing.D_launch; 
+Macw       = wing.M_launch;
+T          = Dw + T_excess;
+
+Mw   =  Macw + Lw*(xCG - xAC_w) - Dw*(zCG - zAC_w);
+MT   = T*(zCG - z_prop);
+Mh   = -Mw -MT + Iyy*theta_ddot;
+Lh   = Mh/(xCG-xAC_h);
+CL_h = Lh/(mission.q_second*S_w);
+
+alpha_w     = 0;
+CL_w        = wing.CL_launch;
+eps0        = 2*CL_w/(pi*A_w);
+eps_dalpha  = 2*CLalpha_w/(pi*A_w);
+eps         = eps0 + eps_dalpha*alpha_w;
+alpha_h     = alpha_w + incidence_h - eps;
+
+deltaE_max  = -15*deg2rad;
+tauE        = (alpha_h + (CL_h/CLalpha_h))/deltaE_max;
+
 %% OUTPUT STRUCTURE
 hstab.S          = S_h;
 hstab.b          = b_h;
@@ -82,8 +117,8 @@ hstab.D          = D_h;
 hstab.ih         = incidence_h*180/pi;
 hstab.CLalpha    = CLalpha_h;
 hstab.eps_dalpha = eps_dalpha;
-hstab.xLE        = pos.xCG + hstab.lh - wing.xMAC*hstab.croot;
-hstab.xAC        = hstab.xLE + wing.xMAC*hstab.croot;
-hstab.zAC        = assumptions.tail_height;
+hstab.xLE        = xLE_h;
+hstab.xAC        = xAC_h;
+hstab.zAC        = zAC_h;
 
 

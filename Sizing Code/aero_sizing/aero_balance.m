@@ -103,10 +103,20 @@ Xcg = Xcg/M;
 Ycg = Ycg/M;
 Zcg = Zcg/M;
 
+%% Inertia Tensor computation
+Iyy = 0;
+for i = 1:nmasses
+    xx  = (weights(i).x*cm2m - Xcg)*(weights(i).x*cm2m - Xcg);
+    zz  = (weights(i).z*cm2m - Zcg)*(weights(i).z*cm2m - Zcg);
+    m   = weights(i).mass*g2kg;
+    Iyy = Iyy + m*(xx + zz);
+end
+
 %% OUTPUT STRUCTURE
 cg.mass = M;
 cg.x    = Xcg;
 cg.y    = Ycg;
 cg.z    = Zcg;
+cg.Iyy  = Iyy;
 
 

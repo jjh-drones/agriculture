@@ -23,7 +23,7 @@ mission.M_second   = mission.V_second/mission.a_second;
 %% ASSUMPTIONS
 assumptions.weight        = 2;
 assumptions.Aw            = 7;
-assumptions.Vh            = 0.35;
+assumptions.Vh            = 0.5;
 assumptions.Ah_mul        = 2/3;
 assumptions.ch_mul        = 0.5;
 assumptions.tail_Clalpha  = 2*pi; 
@@ -34,7 +34,7 @@ assumptions.tail_Cd0      = 0.00338; %Based on NACA0006
 assumptions.StaticMargin  = 0.2;
 assumptions.battery_m     = 808;
 assumptions.Df            = 12e-2;
-assumptions.back_angle    = 15;
+assumptions.back_angle    = 12;
 assumptions.tail_height   = 10e-2;
 assumptions.Lf_body       = 62e-2;
 assumptions.Lf_nose       = 1.5*assumptions.Df;
@@ -102,10 +102,10 @@ fprintf('\n')
 %Drag
 display('DRAG BREAKDOWN')
 display('--------')
-fprintf('%15s%15.6f\n','Wing: ',wing.D);
+fprintf('%15s%15.6f\n','Wing: ',wing.D_cruise);
 fprintf('%15s%15.6f\n','Hstab: ',hstab.D);
 fprintf('%15s%15.6f\n','Fuselage: ',fuselage.D);
-fprintf('%15s%15.6f\n','Total: ',wing.D + hstab.D + fuselage.D);
+fprintf('%15s%15.6f\n','Total: ',wing.D_cruise + hstab.D + fuselage.D);
 fprintf('\n')
 
 %Longitudinal Stability
