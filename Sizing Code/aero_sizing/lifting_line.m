@@ -1,4 +1,4 @@
-function out = lifting_line(alpha,S,A,taper,CLalpha,CL_target)
+function out = lifting_line(alpha,S,A,taper,CLalpha,CL_target,alpha_0)
 
 N           = 9;                                        % (number of segments-1)
 AR          = A;                                        % Aspect ratio
