@@ -120,6 +120,7 @@ cg.mass = M;
 cg.x    = Xcg;
 cg.y    = Ycg;
 cg.z    = Zcg;
+cg.Ixx  = Ixx;
 cg.Iyy  = Iyy;
 
 
