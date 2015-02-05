@@ -20,6 +20,7 @@ mission.q_second   = 0.5*mission.rho*mission.V_second^2;
 mission.M          = mission.V/mission.a;
 mission.M_second   = mission.V_second/mission.a_second;
 mission.turn_angle = 90;
+mission.turn_sec   = 0.7;
 
 %% ASSUMPTIONS
 assumptions.weight        = 2;
@@ -53,6 +54,8 @@ fuselage = aero_fuselage(assumptions,mission,wing,pos);
 hstab    = aero_hstab(assumptions,mission,wing,pos,fuselage);
 
 vstab    = aero_vstab(wing,hstab,pos,assumptions);
+
+aileron  = aileron_sizing(wing,pos,hstab,vstab,mission,atm); 
 
 %% VISUALIZATION
 m2cm    = 100;
@@ -111,7 +114,7 @@ fprintf('%15s%15.6f\n','Total: ',wing.D_cruise + hstab.D + fuselage.D);
 fprintf('\n')
 
 %Longitudinal Stability
-cg = aero_balance(assumptions.Df,assumptions.Lf_nose,fuselage.Lf_body,assumptions.Lf_rear,assumptions.battery_m);
+cg = aero_balance(assumptions.Df,assumptions.Lf_nose,fuselage.Lf_body,assumptions.Lf_rear,assumptions.battery_m,wing);
 ls = stab_long(cg.x,pos,wing,hstab,assumptions);
 matlab2avl(mission,wing,hstab,cg)
 display('LONG STABILITY (DESIGN)')
@@ -125,7 +128,7 @@ fprintf('\n')
 
 %Longitudinal Test
 battery_m = 600;
-cg = aero_balance(assumptions.Df,assumptions.Lf_nose,fuselage.Lf_body,assumptions.Lf_rear,battery_m);
+cg = aero_balance(assumptions.Df,assumptions.Lf_nose,fuselage.Lf_body,assumptions.Lf_rear,battery_m,wing);
 ls = stab_long(cg.x,pos,wing,hstab,assumptions);
 display('LONG STABILITY (TEST)')
 display('--------')

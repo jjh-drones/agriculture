@@ -18,7 +18,7 @@ Lf_nose   = assumptions.Lf_nose;
 Lf_body   = assumptions.Lf_body;
 Lf_rear   = assumptions.Lf_rear;
 battery_m = assumptions.battery_m;
-cg        = aero_balance(Df,Lf_nose,Lf_body,Lf_rear,battery_m);
+cg        = aero_balance(Df,Lf_nose,Lf_body,Lf_rear,battery_m,wing);
 xCG       = cg.x;
 xCG_norm  = xCG/c_w;
 SM        = assumptions.StaticMargin;
@@ -29,7 +29,9 @@ pos.xAC     = xAC_norm*c_w;
 pos.xCG     = cg.x;
 pos.zCG     = cg.z;
 pos.Lf_body = Lf_body;
+pos.Ixx     = cg.Ixx;
 pos.Iyy     = cg.Iyy;
+pos.Izz     = cg.Izz;
 
 
 end
