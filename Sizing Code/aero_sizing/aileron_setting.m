@@ -9,7 +9,7 @@ function [t_roll,Pss,bank_angle_till_steady] = aileron_setting(CL_alpha_wing,C_a
     Y_1 = inner_edge_ail_perc*(b_wing/2);
     Y_0 = outer_edge_ail_perc*(b_wing/2);
     Cl_da = ((2*CL_alpha_wing*Ta*C_wing)/(S_wing*b_wing))*((Y_0^2/2)-(Y_1^2/2));
-    Cl  = Cl_da*d_aileron;
+    Cl  = Cl_da*d_aileron*deg2rad;
     LA  = q_flight*S_wing*Cl*b_wing;
 
     Pss = ((2*LA)/(rho_flight*(S_horiontal+S_vertical+S_wing)*CDR*Yd^3))^0.5;
