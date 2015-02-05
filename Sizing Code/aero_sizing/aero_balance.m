@@ -104,11 +104,14 @@ Ycg = Ycg/M;
 Zcg = Zcg/M;
 
 %% Inertia Tensor computation
+Ixx = 0;
 Iyy = 0;
 for i = 1:nmasses
     xx  = (weights(i).x*cm2m - Xcg)*(weights(i).x*cm2m - Xcg);
+    yy  = (weights(i).y*cm2m - Ycg)*(weights(i).y*cm2m - Ycg);
     zz  = (weights(i).z*cm2m - Zcg)*(weights(i).z*cm2m - Zcg);
     m   = weights(i).mass*g2kg;
+    Ixx = Ixx + m*(yy+zz);
     Iyy = Iyy + m*(xx + zz);
 end
 
