@@ -19,6 +19,7 @@ mission.q          = 0.5*mission.rho*mission.V^2;
 mission.q_second   = 0.5*mission.rho*mission.V_second^2;                         
 mission.M          = mission.V/mission.a;
 mission.M_second   = mission.V_second/mission.a_second;
+mission.turn_angle = 90;
 
 %% ASSUMPTIONS
 assumptions.weight        = 2;
@@ -40,6 +41,7 @@ assumptions.Lf_body       = 62e-2;
 assumptions.Lf_nose       = 1.5*assumptions.Df;
 assumptions.Lf_rear       = assumptions.Df/tan(assumptions.back_angle*pi/180);
 assumptions.tail_Lhinge   = assumptions.tail_height/tan(assumptions.back_angle*pi/180);
+
 
 %% COMPUTATION
 wing     = aero_wing(assumptions,mission);
