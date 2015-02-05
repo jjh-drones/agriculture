@@ -30,6 +30,7 @@ tip_v   = taper_v*root_v;
 %% OUTPUT STRUCTURE
 vstab.croot = root_v;
 vstab.b     = b_v;
+vstab.S_v   = S_v;
 vstab.xLE   = pos.xCG + lv - wing.xMAC*root_v;
 vstab.xAC   = vstab.xLE + wing.xMAC*vstab.croot;
 
