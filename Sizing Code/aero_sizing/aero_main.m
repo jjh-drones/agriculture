@@ -20,7 +20,7 @@ mission.q_second   = 0.5*mission.rho*mission.V_second^2;
 mission.M          = mission.V/mission.a;
 mission.M_second   = mission.V_second/mission.a_second;
 mission.turn_angle = 90;
-mission.turn_sec   = 0.7;
+mission.turn_sec   = 0.55;
 
 %% ASSUMPTIONS
 assumptions.weight        = 2;
@@ -116,7 +116,7 @@ fprintf('\n')
 %Longitudinal Stability
 cg = aero_balance(assumptions.Df,assumptions.Lf_nose,fuselage.Lf_body,assumptions.Lf_rear,assumptions.battery_m,wing);
 ls = stab_long(cg.x,pos,wing,hstab,assumptions);
-matlab2avl(mission,wing,hstab,cg)
+matlab2avl(mission,wing,hstab,cg,aileron)
 display('LONG STABILITY (DESIGN)')
 display('--------')
 fprintf('%15s%15.6f\n','Battery Mass: ',assumptions.battery_m);

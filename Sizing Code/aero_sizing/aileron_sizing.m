@@ -2,8 +2,8 @@ function aileron = aileron_sizing(wing,cg,hstab,vstab,mission,atm)
 %%ASSUMPTIONS
 da_max            = 25;   %+- 25 degrees for ailerons
 b_end_max_perc    = 0.95; %maximum external position of aileron
-aileronC_ratio    = 0.2;  %percentage of aileron chord with respect to wing
-b_beggininga_perc = 0.6;  %start of aileron withing semi span in percentage
+aileronC_ratio    = 0.25;  %percentage of aileron chord with respect to wing
+b_beggininga_perc = 0.15;  %start of aileron withing semi span in percentage
 b_begginingb_perc = 0.8;  %maximum start offset from wing span in percentage
 
 delta      = b_begginingb_perc - b_beggininga_perc;
@@ -25,12 +25,13 @@ if mission.turn_sec < min_t,
     aileron.Pss = 0;
     aileron.bank_angle_till_steady = 0;
 else
-    aileron.t_roll = mission.turn_sec;
-    aileron.Pss    = interp1(a(:),b(:),aileron.t_roll);
+    aileron.t_roll      = mission.turn_sec;
+    aileron.Pss         = interp1(a(:),b(:),aileron.t_roll);
     aileron.bank_angle_till_steady = interp1(a(:),c(:),aileron.t_roll);
-    aileron.chord  = aileronC_ratio*wing.croot;
-    aileron_b_perc = interp1(a(:),size_ail(:),aileron.t_roll);
-    aileron.span   = aileron_b_perc*wing.b/2;
-    aileron.start  = interp1(a(:),ail_start(:),aileron.t_roll)*wing.b/2;
+    aileron.chord       = aileronC_ratio*wing.croot;
+    aileron.chord_perc  = aileronC_ratio;
+    aileron_b_perc      = interp1(a(:),size_ail(:),aileron.t_roll);
+    aileron.span        = aileron_b_perc*wing.b/2;
+    aileron.start       = interp1(a(:),ail_start(:),aileron.t_roll)*wing.b/2;
 end
 end
