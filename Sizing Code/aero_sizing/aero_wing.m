@@ -21,6 +21,11 @@ delta_Re            = floor((Re_max-Re_min)/step_size);
 Re_options          = [50000, 100000, 200000, 500000, 1000000];
 delta               = 0.25;
 
+%%Manouverability Caluclations
+
+wing.n = (assumptions.Turn_radius*mission.g/(mission.V)^2)^(-2)+1;
+
+
 if 1
 for kk = 1:size(Airfoil_List,1),
     normalized_params = [];

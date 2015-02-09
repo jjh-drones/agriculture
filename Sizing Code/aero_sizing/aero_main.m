@@ -41,6 +41,7 @@ assumptions.tail_height   = 10e-2;
 assumptions.Lf_body       = 62e-2;
 assumptions.Lf_nose       = 1.5*assumptions.Df;
 assumptions.Lf_rear       = assumptions.Df/tan(assumptions.back_angle*pi/180);
+assumptions.Turn_radius   = 20; %Meters, to fullfil control points
 assumptions.tail_Lhinge   = assumptions.tail_height/tan(assumptions.back_angle*pi/180);
 
 
