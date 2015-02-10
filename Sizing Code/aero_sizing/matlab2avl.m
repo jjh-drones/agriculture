@@ -1,11 +1,11 @@
 function matlab2avl(mission,wing,hstab,cg,aileron)
 
-name               = 'brick';
+name               = mission.name;
 f                  = '%8.4f';
 d                  = '%2d';
 fid                = fopen([name,'.avl'],'w');
 path_wing_airfoil  = [cell2mat(wing.airfoil_name),'_avl.dat']; 
-path_hstab_airfoil = 'NACA0006.dat';
+path_hstab_airfoil = 'NACA0006_avl.dat';
 
 % GLOBAL
 fprintf(fid,[name,'\n']);

@@ -1,5 +1,6 @@
 %% MISSION REQUIREMENTS
 mission.V          = 18.4;
+mission.name       = 'brick';
 mission.V_second   = 7;
 mission.H          = 112;
 mission.H_second   = 3;

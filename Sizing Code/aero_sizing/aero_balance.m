@@ -1,4 +1,4 @@
-function cg = aero_balance(Df,Lf_nose,Lf_body,Lf_rear,battery_m,wing)
+function cg = aero_balance(Df,Lf_nose,Lf_body,Lf_rear,battery_m,wing,mission)
 
 cm2m = 1e-2;
 g2kg = 1e-3; 
@@ -117,10 +117,13 @@ weights(9).Iy              = (1/12)*g2kg*weights(9).mass*((cm2m*weights(9).lx)^2
 weights(9).Iz              = (1/12)*g2kg*weights(9).mass*((cm2m*weights(9).lx)^2+(cm2m*weights(9).ly)^2);
 
 %main wing
+dens_foam        = 20.824;
+density_carbon   = 1480;
+airfoil_thicknes = 0.12;
 weights(10).lx   = 100*wing.croot;
 weights(10).ly   = 100*wing.b;
 weights(10).lz   = 100*wing.croot*0.12;
-weights(10).mass = (20.824*wing.croot*wing.b*wing.croot*0.12+2*1480*pi*(0.25/100)^2*wing.b)*1000; %assuming density of EPO foam (20kg/m3) and 2 carbon rods (1480/m3)
+weights(10).mass = (dens_foam*wing.croot*wing.b*wing.croot*airfoil_thicknes+2*density_carbon*pi*(0.25/100)^2*wing.b)*1000; %assuming density of EPO foam (20kg/m3) and 2 carbon rods (1480/m3)
 weights(10).x    = 29.84+0.2*weights(10).lx; %needs to match with leading edge
 weights(10).y    = 0;
 weights(10).z    = 0.5*Df + 0.5*weights(10).lz;
@@ -155,7 +158,6 @@ for i = 1:nmasses
     Iyy = Iyy + m*(xx + zz)+weights(i).Iy;
     Izz = Izz + m*(xx + yy)+weights(i).Iz;
 end
-
 %% OUTPUT STRUCTURE
 cg.mass = M;
 cg.x    = Xcg;
@@ -164,4 +166,14 @@ cg.z    = Zcg;
 cg.Ixx  = Ixx;
 cg.Iyy  = Iyy;
 cg.Izz  = Izz;
+
+%% Export to AVL Mass file
+mission.g = 9.81;
+mission.rho = 1.225;
+mission.name = 'brick';
+create_mass_avl_file(cg,weights,mission);
+end
+
+
+
 
