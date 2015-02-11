@@ -162,7 +162,7 @@ for kk = 1:size(Airfoil_List,1),
         CLa(G)              = ((2*pi*AR)/(2+(((AR^2*(1-M^2)/k^2))+4)^0.5))*(pi/180);
         alpha_cruise(G)     = (CL_req(G))/CLa(G) + a0_temp;
         CL_req_secondary(G) = g*weight/(q_secondary*wing_area(G));
-        alpha_takeoff(G)    = (CL_req_secondary(G)-0.3)/CLa(G) + a0_temp;
+        alpha_takeoff(G)    = (CL_req_secondary(G))/CLa(G) + a0_temp;
         
         if CL_req_secondary(G) > CL_Cutoff_Specific,
             alpha_cruise(G) = 35;   %If the secondary contrains are NOT MET, just discard the iteration
@@ -222,6 +222,7 @@ for kk = 1:size(Airfoil_List,1),
             wing.sweep        = 0;
             wing.dihedral     = 0;         
             wing.alpha_cruise = alpha_cruise(i)*pi/180;
+            wing.alpha_launch = alpha_takeoff(i)*pi/180;
             wing.incidence    = 0;
 
         end

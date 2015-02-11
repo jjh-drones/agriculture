@@ -1,19 +1,29 @@
-function [ output_args ] = elevator_sizing( input_args )
+function elevator = elevator_sizing(assumptions,mission,wing,cg,hstab)
+deg2rad = pi/180; 
+rad2deg = 180/pi;
 
-%% ELEVATOR SIZING (TAKE-OFF)
-deltaE_max = -25*deg2rad;
-bE2b       = 1;
-T_excess   = 15;
-Iyy        = pos.Iyy;
-theta_ddot = 10*deg2rad;
-xAC_w      = pos.xAC;
-zAC_w      = Df/2;
-z_prop     = Df/2;
+%% PARAMETERS
+deltaE_max = assumptions.deltaE_max*deg2rad;
+bratio_E   = assumptions.bratio_E;
+T_excess   = assumptions.T_excess;
+Iyy        = cg.Iyy;
+xCG        = cg.x;
+theta_ddot = mission.pitch_rate*deg2rad;
+xAC_w      = wing.xAC;
+zAC_w      = assumptions.Df/2;
+z_prop     = assumptions.Df/2;
 Lw         = wing.L_launch;       
-Dw         = wing.D_launch; 
+Dw_launch  = wing.D_launch;
+Dw_cruise  = wing.D_cruise;
 Macw       = wing.M_launch;
-T_launch   = Dw + T_excess;
-T_cruise   = Dw + fuselage.D + D_h;
+T_launch   = Dw_launch + T_excess;
+T_cruise   = Dw_cruise + fuselage.D + hstab.D;
+eps        = wing.eps_launch;
+ih         = hstab.incidence;
+iw         = wing.incidence;
+alpha_w    = wing.alpha_cruise;
+
+%% LAUNCH REQUIREMENT
 
 % Required Cl_h for rotation maneuver after hand launch
 Mw   =  Macw + Lw*(xCG - xAC_w) - Dw*(zCG - zAC_w);      % is this moment nose up or nose down? 

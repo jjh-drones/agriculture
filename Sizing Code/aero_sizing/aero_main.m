@@ -28,6 +28,7 @@ mission.M          = mission.V/mission.a;
 mission.M_second   = mission.V_second/mission.a_second;
 mission.turn_angle = 90;
 mission.turn_sec   = 0.55;
+mission.pitch_rate = 10;
 
 %% ASSUMPTIONS
 
@@ -52,6 +53,9 @@ assumptions.Lf_body       = 63e-2;
 assumptions.xHinge_h      = 0.75;
 assumptions.xMAC_h        = 0.25;     
 assumptions.ch_mul        = 0.5;
+assumptions.deltaE_max    = -25;
+assumptions.bratio_E      = 1;
+assumptions.T_excess      = 5;
 
 %Derived
 assumptions.Ah            = assumptions.Ah_mul*assumptions.Aw;
@@ -86,6 +90,7 @@ hstab    = aero_hstab(assumptions,mission,wing,fuselage,cg);
 vstab    = aero_vstab(assumptions,wing,hstab,cg);
 
 %control surfaces
+elevator = elevator_sizing(assumptions,mission,wing,cg,hstab);
 aileron  = aileron_sizing(wing,cg,hstab,vstab,mission); 
 
 %% VISUALIZATION
