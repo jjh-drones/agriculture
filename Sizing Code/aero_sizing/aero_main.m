@@ -90,7 +90,7 @@ hstab    = aero_hstab(assumptions,mission,wing,fuselage,cg);
 vstab    = aero_vstab(assumptions,wing,hstab,cg);
 
 %control surfaces
-elevator = elevator_sizing(assumptions,mission,wing,cg,hstab);
+elevator = elevator_sizing(assumptions,mission,wing,fuselage,cg,hstab);
 aileron  = aileron_sizing(wing,cg,hstab,vstab,mission); 
 
 %% VISUALIZATION

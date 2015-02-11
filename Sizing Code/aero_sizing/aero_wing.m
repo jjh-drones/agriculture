@@ -25,7 +25,6 @@ delta               = 0.25;
 
 wing.n = (assumptions.Turn_radius*mission.g/(mission.V)^2)^(-2)+1;
 
-
 if 0
 for kk = 1:size(Airfoil_List,1),
     normalized_params = [];
@@ -239,7 +238,7 @@ end
     wing.eps0_launch  = 2*wing.CL_launch/(pi*wing.A);
     wing.eps0_cruise  = 2*wing.CL_cruise/(pi*wing.A);
     wing.eps_dalpha   = 2*wing.CLalpha/(pi*wing.A);
-    wing.eps_launch   = wing.eps0_launch + wing.eps_dalpha*wing.alpha_cruise;
+    wing.eps_launch   = wing.eps0_launch + wing.eps_dalpha*wing.alpha_launch;
     wing.eps_cruise   = wing.eps0_cruise + wing.eps_dalpha*wing.alpha_cruise;
         
 else
@@ -268,12 +267,13 @@ wing.taper        = 1;
 wing.sweep        = 0;
 wing.dihedral     = 0;         
 wing.alpha_cruise = -0.0311431771614566;
+wing.alpha_launch = 0.218520203953973;
 wing.incidence    = 0;
 wing.airfoil_name = {'SD7062'};
 wing.eps0_launch  = 0.124199997500438;
 wing.eps0_cruise  = 0.0179755431164977;
 wing.eps_dalpha   = 0.425470703430184;
-wing.eps_launch   = 0.110949488006502;
+wing.eps_launch   = 0.217173942390442;
 wing.eps_cruise   = 0.00472503362256189;
 
 end
