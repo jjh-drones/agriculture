@@ -26,7 +26,7 @@ delta               = 0.25;
 wing.n = (assumptions.Turn_radius*mission.g/(mission.V)^2)^(-2)+1;
 
 
-if 1
+if 0
 for kk = 1:size(Airfoil_List,1),
     normalized_params = [];
     P                 = zeros(250,7,size(Re_options,2));
@@ -235,33 +235,45 @@ for kk = 1:size(Airfoil_List,1),
 end
     wing = optimized_wing;
     wing.airfoil_name = Airfoil_List(index_winner);
+    wing.eps0_launch  = 2*wing.CL_launch/(pi*wing.A);
+    wing.eps0_cruise  = 2*wing.CL_cruise/(pi*wing.A);
+    wing.eps_dalpha   = 2*wing.CLalpha/(pi*wing.A);
+    wing.eps_launch   = wing.eps0_launch + wing.eps_dalpha*wing.alpha_cruise;
+    wing.eps_cruise   = wing.eps0_cruise + wing.eps_dalpha*wing.alpha_cruise;
+        
 else
 %% HARCODED VALUES
-wing.CLalpha      = 5.2624387526601;
-wing.Clalpha      = 7.27716986010425;
-wing.CL_cruise    = 0.123400636242163;
-wing.CL_launch    = 1.16051442794852;
-wing.CD_cruise    = 0.00834891688932221;
-wing.CD_launch    = 0.0919920522227005;
-wing.CM           = -0.0156084668090136;
+wing.n            = 3.97764751480993;
+wing.CLalpha      = 4.67829472674881;
+wing.Clalpha      = 6.16302731363985;
+wing.CL_cruise    = 0.197651419696765;
+wing.CL_launch    = 1.36565029903136;
+wing.CD_cruise    = 0.0130378631725212;
+wing.CD_launch    = 0.120726487533477;
+wing.CM           = -0.086660305254526;
 wing.L_cruise     = 19.62;
 wing.L_launch     = 19.62;
-wing.D_cruise     = 1.32743034685046;
-wing.D_launch     = 1.55524483034643;
-wing.M_cruise     = -0.825753741680214;
-wing.M_launch     = -0.0878046275416107;
-wing.S            = 0.775024518186342;
+wing.D_cruise     = 1.29421218343544;
+wing.D_launch     = 1.7344511161363;
+wing.M_cruise     = -2.26171124599922;
+wing.M_launch     = -0.327338879530842;
+wing.S            = 0.483875681823818;
 wing.A            = 7;
-wing.croot        = 0.332742826086957; 
-wing.b            = 2.3291997826087;
-wing.MAC          = 0.332742826086957;
+wing.croot        = 0.26291652173913; 
+wing.b            = 1.84041565217391;
+wing.MAC          = 0.26291652173913;
 wing.xMAC         = 0.25;
 wing.taper        = 1;
 wing.sweep        = 0;
 wing.dihedral     = 0;         
-wing.alpha_cruise = 0.0234493249312946;
+wing.alpha_cruise = -0.0311431771614566;
 wing.incidence    = 0;
-airfoil_name      = {'NACA0009'};
+wing.airfoil_name = {'SD7062'};
+wing.eps0_launch  = 0.124199997500438;
+wing.eps0_cruise  = 0.0179755431164977;
+wing.eps_dalpha   = 0.425470703430184;
+wing.eps_launch   = 0.110949488006502;
+wing.eps_cruise   = 0.00472503362256189;
 
 end
 

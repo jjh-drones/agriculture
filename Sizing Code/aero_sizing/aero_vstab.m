@@ -1,4 +1,4 @@
-function vstab = aero_vstab(wing,hstab,pos,assumptions)
+function vstab = aero_vstab(assumptions,wing,hstab,cg)
 
 deg2rad = pi/180; 
 rad2deg = 180/pi;
@@ -10,15 +10,13 @@ taper_w = wing.taper;
 Vv      = assumptions.Vv;
 A_v     = assumptions.Av;
 lv      = hstab.lh;
+xCG     = cg.x;
+
 
 %% TRIM
 
 % Calculate vertical tail planform area (based on the definition of hstab volume coefficient)
 S_v = b_w*S_w*Vv/lv;
-
-%Airfoil selection (fixed)
-Clalpha_v = 2*pi;
-CLalpha_v = Clalpha_v/(1+(Clalpha_v/(pi*A_v)));
 
 % Vertical tail geometry calculations
 MAC_v   = sqrt(S_v/A_v);
@@ -31,7 +29,7 @@ tip_v   = taper_v*root_v;
 vstab.croot = root_v;
 vstab.b     = b_v;
 vstab.S_v   = S_v;
-vstab.xLE   = pos.xCG + lv - wing.xMAC*root_v;
+vstab.xLE   = xCG + lv - wing.xMAC*root_v;
 vstab.xAC   = vstab.xLE + wing.xMAC*vstab.croot;
 
 end

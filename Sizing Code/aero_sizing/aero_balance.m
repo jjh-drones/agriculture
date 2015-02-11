@@ -1,11 +1,12 @@
-function cg = aero_balance(Df,Lf_nose,Lf_body,Lf_rear,battery_m,wing,mission)
+function cg = aero_balance(assumptions,battery_m,wing,mission)
 
 cm2m = 1e-2;
 g2kg = 1e-3; 
 
-Lf_nose = Lf_nose/cm2m;
-Lf_body = Lf_body/cm2m;
-Lf_rear = Lf_rear/cm2m;
+Df      = assumptions.Df;
+Lf_nose = assumptions.Lf_nose/cm2m;
+Lf_body = assumptions.Lf_body/cm2m;
+Lf_rear = assumptions.Lf_rear/cm2m;
 Lf      = Lf_nose + Lf_body + Lf_rear;
 
 %battery
@@ -168,10 +169,10 @@ cg.Iyy  = Iyy;
 cg.Izz  = Izz;
 
 %% Export to AVL Mass file
-mission.g = 9.81;
-mission.rho = 1.225;
-mission.name = 'brick';
-create_mass_avl_file(cg,weights,mission);
+% mission.g = 9.81;
+% mission.rho = 1.225;
+% mission.name = 'brick';
+% create_mass_avl_file(cg,weights,mission);
 end
 
 

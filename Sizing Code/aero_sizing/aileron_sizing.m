@@ -1,4 +1,4 @@
-function aileron = aileron_sizing(wing,cg,hstab,vstab,mission,atm)
+function aileron = aileron_sizing(wing,cg,hstab,vstab,mission)
 %%ASSUMPTIONS
 da_max            = 25;   %+- 25 degrees for ailerons
 b_end_max_perc    = 0.95; %maximum external position of aileron
@@ -11,7 +11,7 @@ iterations = 1000;
 diff       = delta/iterations;
 G = 1;
 for i = b_beggininga_perc:diff:b_begginingb_perc,
-   [a(G),b(G),c(G)] = aileron_setting(wing.CLalpha,wing.croot*aileronC_ratio,wing.croot,i,b_end_max_perc,wing.S,wing.b,da_max,1.3^2*mission.q_second,atm.rho,hstab.S,vstab.S_v,cg.Ixx,mission.turn_angle); 
+   [a(G),b(G),c(G)] = aileron_setting(wing.CLalpha,wing.croot*aileronC_ratio,wing.croot,i,b_end_max_perc,wing.S,wing.b,da_max,1.3^2*mission.q_second,mission.rho_second,hstab.S,vstab.S_v,cg.Ixx,mission.turn_angle); 
 %     aileron.t_roll(G) = a;
 %     aileron.Pss(G) = b;
 %     aileron.bank_angle_till_steady(G) = c;

@@ -1,4 +1,4 @@
-function fuselage = aero_fuselage(assumptions,mission,wing,pos)
+function fuselage = aero_fuselage(assumptions,mission,wing)
 
 cm2m = 1e-2;
 g2kg = 1e-3;
@@ -9,11 +9,9 @@ Df       = assumptions.Df;
 q        = mission.q;
 V        = mission.V;
 mu       = mission.mu;
-
-%% FUSELAGE LENGHT
 Lf_nose  = assumptions.Lf_nose;
 Lf_rear  = assumptions.Lf_rear;
-Lf_body  = pos.Lf_body;
+Lf_body  = assumptions.Lf_body;
 Lf       = Lf_nose + Lf_rear + Lf_body;
 
 %% ZERO-LIFT DRAG COEFFICIENT

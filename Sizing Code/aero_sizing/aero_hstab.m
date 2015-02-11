@@ -1,4 +1,4 @@
-function hstab    = aero_hstab(assumptions,mission,wing,pos,fuselage)
+function hstab    = aero_hstab(assumptions,mission,wing,fuselage,cg)
 
 deg2rad = pi/180; 
 rad2deg = 180/pi;
@@ -12,30 +12,37 @@ A_w           = wing.A;
 c_w           = wing.MAC;
 taper_w       = wing.taper;
 alpha_w       = wing.alpha_cruise;
-incidence_w   = wing.incidence;
+iw            = wing.incidence;
 Df            = fuselage.Df;
 Lf_nose       = assumptions.Lf_nose;
 Lf_body       = assumptions.Lf_body;
 V_h           = assumptions.Vh;
 eta_h         = assumptions.eta_h;
-Clalpha_h     = assumptions.tail_Clalpha;
-CD0_h         = assumptions.tail_Cd0;
+Clalpha_h     = assumptions.Clalpha_h;
+CD0_h         = assumptions.Cd0_h;
 q             = mission.q;
 L_hinge       = assumptions.tail_Lhinge;
-xCG           = pos.xCG;
-zCG           = pos.zCG;
+xCG           = cg.x;
+zCG           = cg.z;
+xAC_w         = wing.xAC;
+xHinge_h      = assumptions.xHinge_h;
+xMAC_h        = assumptions.xMAC_h;
+ch_mul        = assumptions.ch_mul;
+A_h           = assumptions.Ah;
+Clalpha_h     = assumptions.Clalpha_h;
+CLalpha_h     = assumptions.CLalpha_h;
+eps           = wing.eps_cruise;
+zAC_h         = assumptions.tail_height;
 
-Ah_mul = assumptions.Ah_mul; 
-ch_mul = assumptions.ch_mul;
 
 %% LONGITUDINAL TRIM
 
 % Locate wing aerodynamic center
-xAC_norm      = pos.xAC/c_w;
-xCG_norm      = pos.xCG/c_w;
+xAC_norm      = xAC_w/c_w;
+xCG_norm      = xCG/c_w;
 
 % Calculate tail moment arm:
-l_h  = Lf_nose + Lf_body + L_hinge - 0.5*(ch_mul*c_w) - pos.xCG;
+l_h  = Lf_nose + Lf_body + L_hinge - (xHinge_h-xMAC_h)*(ch_mul*c_w) - xCG;
 
 % Calculate horizontal tail planform area (based on the definition of hstab volume coefficient)
 S_h = c_w*S_w*V_h/l_h;
@@ -44,14 +51,10 @@ S_h = c_w*S_w*V_h/l_h;
 CL_h = (Cmo_wf + CL_w*(xCG_norm - xAC_norm))/(V_h*eta_h);
 
 % Horizontal tail geometry calculations
-A_h      = Ah_mul*A_w;
 MAC_h    = sqrt(S_h/A_h);
 b_h      = A_h*MAC_h;
 taper_h  = taper_w;
 croot_h  = 3/2*MAC_h*((1+taper_h)/(1+taper_h+taper_h^2));
-
-%Airfoil selection (fixed)
-CLalpha_h = Clalpha_h/(1+(Clalpha_h/(pi*A_h)));
 
 %Angle of attack of the tail during cruise
 alpha_h_initial = CL_h/Clalpha_h;
@@ -59,15 +62,11 @@ estFcn          = @(alpha_h) lifting_line(alpha_h,S_h,A_h,taper_h,CLalpha_h,CL_h
 alpha_h         = fzero(estFcn,alpha_h_initial);
 
 %Incidence angle
-eps0        = 2*CL_w/(pi*A_w);
-eps_dalpha  = 2*CLalpha_w/(pi*A_w);
-eps         = eps0 + eps_dalpha*alpha_w;
-incidence_h = alpha_h - alpha_w + incidence_w + eps;
+ih = alpha_h - alpha_w + iw + eps;
 
 % Positioning
-xLE_h       = pos.xCG + l_h - wing.xMAC*croot_h;
-xAC_h       = xLE_h + wing.xMAC*croot_h;
-zAC_h       = assumptions.tail_height;
+xLE_h       = xCG + l_h - xMAC_h*croot_h;
+xAC_h       = xLE_h + xMAC_h*croot_h;
 
 %% DRAG COMPUTATION
 s         = 1-2*(Df/b_h)^2;
@@ -86,60 +85,9 @@ hstab.b          = b_h;
 hstab.lh         = l_h;
 hstab.croot      = croot_h;
 hstab.D          = D_h;
-hstab.ih         = incidence_h*180/pi;
+hstab.ih         = ih;
 hstab.CLalpha    = CLalpha_h;
-hstab.eps_dalpha = eps_dalpha;
 hstab.xLE        = xLE_h;
 hstab.xAC        = xAC_h;
 hstab.zAC        = zAC_h;
 
-%% ELEVATOR SIZING (TAKE-OFF)
-deltaE_max = -25*deg2rad;
-bE2b       = 1;
-T_excess   = 15;
-Iyy        = pos.Iyy;
-theta_ddot = 10*deg2rad;
-xAC_w      = pos.xAC;
-zAC_w      = Df/2;
-z_prop     = Df/2;
-Lw         = wing.L_launch;       
-Dw         = wing.D_launch; 
-Macw       = wing.M_launch;
-T_launch   = Dw + T_excess;
-T_cruise   = Dw + fuselage.D + D_h;
-
-% Required Cl_h for rotation maneuver after hand launch
-Mw   =  Macw + Lw*(xCG - xAC_w) - Dw*(zCG - zAC_w);      % is this moment nose up or nose down? 
-MT   = T_launch*(zCG - z_prop);
-Mh   = -Mw -MT + Iyy*theta_ddot;
-Lh   = Mh/(xCG-xAC_h);
-CL_h = Lh/(mission.q_second*S_w);
-
-% Derivation of elevator efficiency (assuming that Cl_h required is achieved with deltaE_max (fix))
-alpha_w     = 0;
-CLw_launch  = wing.CL_launch;
-eps0        = 2*CLw_launch/(pi*A_w);
-eps_dalpha  = 2*CLalpha_w/(pi*A_w);
-eps         = eps0 + eps_dalpha*alpha_w;
-alpha_h     = alpha_w + incidence_h - eps;
-tauE        = (alpha_h + (CL_h/CLalpha_h))/deltaE_max;
-
-% Derivation of other elevator parameters
-cE2ch        = 0.4;                                      % this value comes from a curve
-cE           = cE2ch*croot_h;
-delta_alpha0 = -1.15*cE2ch*deltaE_max;
-Cm_deltaE = - CLalpha_h*eta_h*V_h*bE2b*tauE;
-CL_deltaE = CLalpha_h*eta_h*S_h/S_w*tauE;
-
-% Elevator deflection for various flight conditions
-rho        = mission.rho;
-V          = linspace(10,30,100);
-q          = 0.5*rho*V.^2;
-CL0        = 0;                                                 % this probably is not zero
-CLalpha    = CLalpha_w;                                         % review this
-CLw_cruise = wing.CL_cruise;
-ls         = stab_long(xCG,pos,wing,hstab,assumptions);
-Cmalpha    = ls.Cmalpha;
-deltaE     = ((T_cruise*z_prop./(q*S_w*c_w) + (CLw_cruise - CL0)*Cmalpha)/(CLalpha*Cm_deltaE - Cmalpha*CL_deltaE));
-
-plot(V,deltaE*rad2deg)

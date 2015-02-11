@@ -8,8 +8,14 @@ mission.t          = 31*60;
 mission.mu         = 16.04*10^(-6);
 mission.g          = 9.81;                                
 R                  = 287.058;  
-atm                = get_atm(mission.H);
-atm_second         = get_atm(mission.H_second);
+
+% atm                = get_atm(mission.H);
+% atm_second         = get_atm(mission.H_second);
+atm.rho         = 1.21188;
+atm.Ta          = 287.422;
+atm_second.rho  = 1.22465;
+atm_second.Ta   = 288.130;
+
 mission.rho        = atm.rho;
 mission.rho_second = atm_second.rho;
 mission.T          = atm.Ta;
@@ -24,47 +30,67 @@ mission.turn_angle = 90;
 mission.turn_sec   = 0.55;
 
 %% ASSUMPTIONS
+
+%Direct
 assumptions.weight        = 2;
 assumptions.Aw            = 7;
 assumptions.Vh            = 0.5;
 assumptions.Ah_mul        = 2/3;
-assumptions.ch_mul        = 0.5;
-assumptions.tail_Clalpha  = 2*pi; 
+assumptions.nose_mul      = 1.5;
+assumptions.Clalpha_h     = 2*pi;
+assumptions.Cd0_h         = 0.00338;  %Based on NACA0006
 assumptions.Vv            = 0.025;
 assumptions.Av            = 1.5;
 assumptions.eta_h         = 0.98;    
-assumptions.tail_Cd0      = 0.00338; %Based on NACA0006
 assumptions.StaticMargin  = 0.2;
 assumptions.battery_m     = 808;
 assumptions.Df            = 12e-2;
 assumptions.back_angle    = 12;
 assumptions.tail_height   = 10e-2;
-assumptions.Lf_body       = 62e-2;
-assumptions.Lf_nose       = 1.5*assumptions.Df;
+assumptions.Turn_radius   = 20;       %Meters, to fullfil control points
+assumptions.Lf_body       = 63e-2;
+assumptions.xHinge_h      = 0.75;
+assumptions.xMAC_h        = 0.25;     
+assumptions.ch_mul        = 0.5;
+
+%Derived
+assumptions.Ah            = assumptions.Ah_mul*assumptions.Aw;
+assumptions.CLalpha_h     = assumptions.Clalpha_h/(1+(assumptions.Clalpha_h/(pi*assumptions.Ah )));
+assumptions.Lf_nose       = assumptions.nose_mul*assumptions.Df;
 assumptions.Lf_rear       = assumptions.Df/tan(assumptions.back_angle*pi/180);
-assumptions.Turn_radius   = 20; %Meters, to fullfil control points
 assumptions.tail_Lhinge   = assumptions.tail_height/tan(assumptions.back_angle*pi/180);
 
-
 %% COMPUTATION
-wing     = aero_wing(assumptions,mission);
 
-pos      = aero_pos2(assumptions,wing);     
+%wing
+wing       = aero_wing(assumptions,mission);
+cg         = aero_balance(assumptions,assumptions.battery_m,wing);
+c_w        = wing.MAC;
+xCG        = cg.x;
+xCG_norm   = xCG/c_w;
+CLalpha_w  = wing.CLalpha;
+CLalpha_h  = assumptions.CLalpha_h; 
+SM         = assumptions.StaticMargin;
+eta_h      = assumptions.eta_h;
+V_h        = assumptions.Vh;
+eps_dalpha = wing.eps_dalpha;
+xAC_norm   = - CLalpha_h/CLalpha_w*eta_h*V_h*(1-eps_dalpha) + xCG_norm + SM;
+wing.xAC   = xAC_norm*c_w;
+wing.xLE   = wing.xAC - wing.xMAC*wing.croot;
 
-fuselage = aero_fuselage(assumptions,mission,wing,pos);
+%fuselage
+fuselage = aero_fuselage(assumptions,mission,wing);
 
-hstab    = aero_hstab(assumptions,mission,wing,pos,fuselage);
+%tail
+hstab    = aero_hstab(assumptions,mission,wing,fuselage,cg);
+vstab    = aero_vstab(assumptions,wing,hstab,cg);
 
-vstab    = aero_vstab(wing,hstab,pos,assumptions);
-
-aileron  = aileron_sizing(wing,pos,hstab,vstab,mission,atm); 
+%control surfaces
+aileron  = aileron_sizing(wing,cg,hstab,vstab,mission); 
 
 %% VISUALIZATION
 m2cm    = 100;
 rad2deg = 180/pi;
-
-wing.xAC  = pos.xAC;
-wing.xLE  = wing.xAC - wing.xMAC*wing.croot;
 
 %Fuselage
 display('FUSELAGE')
@@ -94,7 +120,7 @@ fprintf('%15s%15.6f\n','x_AC: ',hstab.xAC*m2cm);
 fprintf('%15s%15.6f\n','z_AC: ',(hstab.zAC-0.05)*m2cm);
 fprintf('%15s%15.6f\n','Chord root: ',hstab.croot*m2cm);
 fprintf('%15s%15.6f\n','Span: ',hstab.b*m2cm);
-fprintf('%15s%15.6f\n','Incidence: ',hstab.ih);
+fprintf('%15s%15.6f\n','Incidence: ',hstab.ih*rad2deg);
 fprintf('\n')
 
 %Vstab
@@ -116,8 +142,8 @@ fprintf('%15s%15.6f\n','Total: ',wing.D_cruise + hstab.D + fuselage.D);
 fprintf('\n')
 
 %Longitudinal Stability
-cg = aero_balance(assumptions.Df,assumptions.Lf_nose,fuselage.Lf_body,assumptions.Lf_rear,assumptions.battery_m,wing);
-ls = stab_long(cg.x,pos,wing,hstab,assumptions);
+cg = aero_balance(assumptions,assumptions.battery_m,wing);
+ls = stab_long(cg.x,wing,hstab,assumptions);
 matlab2avl(mission,wing,hstab,cg,aileron)
 display('LONG STABILITY (DESIGN)')
 display('--------')
@@ -130,8 +156,8 @@ fprintf('\n')
 
 %Longitudinal Test
 battery_m = 600;
-cg = aero_balance(assumptions.Df,assumptions.Lf_nose,fuselage.Lf_body,assumptions.Lf_rear,battery_m,wing);
-ls = stab_long(cg.x,pos,wing,hstab,assumptions);
+cg = aero_balance(assumptions,assumptions.battery_m,wing);
+ls = stab_long(cg.x,wing,hstab,assumptions);
 display('LONG STABILITY (TEST)')
 display('--------')
 fprintf('%15s%15.6f\n','Battery Mass: ',battery_m);
