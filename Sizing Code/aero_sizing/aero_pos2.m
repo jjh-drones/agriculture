@@ -1,4 +1,4 @@
-function pos = aero_pos2(assumptions,wing)
+function pos = aero_pos2(assumptions,wing,mission)
 
 %Parameters
 CLalpha_w = wing.CLalpha;
@@ -18,7 +18,7 @@ Lf_nose   = assumptions.Lf_nose;
 Lf_body   = assumptions.Lf_body;
 Lf_rear   = assumptions.Lf_rear;
 battery_m = assumptions.battery_m;
-cg        = aero_balance(Df,Lf_nose,Lf_body,Lf_rear,battery_m,wing);
+cg        = aero_balance(Df,Lf_nose,Lf_body,Lf_rear,battery_m,wing,mission);
 xCG       = cg.x;
 xCG_norm  = xCG/c_w;
 SM        = assumptions.StaticMargin;
