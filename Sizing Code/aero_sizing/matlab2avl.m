@@ -63,11 +63,11 @@ fprintf(fid,[d,'\n'],2);
 fprintf(fid,'YDUPLICATE\n');
 fprintf(fid,[d,'\n'],0);
 fprintf(fid,'SECTION\n');
-fprintf(fid,[f,f,f,f,f,f,f,'\n'],hstab.xLE,0,0,hstab.croot,hstab.ih,0,0);
+fprintf(fid,[f,f,f,f,f,f,f,'\n'],hstab.xLE,0,0,hstab.croot,hstab.incidence,0,0);
 fprintf(fid,'AFIL\n');
 fprintf(fid,[path_hstab_airfoil,'\n']);
 fprintf(fid,'SECTION\n');
-fprintf(fid,[f,f,f,f,f,f,f,'\n'],hstab.xLE,0.5*hstab.b,0,hstab.croot,hstab.ih,0,0);
+fprintf(fid,[f,f,f,f,f,f,f,'\n'],hstab.xLE,0.5*hstab.b,0,hstab.croot,hstab.incidence,0,0);
 fprintf(fid,'AFIL\n');
 fprintf(fid,[path_hstab_airfoil,'\n\n']);
 end
