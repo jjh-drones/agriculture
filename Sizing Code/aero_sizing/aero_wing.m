@@ -25,7 +25,7 @@ delta               = 0.25;
 
 wing.n = (assumptions.Turn_radius*mission.g/(mission.V)^2)^(-2)+1;
 
-if 1
+if 0
 for kk = 1:size(Airfoil_List,1),
     normalized_params = [];
     P                 = zeros(250,7,size(Re_options,2));
@@ -244,37 +244,37 @@ end
 else
 %% HARCODED VALUES
 wing.n            = 3.97764751480993;
-wing.CLalpha      = 4.67829472674881;
-wing.Clalpha      = 6.16302731363985;
-wing.CL_cruise    = 0.197651419696765;
-wing.CL_launch    = 1.36565029903136;
-wing.CD_cruise    = 0.0130378631725212;
-wing.CD_launch    = 0.120726487533477;
-wing.CM           = -0.086660305254526;
-wing.L_cruise     = 19.62;
-wing.L_launch     = 19.62;
-wing.D_cruise     = 1.29421218343544;
-wing.D_launch     = 1.7344511161363;
-wing.M_cruise     = -2.26171124599922;
-wing.M_launch     = -0.327338879530842;
-wing.S            = 0.483875681823818;
+wing.CLalpha      = 4.6506973085265;
+wing.Clalpha      = 6.1133327276269;
+wing.CL_cruise    = 0.197400702814798;
+wing.CL_launch    = 1.34969578612598;
+wing.CD_cruise    = 0.0121414476864852;
+wing.CD_launch    = 0.105967541334586;
+wing.CM           = -0.118447819005208;
+wing.L_cruise     = 26.487;
+wing.L_launch     = 26.487;
+wing.D_cruise     = 1.62912553140022;
+wing.D_launch     = 2.07955177468948;
+wing.M_cruise     = -4.85815681938764;
+wing.M_launch     = -0.710533129309266;
+wing.S            = 0.654061834848571;
 wing.A            = 7;
-wing.croot        = 0.26291652173913; 
-wing.b            = 1.84041565217391;
-wing.MAC          = 0.26291652173913;
+wing.croot        = 0.305675326086957; 
+wing.b            = 2.1397272826087;
+wing.MAC          = 0.305675326086957;
 wing.xMAC         = 0.25;
 wing.taper        = 1;
 wing.sweep        = 0;
 wing.dihedral     = 0;         
-wing.alpha_cruise = -0.0311431771614566;
-wing.alpha_launch = 0.218520203953973;
+wing.alpha_cruise = -0.0334951273920181;
+wing.alpha_launch = 0.214273111834944;
 wing.incidence    = 0;
-wing.airfoil_name = {'SD7062'};
-wing.eps0_launch  = 0.124199997500438;
-wing.eps0_cruise  = 0.0179755431164977;
-wing.eps_dalpha   = 0.425470703430184;
-wing.eps_launch   = 0.217173942390442;
-wing.eps_cruise   = 0.00472503362256189;
+wing.airfoil_name = {'W_FX60'};
+wing.eps0_launch  = 0.122749003447001;
+wing.eps0_cruise  = 0.0179527414987367;
+wing.eps_dalpha   = 0.422960837414952;
+wing.eps_launch   = 0.213378138264216;
+wing.eps_cruise   = 0.00378561436768828;
 
 end
 

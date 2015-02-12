@@ -26,9 +26,14 @@ mission.q          = 0.5*mission.rho*mission.V^2;
 mission.q_second   = 0.5*mission.rho_second*mission.V_second^2;                         
 mission.M          = mission.V/mission.a;
 mission.M_second   = mission.V_second/mission.a_second;
-mission.turn_angle = 90;
-mission.turn_sec   = 0.55;
-mission.pitch_rate = 20;
+
+% aileron sizing
+mission.turn_angle      = 90;
+mission.turn_sec        = 0.55;
+
+% elevator sizing
+mission.rot_launch_sec  = 1;
+mission.thrust_launch   = 5;
 
 %% ASSUMPTIONS
 
@@ -53,9 +58,8 @@ assumptions.Lf_body       = 63e-2;
 assumptions.xHinge_h      = 0.75;
 assumptions.xMAC_h        = 0.25;     
 assumptions.ch_mul        = 0.5;
-assumptions.deltaE_max    = -15;
+assumptions.deltaE_max    = -25;
 assumptions.bratio_E      = 1;
-assumptions.T_excess      = 5;
 
 %Derived
 assumptions.Ah            = assumptions.Ah_mul*assumptions.Aw;
@@ -91,7 +95,7 @@ aileron  = aileron_sizing(wing,cg,hstab,vstab,mission);
 m2cm    = 100;
 rad2deg = 180/pi;
 
-if 1
+if 0
 %Fuselage
 display('FUSELAGE')
 display('--------')
@@ -142,7 +146,7 @@ fprintf('%15s%15.6f\n','Total: ',wing.D_cruise + hstab.D + fuselage.D);
 fprintf('\n')
 
 %Longitudinal Stability
-cg = aero_balance(assumptions,assumptions.battery_m,wing,0.2984);
+cg = aero_balance(assumptions,assumptions.battery_m,wing,wing.xAC );
 ls = stab_long(cg.x,wing,hstab,assumptions);
 % matlab2avl(mission,wing,hstab,cg,aileron)
 display('LONG STABILITY (DESIGN)')
@@ -155,8 +159,8 @@ fprintf('%15s%15.6f\n','SM: ',ls.SM*wing.MAC*m2cm);
 fprintf('\n')
 
 %Longitudinal Test
-battery_m = 600;
-cg = aero_balance(assumptions,assumptions.battery_m,wing,0.2984);
+battery_m = 600e-3;
+cg = aero_balance(assumptions,battery_m,wing,wing.xAC );
 ls = stab_long(cg.x,wing,hstab,assumptions);
 display('LONG STABILITY (TEST)')
 display('--------')
