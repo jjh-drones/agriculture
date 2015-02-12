@@ -33,7 +33,7 @@ mission.pitch_rate = 20;
 %% ASSUMPTIONS
 
 %Direct
-assumptions.weight        = 2;
+assumptions.weight        = 2.7;
 assumptions.Aw            = 7;
 assumptions.Vh            = 0.5;
 assumptions.Ah_mul        = 2/3;
@@ -44,7 +44,7 @@ assumptions.Vv            = 0.025;
 assumptions.Av            = 1.5;
 assumptions.eta_h         = 0.98;    
 assumptions.StaticMargin  = 0.2;
-assumptions.battery_m     = 808;
+assumptions.battery_m     = 808*1e-3;
 assumptions.Df            = 12e-2;
 assumptions.back_angle    = 15;
 assumptions.tail_height   = 10e-2;
@@ -67,20 +67,14 @@ assumptions.tail_Lhinge   = assumptions.tail_height/tan(assumptions.back_angle*p
 %% COMPUTATION
 
 %wing
-wing       = aero_wing(assumptions,mission);
-cg         = aero_balance(assumptions,assumptions.battery_m,wing);
-c_w        = wing.MAC;
-xCG        = cg.x;
-xCG_norm   = xCG/c_w;
-CLalpha_w  = wing.CLalpha;
-CLalpha_h  = assumptions.CLalpha_h; 
-SM         = assumptions.StaticMargin;
-eta_h      = assumptions.eta_h;
-V_h        = assumptions.Vh;
-eps_dalpha = wing.eps_dalpha;
-xAC_norm   = - CLalpha_h/CLalpha_w*eta_h*V_h*(1-eps_dalpha) + xCG_norm + SM;
-wing.xAC   = xAC_norm*c_w;
-wing.xLE   = wing.xAC - wing.xMAC*wing.croot;
+wing        = aero_wing(assumptions,mission);
+
+xAC_initial = 0.2984;
+estFcn      = @(xAC) xAC_finder(xAC,assumptions, wing, mission);
+xAC         = fzero(estFcn,xAC_initial);
+cg          = aero_balance(assumptions,assumptions.battery_m,wing,mission,0.2984);
+wing.xAC    = xAC;
+wing.xLE    = wing.xAC - wing.xMAC*wing.croot;
 
 %fuselage
 fuselage = aero_fuselage(assumptions,mission,wing);
@@ -97,7 +91,7 @@ aileron  = aileron_sizing(wing,cg,hstab,vstab,mission);
 m2cm    = 100;
 rad2deg = 180/pi;
 
-if 0
+if 1
 %Fuselage
 display('FUSELAGE')
 display('--------')
@@ -148,9 +142,9 @@ fprintf('%15s%15.6f\n','Total: ',wing.D_cruise + hstab.D + fuselage.D);
 fprintf('\n')
 
 %Longitudinal Stability
-cg = aero_balance(assumptions,assumptions.battery_m,wing);
+cg = aero_balance(assumptions,assumptions.battery_m,wing,0.2984);
 ls = stab_long(cg.x,wing,hstab,assumptions);
-matlab2avl(mission,wing,hstab,cg,aileron)
+% matlab2avl(mission,wing,hstab,cg,aileron)
 display('LONG STABILITY (DESIGN)')
 display('--------')
 fprintf('%15s%15.6f\n','Battery Mass: ',assumptions.battery_m);
@@ -162,7 +156,7 @@ fprintf('\n')
 
 %Longitudinal Test
 battery_m = 600;
-cg = aero_balance(assumptions,assumptions.battery_m,wing);
+cg = aero_balance(assumptions,assumptions.battery_m,wing,0.2984);
 ls = stab_long(cg.x,wing,hstab,assumptions);
 display('LONG STABILITY (TEST)')
 display('--------')
