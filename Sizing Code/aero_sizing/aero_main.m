@@ -97,7 +97,7 @@ matlab2avl(mission,wing,hstab,cg,aileron,elevator)
 m2cm    = 100;
 rad2deg = 180/pi;
 
-if 0
+if 1
 %Fuselage
 display('FUSELAGE')
 display('--------')

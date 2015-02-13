@@ -52,7 +52,7 @@ eps        = eps0 + wing.eps_dalpha*wing.alpha_launch;
 alpha_h    = ih + alpha_w - iw  - eps;
 tauE       = (alpha_h + (CL_h/CLalpha_h))/deltaE_max;
 G          = csvread('control_eff.csv');
-cratio_E   = interp1(G(:,2),G(:,1),tauE)
+cratio_E   = interp1(G(:,2),G(:,1),tauE);
 
 % Derivation of other elevator parameters
 cE           = cratio_E*croot_h;

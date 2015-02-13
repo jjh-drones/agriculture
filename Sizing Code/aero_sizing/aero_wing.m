@@ -25,7 +25,7 @@ delta               = 0.25;
 
 wing.n = (assumptions.Turn_radius*mission.g/(mission.V)^2)^(-2)+1;
 
-if 0
+if 1
 for kk = 1:size(Airfoil_List,1),
     normalized_params = [];
     P                 = zeros(250,7,size(Re_options,2));
