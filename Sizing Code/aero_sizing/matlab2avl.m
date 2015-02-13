@@ -1,4 +1,4 @@
-function matlab2avl(mission,wing,hstab,cg,aileron)
+function matlab2avl(mission,wing,hstab,cg,aileron,elevator)
 
 name               = mission.name;
 f                  = '%8.4f';
@@ -25,28 +25,30 @@ fprintf(fid,'COMPONENT\n');
 fprintf(fid,[d,'\n'],2);
 fprintf(fid,'YDUPLICATE\n');
 fprintf(fid,[d,'\n'],0);
+
+% root chord
 fprintf(fid,'SECTION\n');
 fprintf(fid,[f,f,f,f,f,f,f,'\n'],wing.xLE,0,0,wing.croot,0,0,0);
 fprintf(fid,'AFIL\n');
 fprintf(fid,[path_wing_airfoil,'\n']);
 
-
+% start aileron
 fprintf(fid,'SECTION\n');
 fprintf(fid,[f,f,f,f,f,f,f,'\n'],wing.xLE,aileron.start,0,wing.croot,0,0,0);
 fprintf(fid,'AFIL\n');
 fprintf(fid,[path_wing_airfoil,'\n']);
-
 fprintf(fid,'CONTROL\n');
 fprintf(fid,['aileron',f,f,f,f,f,f,'\n'],1,(1-aileron.chord_perc),0,1,0,-1);
 
+% end aileron
 fprintf(fid,'SECTION\n');
 fprintf(fid,[f,f,f,f,f,f,f,'\n'],wing.xLE,aileron.start+aileron.span,0,wing.croot,0,0,0);
 fprintf(fid,'AFIL\n');
 fprintf(fid,[path_wing_airfoil,'\n']);
-
 fprintf(fid,'CONTROL\n');
 fprintf(fid,['aileron',f,f,f,f,f,f,'\n'],1,(1-aileron.chord_perc),0,1,0,-1);
 
+% tip chord
 fprintf(fid,'SECTION\n');
 fprintf(fid,[f,f,f,f,f,f,f,'\n'],wing.xLE,0.5*wing.b,0,wing.croot,0,0,0);
 fprintf(fid,'AFIL\n');
@@ -62,13 +64,21 @@ fprintf(fid,'COMPONENT\n');
 fprintf(fid,[d,'\n'],2);
 fprintf(fid,'YDUPLICATE\n');
 fprintf(fid,[d,'\n'],0);
+
+% root
 fprintf(fid,'SECTION\n');
 fprintf(fid,[f,f,f,f,f,f,f,'\n'],hstab.xLE,0,0,hstab.croot,hstab.incidence,0,0);
 fprintf(fid,'AFIL\n');
 fprintf(fid,[path_hstab_airfoil,'\n']);
+fprintf(fid,'CONTROL\n');
+fprintf(fid,['elevator',f,f,f,f,f,f,'\n'],1,(1-elevator.cratio_E),0,1,0,1);
+
+% tip
 fprintf(fid,'SECTION\n');
 fprintf(fid,[f,f,f,f,f,f,f,'\n'],hstab.xLE,0.5*hstab.b,0,hstab.croot,hstab.incidence,0,0);
 fprintf(fid,'AFIL\n');
 fprintf(fid,[path_hstab_airfoil,'\n\n']);
+fprintf(fid,'CONTROL\n');
+fprintf(fid,['elevator',f,f,f,f,f,f,'\n'],1,(1-elevator.cratio_E),0,1,0,1);
 end
 

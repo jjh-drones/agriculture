@@ -29,7 +29,7 @@ mission.M_second   = mission.V_second/mission.a_second;
 
 % aileron sizing
 mission.turn_angle      = 90;
-mission.turn_sec        = 0.55;
+mission.turn_sec        = 0.8;
 
 % elevator sizing
 mission.rot_launch_sec  = 1;
@@ -89,7 +89,9 @@ vstab    = aero_vstab(assumptions,wing,hstab,cg);
 
 %control surfaces
 elevator = elevator_sizing(assumptions,mission,wing,fuselage,cg,hstab);
-aileron  = aileron_sizing(wing,cg,hstab,vstab,mission); 
+aileron  = aileron_sizing(wing,cg,hstab,vstab,mission);
+
+matlab2avl(mission,wing,hstab,cg,aileron,elevator)
 
 %% VISUALIZATION
 m2cm    = 100;
@@ -148,7 +150,6 @@ fprintf('\n')
 %Longitudinal Stability
 cg = aero_balance(assumptions,assumptions.battery_m,wing,wing.xAC );
 ls = stab_long(cg.x,wing,hstab,assumptions);
-% matlab2avl(mission,wing,hstab,cg,aileron)
 display('LONG STABILITY (DESIGN)')
 display('--------')
 fprintf('%15s%15.6f\n','Battery Mass: ',assumptions.battery_m);

@@ -32,7 +32,7 @@ c_w            = wing.MAC;
 A_w            = wing.A;
 CLalpha_w      = wing.CLalpha;
 alpha_w        = 0;                                   
-CL             = CL0;                       
+CL             = CL0;                      
 CM             = wing.CM;
 Lw             = q*S_w*CL; 
 Macw           = q*S_w*c_w*CM;
@@ -48,7 +48,7 @@ CL_h = Lh/(mission.q_second*S_h);
 
 eps0       = 2*CL/(pi*A_w);
 eps_dalpha = 2*wing.CLalpha/(pi*wing.A);
-eps        = wing.eps0_launch + wing.eps_dalpha*wing.alpha_launch;
+eps        = eps0 + wing.eps_dalpha*wing.alpha_launch;
 alpha_h    = ih + alpha_w - iw  - eps;
 tauE       = (alpha_h + (CL_h/CLalpha_h))/deltaE_max;
 G          = csvread('control_eff.csv');
@@ -71,8 +71,9 @@ ls         = stab_long(cg.x,wing,hstab,assumptions);
 Cmalpha    = ls.Cmalpha;
 deltaE     = ((T_cruise*z_prop./(q*S_w*c_w) + (CLw_cruise - CL0)*Cmalpha)/(CLalpha*Cm_deltaE - Cmalpha*CL_deltaE));
 
-plot(V,deltaE*rad2deg)
+% plot(V,deltaE*rad2deg)
 
-elevator.cE = cE;
+elevator.cE       = cE;
+elevator.cratio_E = cratio_E;
 end
 
