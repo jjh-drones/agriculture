@@ -1,4 +1,6 @@
-function cg = aero_balance(assumptions,battery_m,wing,mission,xAC)
+function cg = aero_balance(assumptions,battery_m,wing,xAC,copy)
+
+fname = 'components';
 
 cm2m = 1e-2;
 g2kg = 1e-3; 
@@ -15,7 +17,6 @@ density_carbon   = 1480;
 
 %battery
 k = k + 1;
-
 weights(k).name = 'Battery';
 weights(k).mass = battery_m;
 weights(k).lx   = 14.73*cm2m;
@@ -234,6 +235,26 @@ cg.Ixx  = Ixx;
 cg.Iyy  = Iyy;
 cg.Izz  = Izz;
 
+%% Write report
+k  = 1;
+nc = 9;
+while k < 9
+   
+    A(nc*(k-1)+ 1, :) = {'NAME: ',weights(k).name};
+    A(nc*(k-1)+ 2, :) = {'MASS: ',weights(k).mass};
+    A(nc*(k-1)+ 3, :) = {'LX: ',weights(k).lx};
+    A(nc*(k-1)+ 4, :) = {'LY: ',weights(k).ly};
+    A(nc*(k-1)+ 5, :) = {'LZ: ',weights(k).lz};
+    A(nc*(k-1)+ 6, :) = {'X: ',weights(k).x};
+    A(nc*(k-1)+ 7, :) = {'Y: ',weights(k).y};
+    A(nc*(k-1)+ 8, :) = {'Z: ',weights(k).z};
+    k = k+1;
+1;
+end
+
+if copy
+    xlswrite(fname,A);
+end
 %% Export to AVL Mass file
 % create_mass_avl_file(weights,mission);
 end

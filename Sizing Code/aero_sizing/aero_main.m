@@ -76,7 +76,7 @@ wing        = aero_wing(assumptions,mission);
 xAC_initial = 0.2984;
 estFcn      = @(xAC) xAC_finder(xAC,assumptions, wing, mission);
 xAC         = fzero(estFcn,xAC_initial);
-cg          = aero_balance(assumptions,assumptions.battery_m,wing,mission,xAC);
+cg          = aero_balance(assumptions,assumptions.battery_m,wing,xAC,1);
 wing.xAC    = xAC;
 wing.xLE    = wing.xAC - wing.xMAC*wing.croot;
 
@@ -148,7 +148,7 @@ fprintf('%15s%15.6f\n','Total: ',wing.D_cruise + hstab.D + fuselage.D);
 fprintf('\n')
 
 %Longitudinal Stability
-cg = aero_balance(assumptions,assumptions.battery_m,wing,wing.xAC );
+cg = aero_balance(assumptions,assumptions.battery_m,wing,wing.xAC,0 );
 ls = stab_long(cg.x,wing,hstab,assumptions);
 display('LONG STABILITY (DESIGN)')
 display('--------')
@@ -161,7 +161,7 @@ fprintf('\n')
 
 %Longitudinal Test
 battery_m = 600e-3;
-cg = aero_balance(assumptions,battery_m,wing,wing.xAC );
+cg = aero_balance(assumptions,battery_m,wing,wing.xAC,0 );
 ls = stab_long(cg.x,wing,hstab,assumptions);
 display('LONG STABILITY (TEST)')
 display('--------')
