@@ -1,10 +1,10 @@
-function aileron = aileron_sizing(wing,cg,hstab,vstab,mission)
+function aileron = aileron_sizing(wing,cg,hstab,vstab,mission,assumptions)
 %%ASSUMPTIONS
-da_max            = 25;   %+- 25 degrees for ailerons
-b_end_max_perc    = 0.95; %maximum external position of aileron
-aileronC_ratio    = 0.25;  %percentage of aileron chord with respect to wing
-b_beggininga_perc = 0.15;  %start of aileron withing semi span in percentage
-b_begginingb_perc = 0.8;  %maximum start offset from wing span in percentage
+da_max            = assumptions.da_max;   %+- 25 degrees for ailerons
+b_end_max_perc    = assumptions.b_end_max_perc; %maximum external position of aileron
+aileronC_ratio    = assumptions.aileronC_ratio;  %percentage of aileron chord with respect to wing
+b_beggininga_perc = assumptions.b_beggininga_perc;  %start of aileron withing semi span in percentage
+b_begginingb_perc = assumptions.b_begginingb_perc;  %maximum start offset from wing span in percentage
 
 delta      = b_begginingb_perc - b_beggininga_perc;
 iterations = 1000;
@@ -31,6 +31,7 @@ else
     aileron.chord       = aileronC_ratio*wing.croot;
     aileron.chord_perc  = aileronC_ratio;
     aileron_b_perc      = interp1(a(:),size_ail(:),aileron.t_roll);
+    aileron.b_perc      = interp1(a(:),size_ail(:),aileron.t_roll);
     aileron.span        = aileron_b_perc*wing.b/2;
     aileron.start       = interp1(a(:),ail_start(:),aileron.t_roll)*wing.b/2;
 end
