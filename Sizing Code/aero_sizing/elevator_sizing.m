@@ -73,7 +73,9 @@ deltaE     = ((T_cruise*z_prop./(q*S_w*c_w) + (CLw_cruise - CL0)*Cmalpha)/(CLalp
 
 % plot(V,deltaE*rad2deg)
 
-elevator.cE       = cE;
-elevator.cratio_E = cratio_E;
+elevator.cE          = cE;
+elevator.cratio_E    = cratio_E;
+elevator.deltaE_down = ceil(1.2*max(deltaE)*rad2deg);
+
 end
 

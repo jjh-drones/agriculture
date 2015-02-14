@@ -1,6 +1,6 @@
 function cg = aero_balance(assumptions,battery_m,wing,xAC,copy)
 
-fname = 'components';
+fname = 'INTERNAL_LAYOUT';
 
 cm2m = 1e-2;
 g2kg = 1e-3; 
@@ -237,8 +237,8 @@ cg.Izz  = Izz;
 
 %% Write report
 k  = 1;
-nc = 9;
-while k < 9
+nc = 10;
+while k < nc
    
     A(nc*(k-1)+ 1, :) = {'NAME: ',weights(k).name};
     A(nc*(k-1)+ 2, :) = {'MASS: ',weights(k).mass};

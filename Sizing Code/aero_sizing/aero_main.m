@@ -98,6 +98,8 @@ m2cm    = 100;
 rad2deg = 180/pi;
 
 if 1
+fname = 'EXTERNAL_LAYOUT';
+    
 %Fuselage
 display('FUSELAGE')
 display('--------')
@@ -109,6 +111,26 @@ fprintf('%15s%15.6f\n','L_total: ',fuselage.Lf*m2cm);
 fprintf('%15s%15.6f\n','Angle: ',assumptions.back_angle );
 fprintf('\n')
 
+k = 1;
+B(k, :) = {'FUSELAGE',[]};
+k = k+1;
+B(k, :) = {'Height: ',assumptions.Df*m2cm};
+k = k+1;
+B(k, :) = {'L_nose: ',assumptions.Lf_nose*m2cm};
+k = k+1;
+B(k, :) = {'L_body: ',fuselage.Lf_body*m2cm};
+k = k+1;
+B(k, :) = {'L_rear: ',assumptions.Lf_rear*m2cm};
+k = k+1;
+B(k, :) = {'L_total: ',fuselage.Lf*m2cm};
+k = k+1;
+B(k, :) = {'Angle: ',assumptions.back_angle };
+k = k+1;
+B(k, :) = {[],[]};
+k = k+1;
+B(k, :) = {[],[]};
+k = k+1;
+
 %Wing
 display('WING')
 display('--------')
@@ -117,6 +139,32 @@ fprintf('%15s%15.6f\n','x_AC: ',wing.xAC*m2cm);
 fprintf('%15s%15.6f\n','Chord root: ',wing.croot*m2cm);
 fprintf('%15s%15.6f\n','Span: ',wing.b*m2cm);
 fprintf('\n')
+
+B(k, :) = {'WING',[]};
+k = k+1;
+B(k, :) = {'x_LE: ',wing.xLE*m2cm};
+k = k+1;
+B(k, :) = {'x_AC: ',wing.xAC*m2cm};
+k = k+1;
+B(k, :) = {'Chord root: ',wing.croot*m2cm};
+k = k+1;
+B(k, :) = {'Span: ',wing.b*m2cm};
+k = k+1;
+B(k, :) = {'Aileron_span_start: ',[]};
+k = k+1;
+B(k, :) = {'Aileron_span_end: ',[]};
+k = k+1;
+B(k, :) = {'Aileron_choord_ratio: ',[]};
+k = k+1;
+B(k, :) = {'Aileron_angle_max: ',[]};
+k = k+1;
+B(k, :) = {'Aileron_angle_min: ',[]};
+k = k+1;
+
+B(k, :) = {[],[]};
+k = k+1;
+B(k, :) = {[],[]};
+k = k+1;
 
 %Hstab
 display('HSTAB')
@@ -129,6 +177,35 @@ fprintf('%15s%15.6f\n','Span: ',hstab.b*m2cm);
 fprintf('%15s%15.6f\n','Incidence: ',hstab.incidence*rad2deg);
 fprintf('\n')
 
+B(k, :) = {'HSTAB',[]};
+k = k+1;
+B(k, :) = {'x_LE: ',hstab.xLE*m2cm};
+k = k+1;
+B(k, :) = {'x_AC: ',hstab.xAC*m2cm};
+k = k+1;
+B(k, :) = {'z_AC: ',(hstab.zAC-0.05)*m2cm};
+k = k+1;
+B(k, :) = {'Chord root: ',hstab.croot*m2cm};
+k = k+1;
+B(k, :) = {'Span: ',hstab.b*m2cm};
+k = k+1;
+B(k, :) = {'Incidence: ',hstab.incidence*rad2deg};
+k = k+1;
+B(k, :) = {'Elevator_span_start: ',0};
+k = k+1;
+B(k, :) = {'Elevator_span_end: ',1};
+k = k+1;
+B(k, :) = {'Elevator_choord_ratio: ',elevator.cratio_E};
+k = k+1;
+B(k, :) = {'Elevator_angle_maxup: ',assumptions.deltaE_max};
+k = k+1;
+B(k, :) = {'Elevator_angle_maxdown: ',elevator.deltaE_down};
+k = k+1;
+B(k, :) = {[],[]};
+k = k+1;
+B(k, :) = {[],[]};
+k = k+1;
+
 %Vstab
 display('VSTAB')
 display('--------')
@@ -138,6 +215,31 @@ fprintf('%15s%15.6f\n','Chord root: ',vstab.croot*m2cm);
 fprintf('%15s%15.6f\n','Span: ',vstab.b*m2cm);
 fprintf('\n')
 
+B(k, :) = {'VSTAB',[]};
+k = k+1;
+B(k, :) = {'x_LE: ',vstab.xLE*m2cm};
+k = k+1;
+B(k, :) = {'x_AC: ',vstab.xAC*m2cm};
+k = k+1;
+B(k, :) = {'Chord root: ',vstab.croot*m2cm};
+k = k+1;
+B(k, :) = {'Span: ',vstab.b*m2cm};
+k = k+1;
+B(k, :) = {'Rudder_span_start: ',0};
+k = k+1;
+B(k, :) = {'Rudder_span_end: ',1};
+k = k+1;
+B(k, :) = {'Rudder_choord_ratio: ',0.25};
+k = k+1;
+B(k, :) = {'Rudder_angle_maxup: ',20};
+k = k+1;
+B(k, :) = {'Rudder_angle_maxdown: ',-20};
+k = k+1;
+B(k, :) = {[],[]};
+k = k+1;
+B(k, :) = {[],[]};
+k = k+1;
+
 %Drag
 display('DRAG BREAKDOWN')
 display('--------')
@@ -146,6 +248,23 @@ fprintf('%15s%15.6f\n','Hstab: ',hstab.D);
 fprintf('%15s%15.6f\n','Fuselage: ',fuselage.D);
 fprintf('%15s%15.6f\n','Total: ',wing.D_cruise + hstab.D + fuselage.D);
 fprintf('\n')
+
+B(k, :) = {'DRAG BREAKDOWN',[]};
+k = k+1;
+B(k, :) = {'Wing: ',wing.D_cruise};
+k = k+1;
+B(k, :) = {'Hstab: ',hstab.D};
+k = k+1;
+B(k, :) = {'Fuselage: ',fuselage.D};
+k = k+1;
+B(k, :) = {'Total: ',wing.D_cruise + hstab.D + fuselage.D};
+k = k+1;
+B(k, :) = {[],[]};
+k = k+1;
+B(k, :) = {[],[]};
+k = k+1;
+
+xlswrite(fname,B);
 
 %Longitudinal Stability
 cg = aero_balance(assumptions,assumptions.battery_m,wing,wing.xAC,0 );
