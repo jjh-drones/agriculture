@@ -1,9 +1,9 @@
-function F = xAC_finder(x,assumptions, wing, mission)
+function F = xAC_finder(x,assumptions, wing)
 
 xAC        = x;
 xAC_norm   = x/wing.MAC;
 
-cg         = aero_balance(assumptions,assumptions.battery_m,wing,xAC,0);
+cg         = aero_balance(assumptions,assumptions.battery_m,wing,xAC,0,0);
 
 xCG        = cg.x;
 xCG_norm   = xCG/wing.MAC;

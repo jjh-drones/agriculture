@@ -29,7 +29,7 @@ mission.M_second   = mission.V_second/mission.a_second;
 
 % aileron sizing
 mission.turn_angle      = 90;
-mission.turn_sec        = 0.8;
+mission.turn_sec        = 0.75;
 
 % elevator sizing
 mission.rot_launch_sec  = 1;
@@ -38,7 +38,7 @@ mission.thrust_launch   = 5;
 %% ASSUMPTIONS
 
 %Direct
-assumptions.weight        = 2.7;
+assumptions.weight        = 2;
 assumptions.Aw            = 7;
 assumptions.Vh            = 0.5;
 assumptions.Ah_mul        = 2/3;
@@ -60,6 +60,12 @@ assumptions.xMAC_h        = 0.25;
 assumptions.ch_mul        = 0.5;
 assumptions.deltaE_max    = -25;
 assumptions.bratio_E      = 1;
+assumptions.da_max            = 25;   %+- 25 degrees for ailerons
+assumptions.b_end_max_perc    = 0.95; %maximum external position of aileron
+assumptions.aileronC_ratio    = 0.25;  %percentage of aileron chord with respect to wing
+assumptions.b_beggininga_perc = 0.15;  %start of aileron withing semi span in percentage
+assumptions.b_begginingb_perc = 0.8;  %maximum start offset from wing span in percentage
+
 
 %Derived
 assumptions.Ah            = assumptions.Ah_mul*assumptions.Aw;
@@ -74,9 +80,9 @@ assumptions.tail_Lhinge   = assumptions.tail_height/tan(assumptions.back_angle*p
 wing        = aero_wing(assumptions,mission);
 
 xAC_initial = 0.2984;
-estFcn      = @(xAC) xAC_finder(xAC,assumptions, wing, mission);
+estFcn      = @(xAC) xAC_finder(xAC,assumptions, wing);
 xAC         = fzero(estFcn,xAC_initial);
-cg          = aero_balance(assumptions,assumptions.battery_m,wing,xAC,1);
+cg          = aero_balance(assumptions,assumptions.battery_m,wing,xAC,1,1);
 wing.xAC    = xAC;
 wing.xLE    = wing.xAC - wing.xMAC*wing.croot;
 
@@ -89,7 +95,7 @@ vstab    = aero_vstab(assumptions,wing,hstab,cg);
 
 %control surfaces
 elevator = elevator_sizing(assumptions,mission,wing,fuselage,cg,hstab);
-aileron  = aileron_sizing(wing,cg,hstab,vstab,mission);
+aileron  = aileron_sizing(wing,cg,hstab,vstab,mission,assumptions);
 
 matlab2avl(mission,wing,hstab,cg,aileron,elevator)
 
@@ -114,15 +120,15 @@ fprintf('\n')
 k = 1;
 B(k, :) = {'FUSELAGE',[]};
 k = k+1;
-B(k, :) = {'Height: ',assumptions.Df*m2cm};
+B(k, :) = {'Height: ',assumptions.Df};
 k = k+1;
-B(k, :) = {'L_nose: ',assumptions.Lf_nose*m2cm};
+B(k, :) = {'L_nose: ',assumptions.Lf_nose};
 k = k+1;
-B(k, :) = {'L_body: ',fuselage.Lf_body*m2cm};
+B(k, :) = {'L_body: ',fuselage.Lf_body};
 k = k+1;
-B(k, :) = {'L_rear: ',assumptions.Lf_rear*m2cm};
+B(k, :) = {'L_rear: ',assumptions.Lf_rear};
 k = k+1;
-B(k, :) = {'L_total: ',fuselage.Lf*m2cm};
+B(k, :) = {'L_total: ',fuselage.Lf};
 k = k+1;
 B(k, :) = {'Angle: ',assumptions.back_angle };
 k = k+1;
@@ -142,23 +148,23 @@ fprintf('\n')
 
 B(k, :) = {'WING',[]};
 k = k+1;
-B(k, :) = {'x_LE: ',wing.xLE*m2cm};
+B(k, :) = {'x_LE: ',wing.xLE};
 k = k+1;
-B(k, :) = {'x_AC: ',wing.xAC*m2cm};
+B(k, :) = {'x_AC: ',wing.xAC};
 k = k+1;
-B(k, :) = {'Chord root: ',wing.croot*m2cm};
+B(k, :) = {'Chord root: ',wing.croot};
 k = k+1;
-B(k, :) = {'Span: ',wing.b*m2cm};
+B(k, :) = {'Span: ',wing.b};
 k = k+1;
-B(k, :) = {'Aileron_span_start: ',[]};
+B(k, :) = {'Aileron_span_start: ',aileron.start};
 k = k+1;
-B(k, :) = {'Aileron_span_end: ',[]};
+B(k, :) = {'Aileron_span_end: ',aileron.start+aileron.span};
 k = k+1;
-B(k, :) = {'Aileron_choord_ratio: ',[]};
+B(k, :) = {'Aileron_chord_ratio: ',assumptions.aileronC_ratio};
 k = k+1;
-B(k, :) = {'Aileron_angle_max: ',[]};
+B(k, :) = {'Aileron_angle_max: ',assumptions.da_max};
 k = k+1;
-B(k, :) = {'Aileron_angle_min: ',[]};
+B(k, :) = {'Aileron_angle_min: ',-assumptions.da_max};
 k = k+1;
 
 B(k, :) = {[],[]};
@@ -179,15 +185,15 @@ fprintf('\n')
 
 B(k, :) = {'HSTAB',[]};
 k = k+1;
-B(k, :) = {'x_LE: ',hstab.xLE*m2cm};
+B(k, :) = {'x_LE: ',hstab.xLE};
 k = k+1;
-B(k, :) = {'x_AC: ',hstab.xAC*m2cm};
+B(k, :) = {'x_AC: ',hstab.xAC};
 k = k+1;
-B(k, :) = {'z_AC: ',(hstab.zAC-0.05)*m2cm};
+B(k, :) = {'z_AC: ',(hstab.zAC-0.05)};
 k = k+1;
-B(k, :) = {'Chord root: ',hstab.croot*m2cm};
+B(k, :) = {'Chord root: ',hstab.croot};
 k = k+1;
-B(k, :) = {'Span: ',hstab.b*m2cm};
+B(k, :) = {'Span: ',hstab.b};
 k = k+1;
 B(k, :) = {'Incidence: ',hstab.incidence*rad2deg};
 k = k+1;
@@ -217,13 +223,13 @@ fprintf('\n')
 
 B(k, :) = {'VSTAB',[]};
 k = k+1;
-B(k, :) = {'x_LE: ',vstab.xLE*m2cm};
+B(k, :) = {'x_LE: ',vstab.xLE};
 k = k+1;
-B(k, :) = {'x_AC: ',vstab.xAC*m2cm};
+B(k, :) = {'x_AC: ',vstab.xAC};
 k = k+1;
-B(k, :) = {'Chord root: ',vstab.croot*m2cm};
+B(k, :) = {'Chord root: ',vstab.croot};
 k = k+1;
-B(k, :) = {'Span: ',vstab.b*m2cm};
+B(k, :) = {'Span: ',vstab.b};
 k = k+1;
 B(k, :) = {'Rudder_span_start: ',0};
 k = k+1;
@@ -267,7 +273,7 @@ k = k+1;
 xlswrite(fname,B);
 
 %Longitudinal Stability
-cg = aero_balance(assumptions,assumptions.battery_m,wing,wing.xAC,0 );
+cg = aero_balance(assumptions,assumptions.battery_m,wing,wing.xAC,0,0);
 ls = stab_long(cg.x,wing,hstab,assumptions);
 display('LONG STABILITY (DESIGN)')
 display('--------')
@@ -280,7 +286,7 @@ fprintf('\n')
 
 %Longitudinal Test
 battery_m = 600e-3;
-cg = aero_balance(assumptions,battery_m,wing,wing.xAC,0 );
+cg = aero_balance(assumptions,battery_m,wing,wing.xAC,0,0);
 ls = stab_long(cg.x,wing,hstab,assumptions);
 display('LONG STABILITY (TEST)')
 display('--------')

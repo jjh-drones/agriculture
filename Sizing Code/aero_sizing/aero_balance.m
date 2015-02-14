@@ -1,4 +1,4 @@
-function cg = aero_balance(assumptions,battery_m,wing,xAC,copy)
+function cg = aero_balance(assumptions,battery_m,wing,xAC,copy,massf)
 
 fname = 'INTERNAL_LAYOUT';
 
@@ -256,7 +256,9 @@ if copy
     xlswrite(fname,A);
 end
 %% Export to AVL Mass file
-% create_mass_avl_file(weights,mission);
+if massf == 1,
+create_mass_avl_file(weights);
+end
 end
 
 
