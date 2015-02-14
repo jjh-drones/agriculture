@@ -76,7 +76,7 @@ wing        = aero_wing(assumptions,mission);
 xAC_initial = 0.2984;
 estFcn      = @(xAC) xAC_finder(xAC,assumptions, wing, mission);
 xAC         = fzero(estFcn,xAC_initial);
-cg          = aero_balance(assumptions,assumptions.battery_m,wing,mission,0.2984);
+cg          = aero_balance(assumptions,assumptions.battery_m,wing,mission,xAC);
 wing.xAC    = xAC;
 wing.xLE    = wing.xAC - wing.xMAC*wing.croot;
 

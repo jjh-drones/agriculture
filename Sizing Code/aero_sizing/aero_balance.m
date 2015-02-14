@@ -15,6 +15,8 @@ density_carbon   = 1480;
 
 %battery
 k = k + 1;
+
+weights(k).name = 'Battery';
 weights(k).mass = battery_m;
 weights(k).lx   = 14.73*cm2m;
 weights(k).ly   = 5.46*cm2m;
@@ -28,6 +30,7 @@ weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 
 %marcopolo
 k = k + 1;
+weights(k).name = 'MarcoPolo';
 weights(k).mass = 12*g2kg;
 weights(k).lx   = 6.4*cm2m;
 weights(k).ly   = 2.24*cm2m;
@@ -41,6 +44,7 @@ weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 
 %camera+gimbal
 k = k + 1;
+weights(k).name = 'Camera+Gimbal';
 weights(k).mass = 295*g2kg;
 weights(k).lx   = 18.7*cm2m;
 weights(k).ly   = 9.35*cm2m;
@@ -54,6 +58,7 @@ weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 
 %ardupilot
 k = k + 1;
+weights(k).name = 'Ardupilot';
 weights(k).mass = 28*g2kg;
 weights(k).lx   = 7*cm2m;
 weights(k).ly   = 4.5*cm2m;
@@ -67,6 +72,7 @@ weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 
 %receiver
 k = k + 1;
+weights(k).name = 'Receiver';
 weights(k).mass = 4.4*g2kg;
 weights(k).lx   = 4*cm2m;
 weights(k).ly   = 1.9*cm2m;
@@ -80,6 +86,7 @@ weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 
 %telemetry
 k = k + 1;
+weights(k).name = 'Receiver';
 weights(k).mass = 4*g2kg;
 weights(k).lx   = 5.55*cm2m;
 weights(k).ly   = 2.67*cm2m;
@@ -93,6 +100,7 @@ weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 
 %gps module
 k = k + 1;
+weights(k).name = 'GPS_module';
 weights(k).mass = 16.8*g2kg;
 weights(k).lx   = 3.8*cm2m;
 weights(k).ly   = 3.8*cm2m;
@@ -106,6 +114,7 @@ weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 
 %speed controller
 k = k + 1;
+weights(k).name = 'Speed Controller';
 weights(k).mass = 25*g2kg;
 weights(k).lx   = 5.5*cm2m;
 weights(k).ly   = 1.9*cm2m;
@@ -119,6 +128,7 @@ weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 
 %motor
 k = k + 1;
+weights(k).name = 'Motor';
 weights(k).mass = 53*g2kg;
 weights(k).lx   = 3.3*cm2m;
 weights(k).ly   = 2.8*cm2m;
@@ -138,7 +148,7 @@ weights(k).lx    = wing.croot;
 weights(k).ly    = wing.b;
 weights(k).lz    = wing.croot*airfoil_thicknes;
 weights(k).mass  = dens_foam*weights(k).lx*weights(k).ly*weights(k).lz + 2*density_carbon*pi*rod_r^2*weights(k).ly;
-weights(k).x     = 29.84/100 + 0.2*weights(k).lx;
+weights(k).x     = xAC + 0.2*weights(k).lx;
 weights(k).y     = 0;
 weights(k).z     = 0.5*Df + 0.5*weights(10).lz;
 weights(k).Ix    = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
