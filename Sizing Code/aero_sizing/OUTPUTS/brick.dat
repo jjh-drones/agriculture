@@ -1,14 +1,14 @@
 load brick.avl
 mass brick.mass
 oper
-a a 5
-b b 1
+a a 3
+b b 0
 r r 0
 p p 0
 y y 0
-d1 d1 1
-d2 d2 1
-d3 d3 2
+d1 d1 0
+d2 d2 0
+d3 d3 0
 x
 FT
 avl_totalforces_brick
