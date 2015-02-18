@@ -240,7 +240,7 @@ end
     wing.eps_dalpha   = 2*wing.CLalpha/(pi*wing.A);
     wing.eps_launch   = wing.eps0_launch + wing.eps_dalpha*wing.alpha_launch;
     wing.eps_cruise   = wing.eps0_cruise + wing.eps_dalpha*wing.alpha_cruise;
-    wing.L_max        = wing.n*mission.g*assumption.weight;
+    wing.L_max        = wing.n*mission.g*assumptions.weight;
         
 else
 %% HARCODED VALUES

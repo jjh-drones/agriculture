@@ -1,4 +1,4 @@
-%% MISSION REQUIREMENTS
+%% MISSION
 mission.V          = 18.4;
 mission.name       = 'brick';
 mission.V_second   = 7;
@@ -75,6 +75,9 @@ assumptions.Lf_nose       = assumptions.nose_mul*assumptions.Df;
 assumptions.Lf_rear       = assumptions.Df/tan(assumptions.back_angle*pi/180);
 assumptions.tail_Lhinge   = assumptions.tail_height/tan(assumptions.back_angle*pi/180);
 
+%Avl
+avl.alpha       = 5;
+
 %% COMPUTATION
 
 %wing
@@ -105,6 +108,7 @@ mat2excel(vstab,'vstab');
 
 %calling avl
 matlab2avl(mission,wing,hstab,cg,aileron,elevator)
+matlab2avl_launch('brick',avl);
 
 %% VISUALIZATION
 m2cm    = 100;

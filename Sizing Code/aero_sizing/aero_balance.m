@@ -271,6 +271,7 @@ end
 if copy
     xlswrite(fname,A);
 end
+
 %% Export to AVL Mass file
 if massf == 1,
     create_mass_avl_file(weights);
