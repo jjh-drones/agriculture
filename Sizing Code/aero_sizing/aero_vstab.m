@@ -33,9 +33,10 @@ vstab.S             = S_v;
 vstab.xLE           = xCG + lv - wing.xMAC*root_v;
 vstab.xAC           = vstab.xLE + wing.xMAC*vstab.croot;
 vstab.airfoil_name  = assumptions.airfoil_v;
+vstab.taper         = assumptions.taper_v;
 
 %% LIFT DISTRIBUTION
-beta_v     = 8*deg2rad;
+beta_v      = 8*deg2rad;
 CL_v        = CLalpha_v*beta_v;
 L_v         = mission.q*S_v*CL_v;
 vstab.L_max = L_v;

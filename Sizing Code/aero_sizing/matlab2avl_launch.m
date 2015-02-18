@@ -3,7 +3,7 @@ function matlab2avl_launch(Name,avl)
     alpha = avl.alpha;
     
     fname = [Name,'.dat'];
-    fid = fopen(fname, 'wt');
+    fid = fopen(['OUTPUTS\',fname], 'wt');
     fprintf(fid,['load ',Name,'.avl\n']);
     fprintf(fid,['mass ',Name,'.mass\n']);
     fprintf(fid,'oper\n');

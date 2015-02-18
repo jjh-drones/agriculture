@@ -68,6 +68,7 @@ assumptions.b_begginingb_perc = 0.8;   %maximum start offset from wing span in p
 assumptions.given             = 0;
 assumptions.airfoil_h         = 'NACA0006';
 assumptions.airfoil_v         = 'NACA0006';
+assumptions.taper_v           = 0.8;
 
 %Derived
 assumptions.Ah            = assumptions.Ah_mul*assumptions.Aw;
@@ -102,6 +103,7 @@ vstab    = aero_vstab(assumptions,mission,wing,hstab,cg);
 %control surfaces
 elevator = elevator_sizing(assumptions,mission,wing,fuselage,cg,hstab);
 aileron  = aileron_sizing(wing,cg,hstab,vstab,mission,assumptions);
+rudder   = rudder_sizing();
 
 %force distributions
 mat2excel(wing,'wing');
@@ -109,7 +111,7 @@ mat2excel(hstab,'hstab');
 mat2excel(vstab,'vstab');
 
 %calling avl
-matlab2avl(mission,wing,hstab,cg,aileron,elevator)
+matlab2avl(mission,wing,hstab,vstab,cg,aileron,elevator,rudder)
 matlab2avl_launch('brick',avl);
 
 %% VISUALIZATION
@@ -216,7 +218,7 @@ B(k, :) = {'Elevator_span_end: ',1};
 k = k+1;
 B(k, :) = {'Elevator_choord_ratio: ',elevator.cratio_E};
 k = k+1;
-B(k, :) = {'Elevator_angle_maxup: ',assumptions.deltaE_max};
+B(k, :) = {'Elevator_angle_maxup: ',elevator.deltaE_up};
 k = k+1;
 B(k, :) = {'Elevator_angle_maxdown: ',elevator.deltaE_down};
 k = k+1;
