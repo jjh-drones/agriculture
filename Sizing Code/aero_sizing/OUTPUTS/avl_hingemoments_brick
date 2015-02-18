@@ -1,10 +1,10 @@
  ---------------------------------------------------------------
  Control Hinge Moments
- (referred to    Sref =  0.4781       Cref =    0.2613)
+ (referred to    Sref =  0.4238       Cref =    0.2460)
 
  Control          Chinge
  ---------------- -----------
- aileron          -0.2516E-03
- elevator         -0.1084E-03
- rudder           -0.5267E-04
+ aileron           0.3058E-10
+ elevator          0.1895E-04
+ rudder           -0.2022E-08
  ---------------------------------------------------------------

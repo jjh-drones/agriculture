@@ -143,19 +143,18 @@ weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 
 
 if assumptions.given
-    Data = xlsread('OUTPUTS\NEW_WEIGHT');
     
     k = k + 1;
     weights(k).lx    = 0;
     weights(k).ly    = 0;
     weights(k).lz    = 0;
-    weights(k).mass  = Data(1);
-    weights(k).x     = Data(2);
-    weights(k).y     = Data(3);
-    weights(k).z     = Data(4);
-    weights(k).Ix    = Data(5);
-    weights(k).Iy    = Data(6);
-    weights(k).Iz    = Data(7);
+    weights(k).mass  = assumptions.Data(1);
+    weights(k).x     = assumptions.Data(2);
+    weights(k).y     = assumptions.Data(3);
+    weights(k).z     = assumptions.Data(4);
+    weights(k).Ix    = assumptions.Data(5);
+    weights(k).Iy    = assumptions.Data(6);
+    weights(k).Iz    = assumptions.Data(7);
 else
     %main wing
     k = k + 1;

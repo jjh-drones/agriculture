@@ -68,7 +68,7 @@ assumptions.b_begginingb_perc = 0.8;   %maximum start offset from wing span in p
 assumptions.airfoil_h         = 'NACA0006';
 assumptions.airfoil_v         = 'NACA0006';
 assumptions.taper_v           = 0.8;
-assumptions.given             = 0;
+assumptions.given             = 1;
 
 %Derived
 assumptions.Ah            = assumptions.Ah_mul*assumptions.Aw;
@@ -79,7 +79,7 @@ assumptions.Lf_rear       = assumptions.Df/tan(assumptions.back_angle*pi/180);
 assumptions.tail_Lhinge   = assumptions.tail_height/tan(assumptions.back_angle*pi/180);
 
 %Avl
-avl.alpha        = 3;
+avl.alpha        = 0;
 avl.beta         = 0;
 avl.roll_rate    = 0;
 avl.pitch_rate   = 0;
@@ -89,6 +89,23 @@ avl.elevator     = 0;
 avl.rudder       = 0;
 
 %% COMPUTATION
+
+f1  = 'OUTPUTS\avl_bodyaxis_brick';
+f2  = 'OUTPUTS\avl_bodyforces_brick';
+f3  = 'OUTPUTS\avl_elementforces_brick';
+f4  = 'OUTPUTS\avl_hingemoments_brick';
+f5  = 'OUTPUTS\avl_stability_brick';
+f6  = 'OUTPUTS\avl_stripforces_brick';
+f7  = 'OUTPUTS\avl_stripshear_brick';
+f8  = 'OUTPUTS\avl_surfaceforces_brick';
+f9  = 'OUTPUTS\avl_totalforces_brick';
+
+delete(f1,f2,f3,f4,f5,f6,f7,f8,f9);
+
+if assumptions.given
+    assumptions.Data   = xlsread('OUTPUTS\NEW_WEIGHT');
+    assumptions.weight = assumptions.Data(1) + 0.4382 + assumptions.battery_m;    
+end
 
 %wing
 wing        = aero_wing(assumptions,mission);
@@ -306,18 +323,6 @@ fprintf('%15s%15.6f\n','NP: ',ls.NP*wing.MAC*m2cm);
 fprintf('%15s%15.6f\n','SM: ',ls.SM*wing.MAC*m2cm);
 fprintf('\n')
 
-%Longitudinal Test
-battery_m = 600e-3;
-cg = aero_balance(assumptions,battery_m,wing,wing.xAC,0,0);
-ls = stab_long(cg.x,wing,hstab,assumptions);
-display('LONG STABILITY (TEST)')
-display('--------')
-fprintf('%15s%15.6f\n','Battery Mass: ',battery_m);
-fprintf('%15s%15.6f\n','x_CG: ',cg.x*m2cm);
-fprintf('%15s%15.6f\n','Cm_alpha: ',ls.Cmalpha);
-fprintf('%15s%15.6f\n','NP: ',ls.NP*wing.MAC*m2cm);
-fprintf('%15s%15.6f\n','SM: ',ls.SM*wing.MAC*m2cm);
-fprintf('\n')
 end
 
 
