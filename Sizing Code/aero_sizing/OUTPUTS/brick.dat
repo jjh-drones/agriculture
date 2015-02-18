@@ -11,4 +11,22 @@ d2 d2 1
 d3 d3 2
 x
 FT
-temporalbrick
+avl_totalforces_brick
+FN
+avl_surfaceforces_brick
+FS
+avl_stripforces_brick
+FE
+avl_elementforces_brick
+FB
+avl_bodyforces_brick
+HM
+avl_hingemoments_brick
+VM
+avl_stripshear_brick
+ST
+avl_stability_brick
+SB
+avl_bodyaxis_brick
+RE
+avl_reference_brick

@@ -143,7 +143,7 @@ weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 
 
 if assumptions.given
-    Data = xlsread('WEIGHT_NEW');
+    Data = xlsread('OUTPUTS\NEW_WEIGHT');
     
     k = k + 1;
     weights(k).lx    = 0;

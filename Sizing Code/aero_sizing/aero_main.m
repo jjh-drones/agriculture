@@ -65,10 +65,10 @@ assumptions.b_end_max_perc    = 0.95;  %maximum external position of aileron
 assumptions.aileronC_ratio    = 0.25;  %percentage of aileron chord with respect to wing
 assumptions.b_beggininga_perc = 0.15;  %start of aileron withing semi span in percentage
 assumptions.b_begginingb_perc = 0.8;   %maximum start offset from wing span in percentage
-assumptions.given             = 0;
 assumptions.airfoil_h         = 'NACA0006';
 assumptions.airfoil_v         = 'NACA0006';
 assumptions.taper_v           = 0.8;
+assumptions.given             = 0;
 
 %Derived
 assumptions.Ah            = assumptions.Ah_mul*assumptions.Aw;
@@ -79,14 +79,14 @@ assumptions.Lf_rear       = assumptions.Df/tan(assumptions.back_angle*pi/180);
 assumptions.tail_Lhinge   = assumptions.tail_height/tan(assumptions.back_angle*pi/180);
 
 %Avl
-avl.alpha        = 5;
-avl.beta         = 1;
+avl.alpha        = 3;
+avl.beta         = 0;
 avl.roll_rate    = 0;
 avl.pitch_rate   = 0;
 avl.yaw_rate     = 0;
-avl.aileron      = 1;
-avl.elevator     = 1;
-avl.rudder       = 2;
+avl.aileron      = 0;
+avl.elevator     = 0;
+avl.rudder       = 0;
 
 %% COMPUTATION
 
