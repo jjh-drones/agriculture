@@ -1,6 +1,6 @@
-function mat2excel(wing,mission,assumptions)
+function mat2excel(wing,name)
 
-Max_lift = mission.g*wing.n*assumptions.weight;
+Max_lift = wing.L_max;
 segments = 300;
 
 b_chunks = (wing.b/2)/segments;
@@ -15,7 +15,7 @@ for i = 0:b_chunks:wing.b/2,
     G = G + 1;
 end
 Header = {'Position From Root','Lift Force (N)'};
-xlswrite('Wing_output.xls',Header,'Lift_Distr','A1');
-xlswrite('Wing_output.xls',Lwing,'Lift_Distr','A2');
+xlswrite([name,'_output.xls'],Header,'Lift_Distr','A1');
+xlswrite([name,'_output.xls'],Lwing,'Lift_Distr','A2');
 
 end

@@ -71,6 +71,7 @@ assumptions.given             = 1;
 %Derived
 assumptions.Ah            = assumptions.Ah_mul*assumptions.Aw;
 assumptions.CLalpha_h     = assumptions.Clalpha_h/(1+(assumptions.Clalpha_h/(pi*assumptions.Ah )));
+assumptions.CLalpha_v     = assumptions.CLalpha_h;
 assumptions.Lf_nose       = assumptions.nose_mul*assumptions.Df;
 assumptions.Lf_rear       = assumptions.Df/tan(assumptions.back_angle*pi/180);
 assumptions.tail_Lhinge   = assumptions.tail_height/tan(assumptions.back_angle*pi/180);
@@ -92,12 +93,18 @@ fuselage = aero_fuselage(assumptions,mission,wing);
 
 %tail
 hstab    = aero_hstab(assumptions,mission,wing,fuselage,cg);
-vstab    = aero_vstab(assumptions,wing,hstab,cg);
+vstab    = aero_vstab(assumptions,mission,wing,hstab,cg);
 
 %control surfaces
 elevator = elevator_sizing(assumptions,mission,wing,fuselage,cg,hstab);
 aileron  = aileron_sizing(wing,cg,hstab,vstab,mission,assumptions);
 
+%force distributions
+mat2excel(wing,'wing');
+mat2excel(hstab,'hstab');
+mat2excel(vstab,'vstab');
+
+%calling avl
 matlab2avl(mission,wing,hstab,cg,aileron,elevator)
 
 %% VISUALIZATION

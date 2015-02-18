@@ -18,7 +18,6 @@ Lf_nose       = assumptions.Lf_nose;
 Lf_body       = assumptions.Lf_body;
 V_h           = assumptions.Vh;
 eta_h         = assumptions.eta_h;
-Clalpha_h     = assumptions.Clalpha_h;
 CD0_h         = assumptions.Cd0_h;
 q             = mission.q;
 L_hinge       = assumptions.tail_Lhinge;
@@ -29,7 +28,6 @@ xHinge_h      = assumptions.xHinge_h;
 xMAC_h        = assumptions.xMAC_h;
 ch_mul        = assumptions.ch_mul;
 A_h           = assumptions.Ah;
-Clalpha_h     = assumptions.Clalpha_h;
 CLalpha_h     = assumptions.CLalpha_h;
 eps           = wing.eps_cruise;
 zAC_h         = assumptions.tail_height;
@@ -57,7 +55,7 @@ taper_h  = taper_w;
 croot_h  = 3/2*MAC_h*((1+taper_h)/(1+taper_h+taper_h^2));
 
 %Angle of attack of the tail during cruise
-alpha_h_initial = CL_h/Clalpha_h;
+alpha_h_initial = CL_h/CLalpha_h;
 estFcn          = @(alpha_h) lifting_line(alpha_h,S_h,A_h,taper_h,CLalpha_h,CL_h);
 alpha_h         = fzero(estFcn,alpha_h_initial);
 
@@ -90,4 +88,11 @@ hstab.CLalpha    = CLalpha_h;
 hstab.xLE        = xLE_h;
 hstab.xAC        = xAC_h;
 hstab.zAC        = zAC_h;
+
+%% LIFT DISTRIBUTION
+alpha_h     = 8*deg2rad;
+CL_h        = CLalpha_h*alpha_h;
+L_h         = mission.q*S_h*CL_h;
+hstab.L_max = L_h;
+
 

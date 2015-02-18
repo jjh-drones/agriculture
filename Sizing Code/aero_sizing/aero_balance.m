@@ -256,7 +256,6 @@ cg.Izz  = Izz;
 k  = 1;
 nc = 10;
 while k < nc
-   
     A(nc*(k-1)+ 1, :) = {'NAME: ',weights(k).name};
     A(nc*(k-1)+ 2, :) = {'MASS: ',weights(k).mass};
     A(nc*(k-1)+ 3, :) = {'LX: ',weights(k).lx};
@@ -274,7 +273,7 @@ if copy
 end
 %% Export to AVL Mass file
 if massf == 1,
-create_mass_avl_file(weights);
+    create_mass_avl_file(weights);
 end
 end
 
