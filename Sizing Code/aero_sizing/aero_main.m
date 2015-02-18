@@ -38,33 +38,34 @@ mission.thrust_launch   = 5;
 %% ASSUMPTIONS
 
 %Direct
-assumptions.weight        = 2;
-assumptions.Aw            = 7;
-assumptions.Vh            = 0.5;
-assumptions.Ah_mul        = 2/3;
-assumptions.nose_mul      = 1.5;
-assumptions.Clalpha_h     = 2*pi;
-assumptions.Cd0_h         = 0.00338;  %Based on NACA0006
-assumptions.Vv            = 0.025;
-assumptions.Av            = 1.5;
-assumptions.eta_h         = 0.98;    
-assumptions.StaticMargin  = 0.2;
-assumptions.battery_m     = 808*1e-3;
-assumptions.Df            = 12e-2;
-assumptions.back_angle    = 15;
-assumptions.tail_height   = 10e-2;
-assumptions.Turn_radius   = 20;       %Meters, to fullfil control points
-assumptions.Lf_body       = 63e-2;
-assumptions.xHinge_h      = 0.75;
-assumptions.xMAC_h        = 0.25;     
-assumptions.ch_mul        = 0.5;
-assumptions.deltaE_max    = -25;
-assumptions.bratio_E      = 1;
-assumptions.da_max            = 25;   %+- 25 degrees for ailerons
-assumptions.b_end_max_perc    = 0.95; %maximum external position of aileron
+assumptions.weight            = 2;
+assumptions.Aw                = 7;
+assumptions.Vh                = 0.5;
+assumptions.Ah_mul            = 2/3;
+assumptions.nose_mul          = 1.5;
+assumptions.Clalpha_h         = 2*pi;
+assumptions.Cd0_h             = 0.00338;  %Based on NACA0006
+assumptions.Vv                = 0.025;
+assumptions.Av                = 1.5;
+assumptions.eta_h             = 0.98;    
+assumptions.StaticMargin      = 0.2;
+assumptions.battery_m         = 808*1e-3;
+assumptions.Df                = 12e-2;
+assumptions.back_angle        = 15;
+assumptions.tail_height       = 10e-2;
+assumptions.Turn_radius       = 20;       %Meters, to fullfil control points
+assumptions.Lf_body           = 63e-2;
+assumptions.xHinge_h          = 0.75;
+assumptions.xMAC_h            = 0.25;     
+assumptions.ch_mul            = 0.5;
+assumptions.deltaE_max        = -25;
+assumptions.bratio_E          = 1;
+assumptions.da_max            = 25;    %+- 25 degrees for ailerons
+assumptions.b_end_max_perc    = 0.95;  %maximum external position of aileron
 assumptions.aileronC_ratio    = 0.25;  %percentage of aileron chord with respect to wing
 assumptions.b_beggininga_perc = 0.15;  %start of aileron withing semi span in percentage
-assumptions.b_begginingb_perc = 0.8;  %maximum start offset from wing span in percentage
+assumptions.b_begginingb_perc = 0.8;   %maximum start offset from wing span in percentage
+assumptions.given             = 1;
 
 
 %Derived

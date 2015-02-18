@@ -141,63 +141,80 @@ weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
 weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
 weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 
-%main wing
-k = k + 1;
-airfoil_thicknes = 0.12;
-rod_r            = 0.004;
-weights(k).lx    = wing.croot;
-weights(k).ly    = wing.b;
-weights(k).lz    = wing.croot*airfoil_thicknes;
-weights(k).mass  = dens_foam*weights(k).lx*weights(k).ly*weights(k).lz + 2*density_carbon*pi*rod_r^2*weights(k).ly;
-weights(k).x     = xAC + 0.2*weights(k).lx;
-weights(k).y     = 0;
-weights(k).z     = 0.5*Df + 0.5*weights(10).lz;
-weights(k).Ix    = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
-weights(k).Iy    = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
-weights(k).Iz    = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 
-%hstab
-k = k + 1;
-airfoil_thicknes = 0.06;
-rod_r            = 0.004;
-weights(k).lx    = assumptions.ch_mul*wing.croot;
-weights(k).ly    = assumptions.ch_mul*wing.croot*assumptions.Ah;
-weights(k).lz    = assumptions.ch_mul*wing.croot*airfoil_thicknes;
-weights(k).mass  = dens_foam*weights(k).lx*weights(k).ly*weights(k).lz + 2*density_carbon*pi*rod_r^2*weights(k).ly;
-weights(k).x     = assumptions.tail_Lhinge - (assumptions.xHinge_h-assumptions.xMAC_h)*assumptions.ch_mul*wing.croot;
-weights(k).y     = 0;
-weights(k).z     = assumptions.tail_height - 0.5*Df;
-weights(k).Ix    = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
-weights(k).Iy    = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
-weights(k).Iz    = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
+if assumptions.given
+    Data = xlsread('WEIGHT_NEW');
+    
+    k = k + 1;
+    weights(k).lx    = 0;
+    weights(k).ly    = 0;
+    weights(k).lz    = 0;
+    weights(k).mass  = Data(1);
+    weights(k).x     = Data(2);
+    weights(k).y     = Data(3);
+    weights(k).z     = Data(4);
+    weights(k).Ix    = Data(5);
+    weights(k).Iy    = Data(6);
+    weights(k).Iz    = Data(7);
+else
+    %main wing
+    k = k + 1;
+    airfoil_thicknes = 0.12;
+    rod_r            = 0.004;
+    weights(k).lx    = wing.croot;
+    weights(k).ly    = wing.b;
+    weights(k).lz    = wing.croot*airfoil_thicknes;
+    weights(k).mass  = dens_foam*weights(k).lx*weights(k).ly*weights(k).lz + 2*density_carbon*pi*rod_r^2*weights(k).ly;
+    weights(k).x     = xAC + 0.2*weights(k).lx;
+    weights(k).y     = 0;
+    weights(k).z     = 0.5*Df + 0.5*weights(10).lz;
+    weights(k).Ix    = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
+    weights(k).Iy    = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
+    weights(k).Iz    = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 
-%vstab
-k = k + 1;
-airfoil_thicknes = 0.06;
-rod_r            = 0.004;
-weights(k).lx    = assumptions.ch_mul*wing.croot;
-weights(k).ly    = assumptions.ch_mul*wing.croot*airfoil_thicknes;
-weights(k).lz    = 0.5*assumptions.ch_mul*wing.croot*assumptions.Ah;
-weights(k).mass  = dens_foam*weights(k).lx*weights(k).ly*weights(k).lz + 2*density_carbon*pi*rod_r^2*weights(k).lz;
-weights(k).x     = assumptions.tail_Lhinge - (assumptions.xHinge_h-assumptions.xMAC_h)*assumptions.ch_mul*wing.croot;
-weights(k).y     = 0;
-weights(k).z     = Df/2 + assumptions.xHinge_h*weights(k).lz;
-weights(k).Ix    = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
-weights(k).Iy    = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
-weights(k).Iz    = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
+    %hstab
+    k = k + 1;
+    airfoil_thicknes = 0.06;
+    rod_r            = 0.004;
+    weights(k).lx    = assumptions.ch_mul*wing.croot;
+    weights(k).ly    = assumptions.ch_mul*wing.croot*assumptions.Ah;
+    weights(k).lz    = assumptions.ch_mul*wing.croot*airfoil_thicknes;
+    weights(k).mass  = dens_foam*weights(k).lx*weights(k).ly*weights(k).lz + 2*density_carbon*pi*rod_r^2*weights(k).ly;
+    weights(k).x     = assumptions.tail_Lhinge - (assumptions.xHinge_h-assumptions.xMAC_h)*assumptions.ch_mul*wing.croot;
+    weights(k).y     = 0;
+    weights(k).z     = assumptions.tail_height - 0.5*Df;
+    weights(k).Ix    = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
+    weights(k).Iy    = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
+    weights(k).Iz    = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 
-%fuselage
-k = k + 1;
-weights(k).lx   = Lf;
-weights(k).ly   = Df;
-weights(k).lz   = Df;
-weights(k).mass = dens_foam*weights(k).lx*weights(k).ly*weights(k).lz + 4*density_carbon*pi*rod_r^2*weights(k).lx;
-weights(k).x    = 0.5*weights(k).lx;
-weights(k).y    = 0;
-weights(k).z    = 0;
-weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
-weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
-weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
+    %vstab
+    k = k + 1;
+    airfoil_thicknes = 0.06;
+    rod_r            = 0.004;
+    weights(k).lx    = assumptions.ch_mul*wing.croot;
+    weights(k).ly    = assumptions.ch_mul*wing.croot*airfoil_thicknes;
+    weights(k).lz    = 0.5*assumptions.ch_mul*wing.croot*assumptions.Ah;
+    weights(k).mass  = dens_foam*weights(k).lx*weights(k).ly*weights(k).lz + 2*density_carbon*pi*rod_r^2*weights(k).lz;
+    weights(k).x     = assumptions.tail_Lhinge - (assumptions.xHinge_h-assumptions.xMAC_h)*assumptions.ch_mul*wing.croot;
+    weights(k).y     = 0;
+    weights(k).z     = Df/2 + assumptions.xHinge_h*weights(k).lz;
+    weights(k).Ix    = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
+    weights(k).Iy    = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
+    weights(k).Iz    = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
+
+    %fuselage
+    k = k + 1;
+    weights(k).lx   = Lf;
+    weights(k).ly   = Df;
+    weights(k).lz   = Df;
+    weights(k).mass = dens_foam*weights(k).lx*weights(k).ly*weights(k).lz + 4*density_carbon*pi*rod_r^2*weights(k).lx;
+    weights(k).x    = 0.5*weights(k).lx;
+    weights(k).y    = 0;
+    weights(k).z    = 0;
+    weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
+    weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
+    weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
+end
 
 %% CG computation
 nmasses = size(weights,2);
