@@ -67,7 +67,6 @@ assumptions.b_beggininga_perc = 0.15;  %start of aileron withing semi span in pe
 assumptions.b_begginingb_perc = 0.8;   %maximum start offset from wing span in percentage
 assumptions.given             = 1;
 
-
 %Derived
 assumptions.Ah            = assumptions.Ah_mul*assumptions.Aw;
 assumptions.CLalpha_h     = assumptions.Clalpha_h/(1+(assumptions.Clalpha_h/(pi*assumptions.Ah )));
