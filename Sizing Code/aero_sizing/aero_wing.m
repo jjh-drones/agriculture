@@ -276,7 +276,7 @@ wing.eps0_cruise  = 0.0179527414987367;
 wing.eps_dalpha   = 0.422960837414952;
 wing.eps_launch   = 0.213378138264216;
 wing.eps_cruise   = 0.00378561436768828;
-
+wing.L_max        = wing.n*mission.g*assumptions.weight;
 end
 
 end

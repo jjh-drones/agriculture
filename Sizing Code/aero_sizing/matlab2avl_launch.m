@@ -2,7 +2,7 @@ function matlab2avl_launch(Name,avl)
     
     alpha = avl.alpha;
     
-    fname = ['OUTPUTS\',Name,'.dat'];
+    fname = [Name,'.dat'];
     fid = fopen(fname, 'wt');
     fprintf(fid,['load ',Name,'.avl\n']);
     fprintf(fid,['mass ',Name,'.mass\n']);
@@ -12,6 +12,8 @@ function matlab2avl_launch(Name,avl)
     fprintf(fid,'FT\n');
     fprintf(fid,['temporal',Name,'\n']);
     fclose(fid);
-    system(['OUTPUTS\avl.exe <' fname]);
+    cd([pwd,'\OUTPUTS'])
+    system(['avl.exe <' fname]);
+    cd('..')
     fclose('all');
 end
