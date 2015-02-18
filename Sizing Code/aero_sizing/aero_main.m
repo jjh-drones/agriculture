@@ -65,7 +65,9 @@ assumptions.b_end_max_perc    = 0.95;  %maximum external position of aileron
 assumptions.aileronC_ratio    = 0.25;  %percentage of aileron chord with respect to wing
 assumptions.b_beggininga_perc = 0.15;  %start of aileron withing semi span in percentage
 assumptions.b_begginingb_perc = 0.8;   %maximum start offset from wing span in percentage
-assumptions.given             = 1;
+assumptions.given             = 0;
+assumptions.airfoil_h         = 'NACA0006';
+assumptions.airfoil_v         = 'NACA0006';
 
 %Derived
 assumptions.Ah            = assumptions.Ah_mul*assumptions.Aw;
@@ -115,7 +117,7 @@ m2cm    = 100;
 rad2deg = 180/pi;
 
 if 1
-fname = 'EXTERNAL_LAYOUT';
+fname = 'OUTPUTS\EXTERNAL_LAYOUT';
     
 %Fuselage
 display('FUSELAGE')

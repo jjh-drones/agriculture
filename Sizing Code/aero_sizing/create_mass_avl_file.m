@@ -5,7 +5,7 @@ function create_mass_avl_file(weights)
     name               = 'brick';
     f                  = '%11.5f ';
     d                  = '%2d';
-    fid                = fopen([name,'.mass'],'w');
+    fid                = fopen(['OUTPUTS\',name,'.mass'],'w');
 
     % GLOBAL
 

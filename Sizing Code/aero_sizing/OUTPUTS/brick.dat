@@ -1,0 +1,7 @@
+load brick.avl
+mass brick.mass
+oper
+a a 5
+x
+FT
+temporalbrick

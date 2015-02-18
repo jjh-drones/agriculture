@@ -27,11 +27,12 @@ root_v  = 3/2*MAC_v*((1+taper_v)/(1+taper_v+taper_v^2));
 tip_v   = taper_v*root_v;
 
 %% OUTPUT STRUCTURE
-vstab.croot = root_v;
-vstab.b     = b_v;
-vstab.S     = S_v;
-vstab.xLE   = xCG + lv - wing.xMAC*root_v;
-vstab.xAC   = vstab.xLE + wing.xMAC*vstab.croot;
+vstab.croot         = root_v;
+vstab.b             = b_v;
+vstab.S             = S_v;
+vstab.xLE           = xCG + lv - wing.xMAC*root_v;
+vstab.xAC           = vstab.xLE + wing.xMAC*vstab.croot;
+vstab.airfoil_name  = assumptions.airfoil_v;
 
 %% LIFT DISTRIBUTION
 beta_v     = 8*deg2rad;

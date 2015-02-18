@@ -1,6 +1,6 @@
 function cg = aero_balance(assumptions,battery_m,wing,xAC,copy,massf)
 
-fname = 'INTERNAL_LAYOUT';
+fname = 'OUTPUTS\INTERNAL_LAYOUT';
 
 cm2m = 1e-2;
 g2kg = 1e-3; 

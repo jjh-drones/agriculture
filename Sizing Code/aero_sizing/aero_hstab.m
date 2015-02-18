@@ -78,16 +78,17 @@ CD_h      = CD0_h + (K_surf)*(CL_h)^2;
 D_h       = q*S_h*CD_h;
 
 %% OUTPUT STRUCTURE
-hstab.S          = S_h;
-hstab.b          = b_h;
-hstab.lh         = l_h;
-hstab.croot      = croot_h;
-hstab.D          = D_h;
-hstab.incidence  = ih;
-hstab.CLalpha    = CLalpha_h;
-hstab.xLE        = xLE_h;
-hstab.xAC        = xAC_h;
-hstab.zAC        = zAC_h;
+hstab.S             = S_h;
+hstab.b             = b_h;
+hstab.lh            = l_h;
+hstab.croot         = croot_h;
+hstab.D             = D_h;
+hstab.incidence     = ih;
+hstab.CLalpha       = CLalpha_h;
+hstab.xLE           = xLE_h;
+hstab.xAC           = xAC_h;
+hstab.zAC           = zAC_h;
+hstab.airfoil_name  = assumptions.airfoil_h;
 
 %% LIFT DISTRIBUTION
 alpha_h     = 8*deg2rad;

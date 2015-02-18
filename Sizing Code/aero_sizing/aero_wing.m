@@ -32,7 +32,7 @@ for kk = 1:size(Airfoil_List,1),
     airfoil_name      = char(Airfoil_List(kk));
 
     for i = 1:size(Re_options,2),
-        fileID = fopen([pwd,'\',airfoil_name,'\',num2str(Re_options(i)),'.txt']);
+        fileID = fopen([pwd,'\','AIRFOILS\',airfoil_name,'\',num2str(Re_options(i)),'.txt']);
         p = cell2mat(textscan(fileID,'%f %f %f %f %f %f %f','headerlines',12));
         P(1:size(p,1),1:size(p,2),i) = p; 
     end

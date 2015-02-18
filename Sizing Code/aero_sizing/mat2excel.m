@@ -15,7 +15,7 @@ for i = 0:b_chunks:wing.b/2,
     G = G + 1;
 end
 Header = {'Position From Root','Lift Force (N)'};
-xlswrite([name,'_output.xls'],Header,'Lift_Distr','A1');
-xlswrite([name,'_output.xls'],Lwing,'Lift_Distr','A2');
+xlswrite(['OUTPUTS\',name,'_output.xls'],Header,'Lift_Distr','A1');
+xlswrite(['OUTPUTS\',name,'_output.xls'],Lwing,'Lift_Distr','A2');
 
 end

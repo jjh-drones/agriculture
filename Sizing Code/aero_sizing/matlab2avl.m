@@ -3,9 +3,9 @@ function matlab2avl(mission,wing,hstab,cg,aileron,elevator)
 name               = mission.name;
 f                  = '%8.4f';
 d                  = '%2d';
-fid                = fopen([name,'.avl'],'w');
+fid                = fopen(['OUTPUTS\',name,'.avl'],'w');
 path_wing_airfoil  = [cell2mat(wing.airfoil_name),'_avl.dat']; 
-path_hstab_airfoil = 'NACA0006_avl.dat';
+path_hstab_airfoil = [hstab.airfoil_name,'_avl.dat']; 
 
 % GLOBAL
 fprintf(fid,[name,'\n']);
