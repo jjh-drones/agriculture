@@ -97,14 +97,14 @@ fprintf(fid,[f,f,f,f,f,f,f,'\n'],vstab.xLE,0,0,vstab.croot,0,0,0);
 fprintf(fid,'AFIL\n');
 fprintf(fid,[path_vstab_airfoil,'\n']);
 fprintf(fid,'CONTROL\n');
-fprintf(fid,['rudder',f,f,f,f,f,f,'\n'],1,(1-rudder.cratio_R),0,1,0,1);
+fprintf(fid,['rudder',f,f,f,f,f,f,'\n'],1,(1-rudder.cratio_R),0,0,1,1);
 
 % tip
 fprintf(fid,'SECTION\n');
-fprintf(fid,[f,f,f,f,f,f,f,'\n'],vstab.xLE,0,vstab.b,vstab.croot*vstab.taper,0,0,0);
+fprintf(fid,[f,f,f,f,f,f,f,'\n'],vstab.xLE + vstab.croot*(1-vstab.taper),0,vstab.b,vstab.croot*vstab.taper,0,0,0);
 fprintf(fid,'AFIL\n');
 fprintf(fid,[path_vstab_airfoil,'\n']);
 fprintf(fid,'CONTROL\n');
-fprintf(fid,['rudder',f,f,f,f,f,f,'\n'],1,(1-rudder.cratio_R),0,1,0,1);
+fprintf(fid,['rudder',f,f,f,f,f,f,'\n'],1,(1-rudder.cratio_R),0,0,1,1);
 end
 

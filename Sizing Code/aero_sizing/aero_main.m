@@ -79,7 +79,14 @@ assumptions.Lf_rear       = assumptions.Df/tan(assumptions.back_angle*pi/180);
 assumptions.tail_Lhinge   = assumptions.tail_height/tan(assumptions.back_angle*pi/180);
 
 %Avl
-avl.alpha       = 5;
+avl.alpha        = 5;
+avl.beta         = 1;
+avl.roll_rate    = 0;
+avl.pitch_rate   = 0;
+avl.yaw_rate     = 0;
+avl.aileron      = 1;
+avl.elevator     = 1;
+avl.rudder       = 2;
 
 %% COMPUTATION
 
