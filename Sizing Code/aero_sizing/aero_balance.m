@@ -167,6 +167,62 @@ weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
 weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
 weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 
+%Servo Aileron Right
+k = k + 1;
+weights(k).name = 'Servo Aileron R';
+weights(k).mass = 26*g2kg;
+weights(k).lx   = 4.3*cm2m;
+weights(k).ly   = 2.4*cm2m;
+weights(k).lz   = 2.1*cm2m;
+weights(k).x    = xAC+0.75*wing.croot-0.5*weights(k).lx;
+weights(k).y    = 0.75*wing.b/2;
+weights(k).z    = 0.5*Df + 0.5*weights(k).lz;
+weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
+weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
+weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
+
+%Servo Aileron Left
+k = k + 1;
+weights(k).name = 'Servo Aileron L';
+weights(k).mass = 26*g2kg;
+weights(k).lx   = 4.3*cm2m;
+weights(k).ly   = 2.4*cm2m;
+weights(k).lz   = 2.1*cm2m;
+weights(k).x    = xAC+0.75*wing.croot-0.5*weights(k).lx;
+weights(k).y    = -0.75*wing.b/2;
+weights(k).z    = 0.5*Df + 0.5*weights(k).lz;
+weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
+weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
+weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
+
+%Servo Elevator
+k = k + 1;
+weights(k).name = 'Servo Elevator';
+weights(k).mass = 26*g2kg;
+weights(k).lx   = 4.3*cm2m;
+weights(k).ly   = 2.1*cm2m;
+weights(k).lz   = 2.4*cm2m;
+weights(k).x    = Lf;
+weights(k).y    = 0;
+weights(k).z    = 0.5*Df + 0.5*weights(k).lz;
+weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
+weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
+weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
+
+%Servo Rudder
+k = k + 1;
+weights(k).name = 'Servo Rudder';
+weights(k).mass = 28*g2kg;
+weights(k).lx   = 4.3*cm2m;
+weights(k).ly   = 2.4*cm2m;
+weights(k).lz   = 2.1*cm2m;
+weights(k).x    = Lf;
+weights(k).y    = 0;
+weights(k).z    = 0.5*Df + 0.5*weights(k).lz;
+weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
+weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
+weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
+
 
 if assumptions.given
     
