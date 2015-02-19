@@ -29,7 +29,7 @@ mission.M_second   = mission.V_second/mission.a_second;
 
 % aileron sizing
 mission.turn_angle      = 90;
-mission.turn_sec        = 0.75;
+mission.turn_sec        = 0.65;
 
 % elevator sizing
 mission.rot_launch_sec  = 1;
@@ -104,7 +104,7 @@ delete(f1,f2,f3,f4,f5,f6,f7,f8,f9);
 
 if assumptions.given
     assumptions.Data   = xlsread('OUTPUTS\NEW_WEIGHT');
-    assumptions.weight = assumptions.Data(1) + 0.4382 + assumptions.battery_m;    
+    assumptions.weight = assumptions.Data(1) + 0.7332 + assumptions.battery_m;    
 end
 
 %wing

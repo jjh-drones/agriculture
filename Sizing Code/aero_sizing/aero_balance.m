@@ -44,13 +44,39 @@ weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
 weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 
 %camera+gimbal
+% k = k + 1;
+% weights(k).name = 'Camera+Gimbal';
+% weights(k).mass = 295*g2kg;
+% weights(k).lx   = 18.7*cm2m;
+% weights(k).ly   = 9.35*cm2m;
+% weights(k).lz   = 6.17*cm2m;
+% weights(k).x    = Lf_nose + 0.5*Lf_body;
+% weights(k).y    = 0;
+% weights(k).z    = 0.5*weights(3).lz;
+% weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
+% weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
+% weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
+
 k = k + 1;
-weights(k).name = 'Camera+Gimbal';
+weights(k).name = 'Camera+Gimbal_1';
 weights(k).mass = 295*g2kg;
 weights(k).lx   = 18.7*cm2m;
 weights(k).ly   = 9.35*cm2m;
 weights(k).lz   = 6.17*cm2m;
-weights(k).x    = Lf_nose + 0.5*Lf_body;
+weights(k).x    = -1*cm2m - 0.5*weights(k).lx + 0.5*Lf_body;
+weights(k).y    = 0;
+weights(k).z    = 0.5*weights(3).lz;
+weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
+weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
+weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
+
+k = k + 1;
+weights(k).name = 'Camera+Gimbal_2';
+weights(k).mass = 295*g2kg;
+weights(k).lx   = 18.7*cm2m;
+weights(k).ly   = 9.35*cm2m;
+weights(k).lz   = 6.17*cm2m;
+weights(k).x    = +1*cm2m + 0.5*weights(k).lx + 0.5*Lf_body;
 weights(k).y    = 0;
 weights(k).z    = 0.5*weights(3).lz;
 weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
