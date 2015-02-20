@@ -50,7 +50,11 @@ assumptions.Av                = 1.5;
 assumptions.eta_h             = 0.98;    
 assumptions.StaticMargin      = 0.2;
 assumptions.battery_m         = 808*1e-3;
-assumptions.Df                = 12e-2;
+% assumptions.Df                = 12e-2;
+assumptions.Fusz              = 6*2.54/100; %Height of fus with wing box included
+assumptions.Fusy              = 4.5*2.54/100; %Width of fuselage for gimbal
+assumptions.Df                = 2*((assumptions.Fusz*assumptions.Fusy)/pi)^0.5; %for drag purposes
+
 assumptions.back_angle        = 15;
 assumptions.tail_height       = 10e-2;
 assumptions.Turn_radius       = 20;       %Meters, to fullfil control points

@@ -6,7 +6,7 @@ cm2m = 1e-2;
 g2kg = 1e-3; 
 k    = 0;
 
-Df      = assumptions.Df;
+Df      = assumptions.Fusz;
 Lf_nose = assumptions.Lf_nose;
 Lf_body = assumptions.Lf_body;
 Lf_rear = assumptions.Lf_rear;
