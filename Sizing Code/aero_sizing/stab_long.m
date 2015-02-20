@@ -27,13 +27,13 @@ ls.XCG     = xCG;
 ls.NP      = NP;
 ls.SM      = SM;
 
-% display('LONG STABILITY (DESIGN)')
-% display('--------')
-% fprintf('%15s%15.6f\n','Mass: ',cg.mass);
-% fprintf('%15s%15.6f\n','Cm_alpha: ',Cmalpha);
-% fprintf('%15s%15.6f\n','x_CG: ',cg.x*m2cm);
-% fprintf('%15s%15.6f\n','NP: ',NP*wing.MAC*m2cm);
-% fprintf('%15s%15.6f\n\n','SM: ',SM*wing.MAC*m2cm);
+display('LONG STABILITY (DESIGN)')
+display('--------')
+fprintf('%15s%15.6f\n','Mass: ',cg.mass);
+fprintf('%15s%15.6f\n','Cm_alpha: ',Cmalpha);
+fprintf('%15s%15.6f\n','x_CG: ',cg.x*m2cm);
+fprintf('%15s%15.6f\n','NP: ',NP*wing.MAC*m2cm);
+fprintf('%15s%15.6f\n\n','SM: ',SM*wing.MAC*m2cm);
 
 end
 

@@ -29,7 +29,7 @@ mission.M_second   = mission.V_second/mission.a_second;
 
 % aileron sizing
 mission.turn_angle      = 90;
-mission.turn_sec        = 0.8;
+mission.turn_sec        = 0.6;
 
 % elevator sizing
 mission.rot_launch_sec  = 1;
@@ -81,6 +81,7 @@ assumptions.CLalpha_v     = assumptions.CLalpha_h;
 assumptions.Lf_nose       = assumptions.nose_mul*assumptions.Df;
 assumptions.Lf_rear       = assumptions.Df/tan(assumptions.back_angle*pi/180);
 assumptions.tail_Lhinge   = assumptions.tail_height/tan(assumptions.back_angle*pi/180);
+assumptions.tail_height   = assumptions.tail_height - 0.5*assumptions.Fusz;
 
 %Avl
 avl.alpha        = 0;
@@ -119,6 +120,7 @@ estFcn      = @(xAC) xAC_finder(xAC,assumptions, wing);
 xAC         = fzero(estFcn,xAC_initial);
 cg          = aero_balance(assumptions,assumptions.battery_m,wing,xAC,1,1,1,1);
 wing.xAC    = xAC;
+wing.zAC    = 0.5*assumptions.Fusz; 
 wing.xLE    = wing.xAC - wing.xMAC*wing.croot;
 
 %fuselage
@@ -139,7 +141,7 @@ mat2excel(hstab,'hstab');
 mat2excel(vstab,'vstab');
 
 %calling avl
-matlab2avl(mission,wing,hstab,vstab,cg,aileron,elevator,rudder)
+matlab2avl(assumptions,mission,wing,hstab,vstab,cg,aileron,elevator,rudder)
 matlab2avl_launch('brick',avl);
 
 %% VISUALIZATION
@@ -202,6 +204,8 @@ B(k, :) = {'Chord root: ',wing.croot};
 k = k+1;
 B(k, :) = {'Span: ',wing.b};
 k = k+1;
+B(k, :) = {'Airfoil: ',cell2mat(wing.airfoil_name)};
+k = k+1;
 B(k, :) = {'Aileron_span_start: ',aileron.start};
 k = k+1;
 B(k, :) = {'Aileron_span_end: ',aileron.start+aileron.span};
@@ -223,7 +227,7 @@ display('HSTAB')
 display('--------')
 fprintf('%15s%15.6f\n','x_LE: ',hstab.xLE*m2cm);
 fprintf('%15s%15.6f\n','x_AC: ',hstab.xAC*m2cm);
-fprintf('%15s%15.6f\n','z_AC: ',(hstab.zAC-0.05)*m2cm);
+fprintf('%15s%15.6f\n','z_AC: ',assumptions.tail_height);
 fprintf('%15s%15.6f\n','Chord root: ',hstab.croot*m2cm);
 fprintf('%15s%15.6f\n','Span: ',hstab.b*m2cm);
 fprintf('%15s%15.6f\n','Incidence: ',hstab.incidence*rad2deg);
@@ -235,11 +239,13 @@ B(k, :) = {'x_LE: ',hstab.xLE};
 k = k+1;
 B(k, :) = {'x_AC: ',hstab.xAC};
 k = k+1;
-B(k, :) = {'z_AC: ',(hstab.zAC-0.05)};
+B(k, :) = {'z_AC: ',assumptions.tail_height};
 k = k+1;
 B(k, :) = {'Chord root: ',hstab.croot};
 k = k+1;
 B(k, :) = {'Span: ',hstab.b};
+k = k+1;
+B(k, :) = {'Airfoil: ',hstab.airfoil_name};
 k = k+1;
 B(k, :) = {'Incidence: ',hstab.incidence*rad2deg};
 k = k+1;
@@ -273,11 +279,15 @@ B(k, :) = {'x_LE: ',vstab.xLE};
 k = k+1;
 B(k, :) = {'x_AC: ',vstab.xAC};
 k = k+1;
+B(k, :) = {'z_AC: ',assumptions.tail_height};
+k = k+1;
 B(k, :) = {'Chord root: ',vstab.croot};
 k = k+1;
 B(k, :) = {'Chord tip: ',vstab.croot*vstab.taper};
 k = k+1;
 B(k, :) = {'Span: ',vstab.b};
+k = k+1;
+B(k, :) = {'Airfoil: ',vstab.airfoil_name};
 k = k+1;
 B(k, :) = {'Rudder_span_start: ',0};
 k = k+1;

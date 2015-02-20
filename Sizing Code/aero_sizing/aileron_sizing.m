@@ -1,8 +1,8 @@
 function aileron = aileron_sizing(wing,cg,hstab,vstab,mission,assumptions)
 %%ASSUMPTIONS
-da_max            = assumptions.da_max;   %+- 25 degrees for ailerons
-b_end_max_perc    = assumptions.b_end_max_perc; %maximum external position of aileron
-aileronC_ratio    = assumptions.aileronC_ratio;  %percentage of aileron chord with respect to wing
+da_max            = assumptions.da_max;             %+- 25 degrees for ailerons
+b_end_max_perc    = assumptions.b_end_max_perc;     %maximum external position of aileron
+aileronC_ratio    = assumptions.aileronC_ratio;     %percentage of aileron chord with respect to wing
 b_beggininga_perc = assumptions.b_beggininga_perc;  %start of aileron withing semi span in percentage
 b_begginingb_perc = assumptions.b_begginingb_perc;  %maximum start offset from wing span in percentage
 

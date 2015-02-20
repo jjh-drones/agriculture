@@ -30,7 +30,6 @@ ch_mul        = assumptions.ch_mul;
 A_h           = assumptions.Ah;
 CLalpha_h     = assumptions.CLalpha_h;
 eps           = wing.eps_cruise;
-zAC_h         = assumptions.tail_height;
 
 
 %% LONGITUDINAL TRIM
@@ -87,7 +86,6 @@ hstab.incidence     = ih;
 hstab.CLalpha       = CLalpha_h;
 hstab.xLE           = xLE_h;
 hstab.xAC           = xAC_h;
-hstab.zAC           = zAC_h;
 hstab.airfoil_name  = assumptions.airfoil_h;
 
 %% LIFT DISTRIBUTION
