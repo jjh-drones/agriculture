@@ -1,5 +1,5 @@
 %% MISSION
-mission.V          = 18.4;
+mission.V          = 18;
 mission.name       = 'brick';
 mission.V_second   = 7;
 mission.H          = 112;
@@ -9,12 +9,12 @@ mission.mu         = 16.04*10^(-6);
 mission.g          = 9.81;                                
 R                  = 287.058;  
 
-% atm                = get_atm(mission.H);
-% atm_second         = get_atm(mission.H_second);
-atm.rho         = 1.21188;
-atm.Ta          = 287.422;
-atm_second.rho  = 1.22465;
-atm_second.Ta   = 288.130;
+atm                = get_atm(mission.H);
+atm_second         = get_atm(mission.H_second);
+% atm.rho         = 1.21188;
+% atm.Ta          = 287.422;
+% atm_second.rho  = 1.22465;
+% atm_second.Ta   = 288.130;
 
 mission.rho        = atm.rho;
 mission.rho_second = atm_second.rho;
@@ -29,7 +29,7 @@ mission.M_second   = mission.V_second/mission.a_second;
 
 % aileron sizing
 mission.turn_angle      = 90;
-mission.turn_sec        = 0.65;
+mission.turn_sec        = 0.8;
 
 % elevator sizing
 mission.rot_launch_sec  = 1;
@@ -39,6 +39,8 @@ mission.thrust_launch   = 5;
 
 %Direct
 assumptions.weight            = 2;
+assumptions.weight_payload    = 830*1e-3;
+assumptions.battery_m         = 808*1e-3;
 assumptions.Aw                = 7;
 assumptions.Vh                = 0.5;
 assumptions.Ah_mul            = 2/3;
@@ -49,16 +51,14 @@ assumptions.Vv                = 0.025;
 assumptions.Av                = 1.5;
 assumptions.eta_h             = 0.98;    
 assumptions.StaticMargin      = 0.2;
-assumptions.battery_m         = 808*1e-3;
-% assumptions.Df                = 12e-2;
-assumptions.Fusz              = 6*2.54/100; %Height of fus with wing box included
-assumptions.Fusy              = 4.5*2.54/100; %Width of fuselage for gimbal
+assumptions.Fusz              = 6*2.54/100;                                     %Height of fus with wing box included
+assumptions.Fusy              = 4.5*2.54/100;                                   %Width of fuselage for gimbal
 assumptions.Df                = 2*((assumptions.Fusz*assumptions.Fusy)/pi)^0.5; %for drag purposes
 
 assumptions.back_angle        = 15;
 assumptions.tail_height       = 10e-2;
 assumptions.Turn_radius       = 20;       %Meters, to fullfil control points
-assumptions.Lf_body           = 63e-2;
+assumptions.Lf_body           = 72e-2;
 assumptions.xHinge_h          = 0.75;
 assumptions.xMAC_h            = 0.25;     
 assumptions.ch_mul            = 0.5;
@@ -108,7 +108,7 @@ delete(f1,f2,f3,f4,f5,f6,f7,f8,f9);
 
 if assumptions.given
     assumptions.Data   = xlsread('OUTPUTS\NEW_WEIGHT');
-    assumptions.weight = assumptions.Data(1) + 0.7332 + assumptions.battery_m;    
+    assumptions.weight = assumptions.Data(1) + assumptions.weight_payload + assumptions.battery_m;    
 end
 
 %wing
@@ -117,7 +117,7 @@ wing        = aero_wing(assumptions,mission);
 xAC_initial = 0.2984;
 estFcn      = @(xAC) xAC_finder(xAC,assumptions, wing);
 xAC         = fzero(estFcn,xAC_initial);
-cg          = aero_balance(assumptions,assumptions.battery_m,wing,xAC,1,1);
+cg          = aero_balance(assumptions,assumptions.battery_m,wing,xAC,1,1,1,1);
 wing.xAC    = xAC;
 wing.xLE    = wing.xAC - wing.xMAC*wing.croot;
 
@@ -152,7 +152,8 @@ fname = 'OUTPUTS\EXTERNAL_LAYOUT';
 %Fuselage
 display('FUSELAGE')
 display('--------')
-fprintf('%15s%15.6f\n','Height: ',assumptions.Df*m2cm);
+fprintf('%15s%15.6f\n','Height: ',assumptions.Fusz*m2cm);
+fprintf('%15s%15.6f\n','Width: ',assumptions.Fusy*m2cm);
 fprintf('%15s%15.6f\n','L_nose: ',assumptions.Lf_nose*m2cm);
 fprintf('%15s%15.6f\n','L_body: ',fuselage.Lf_body*m2cm);
 fprintf('%15s%15.6f\n','L_rear: ',assumptions.Lf_rear*m2cm);
@@ -163,7 +164,9 @@ fprintf('\n')
 k = 1;
 B(k, :) = {'FUSELAGE',[]};
 k = k+1;
-B(k, :) = {'Height: ',assumptions.Df};
+B(k, :) = {'Height: ',assumptions.Fusz};
+k = k+1;
+B(k, :) = {'Width: ',assumptions.Fusy};
 k = k+1;
 B(k, :) = {'L_nose: ',assumptions.Lf_nose};
 k = k+1;
@@ -272,13 +275,15 @@ B(k, :) = {'x_AC: ',vstab.xAC};
 k = k+1;
 B(k, :) = {'Chord root: ',vstab.croot};
 k = k+1;
+B(k, :) = {'Chord tip: ',vstab.croot*vstab.taper};
+k = k+1;
 B(k, :) = {'Span: ',vstab.b};
 k = k+1;
 B(k, :) = {'Rudder_span_start: ',0};
 k = k+1;
 B(k, :) = {'Rudder_span_end: ',1};
 k = k+1;
-B(k, :) = {'Rudder_choord_ratio: ',0.25};
+B(k, :) = {'Rudder_choord_ratio: ',rudder.cratio_R};
 k = k+1;
 B(k, :) = {'Rudder_angle_maxup: ',20};
 k = k+1;
@@ -313,19 +318,36 @@ k = k+1;
 B(k, :) = {[],[]};
 k = k+1;
 
-xlswrite(fname,B);
-
 %Longitudinal Stability
-cg = aero_balance(assumptions,assumptions.battery_m,wing,wing.xAC,0,0);
-ls = stab_long(cg.x,wing,hstab,assumptions);
-display('LONG STABILITY (DESIGN)')
+ls = stab_long(wing,hstab,assumptions,assumptions.battery_m,1,1);
+display('LONG STABILITY (TWO GIMBALS)')
 display('--------')
-fprintf('%15s%15.6f\n','Battery Mass: ',assumptions.battery_m);
-fprintf('%15s%15.6f\n','x_CG: ',cg.x*m2cm);
+fprintf('%15s%15.6f\n','Mass: ',ls.mass);
 fprintf('%15s%15.6f\n','Cm_alpha: ',ls.Cmalpha);
+fprintf('%15s%15.6f\n','x_CG: ',cg.x*m2cm);
 fprintf('%15s%15.6f\n','NP: ',ls.NP*wing.MAC*m2cm);
 fprintf('%15s%15.6f\n','SM: ',ls.SM*wing.MAC*m2cm);
 fprintf('\n')
+
+B(k, :) = {'LONG STABILITY (TWO GIMBALS)',[]};
+k = k+1;
+B(k, :) = {'Mass: ',ls.mass};
+k = k+1;
+B(k, :) = {'Cm_alpha: ',ls.Cmalpha};
+k = k+1;
+B(k, :) = {'x_CG: ',cg.x};
+k = k+1;
+B(k, :) = {'NP: ',ls.NP*wing.MAC};
+k = k+1;
+B(k, :) = {'SM: ',ls.SM*wing.MAC};
+k = k+1;
+B(k, :) = {[],[]};
+k = k+1;
+B(k, :) = {[],[]};
+k = k+1;
+
+% Write report
+xlswrite(fname,B);
 
 end
 

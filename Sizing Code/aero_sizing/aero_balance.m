@@ -1,4 +1,4 @@
-function cg = aero_balance(assumptions,battery_m,wing,xAC,copy,massf)
+function cg = aero_balance(assumptions,battery_m,wing,xAC,copy,massf,gimbal1,gimbal2)
 
 fname = 'OUTPUTS\INTERNAL_LAYOUT';
 
@@ -22,7 +22,7 @@ weights(k).mass = battery_m;
 weights(k).lx   = 14.73*cm2m;
 weights(k).ly   = 5.46*cm2m;
 weights(k).lz   = 4.32*cm2m;
-weights(k).x    = Lf_nose + 0.5*weights(1).lx;
+weights(k).x    = Lf_nose + 0.5*weights(k).lx;
 weights(k).y    = 0;
 weights(k).z    = 0.5*weights(1).lz;
 weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
@@ -30,18 +30,18 @@ weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
 weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 
 %marcopolo
-k = k + 1;
-weights(k).name = 'MarcoPolo';
-weights(k).mass = 12*g2kg;
-weights(k).lx   = 6.4*cm2m;
-weights(k).ly   = 2.24*cm2m;
-weights(k).lz   = 1.27*cm2m;
-weights(k).x    = Lf_nose + weights(1).lx - 0.5*weights(2).lx;
-weights(k).y    = 0;
-weights(k).z    = 0.5*Df + 0.5*weights(2).lz;
-weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
-weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
-weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
+% k = k + 1;
+% weights(k).name = 'MarcoPolo';
+% weights(k).mass = 12*g2kg;
+% weights(k).lx   = 6.4*cm2m;
+% weights(k).ly   = 2.24*cm2m;
+% weights(k).lz   = 1.27*cm2m;
+% weights(k).x    = Lf_nose + weights(1).lx - 0.5*weights(2).lx;
+% weights(k).y    = 0;
+% weights(k).z    = 0.5*Df + 0.5*weights(2).lz;
+% weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
+% weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
+% weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 
 %camera+gimbal
 % k = k + 1;
@@ -57,31 +57,35 @@ weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 % weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
 % weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 
-k = k + 1;
-weights(k).name = 'Camera+Gimbal_1';
-weights(k).mass = 295*g2kg;
-weights(k).lx   = 18.7*cm2m;
-weights(k).ly   = 9.35*cm2m;
-weights(k).lz   = 6.17*cm2m;
-weights(k).x    = -1*cm2m - 0.5*weights(k).lx + 0.5*Lf_body;
-weights(k).y    = 0;
-weights(k).z    = 0.5*weights(3).lz;
-weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
-weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
-weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
+if gimbal1
+    k = k + 1;
+    weights(k).name = 'Camera+Gimbal_1';
+    weights(k).mass = 295*g2kg;
+    weights(k).lx   = 22*cm2m;
+    weights(k).ly   = 9.5*cm2m;
+    weights(k).lz   = 9.5*cm2m;
+    weights(k).x    = -1*cm2m - 0.5*weights(k).lx + Lf_nose + 0.5*Lf_body;
+    weights(k).y    = 0;
+    weights(k).z    = 0;
+    weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
+    weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
+    weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
+end
 
-k = k + 1;
-weights(k).name = 'Camera+Gimbal_2';
-weights(k).mass = 295*g2kg;
-weights(k).lx   = 18.7*cm2m;
-weights(k).ly   = 9.35*cm2m;
-weights(k).lz   = 6.17*cm2m;
-weights(k).x    = +1*cm2m + 0.5*weights(k).lx + 0.5*Lf_body;
-weights(k).y    = 0;
-weights(k).z    = 0.5*weights(3).lz;
-weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
-weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
-weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
+if gimbal2
+    k = k + 1;
+    weights(k).name = 'Camera+Gimbal_2';
+    weights(k).mass = 295*g2kg;
+    weights(k).lx   = 22*cm2m;
+    weights(k).ly   = 9.5*cm2m;
+    weights(k).lz   = 9.5*cm2m;
+    weights(k).x    = +1*cm2m + 0.5*weights(k).lx + Lf_nose + 0.5*Lf_body;
+    weights(k).y    = 0;
+    weights(k).z    = 0;
+    weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
+    weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
+    weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
+end
 
 %ardupilot
 k = k + 1;
@@ -90,9 +94,9 @@ weights(k).mass = 28*g2kg;
 weights(k).lx   = 7*cm2m;
 weights(k).ly   = 4.5*cm2m;
 weights(k).lz   = 1.5*cm2m;
-weights(k).x    = Lf_nose + Lf_body - 0.5*weights(4).lx;
+weights(k).x    = Lf_nose + Lf_body - 0.5*weights(k).lx;
 weights(k).y    = 0;
-weights(k).z    = 0.5*weights(4).lz;
+weights(k).z    = 0.5*weights(k).lz;
 weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
 weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
 weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
@@ -104,23 +108,23 @@ weights(k).mass = 4.4*g2kg;
 weights(k).lx   = 4*cm2m;
 weights(k).ly   = 1.9*cm2m;
 weights(k).lz   = 0.9*cm2m;
-weights(k).x    = Lf_nose + Lf_body - 0.5*weights(5).lx;
+weights(k).x    = Lf_nose + Lf_body - 0.5*weights(k).lx;
 weights(k).y    = 0;
-weights(k).z    = weights(4).lz + 0.5*weights(5).lz;
+weights(k).z    = weights(k-1).lz + 0.5*weights(k).lz;
 weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
 weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
 weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 
 %telemetry
 k = k + 1;
-weights(k).name = 'Receiver';
+weights(k).name = 'Telemetry';
 weights(k).mass = 4*g2kg;
 weights(k).lx   = 5.55*cm2m;
 weights(k).ly   = 2.67*cm2m;
 weights(k).lz   = 1.33*cm2m;
-weights(k).x    = Lf_nose + Lf_body + 0.5*weights(6).lx;
+weights(k).x    = Lf_nose + Lf_body + 0.5*weights(k).lx;
 weights(k).y    = 0;
-weights(k).z    = 0.5*Df + 0.5*weights(6).lz;
+weights(k).z    = 0.5*Df + 0.5*weights(k).lz;
 weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
 weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
 weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
@@ -132,9 +136,9 @@ weights(k).mass = 16.8*g2kg;
 weights(k).lx   = 3.8*cm2m;
 weights(k).ly   = 3.8*cm2m;
 weights(k).lz   = 0.85*cm2m;
-weights(k).x    = Lf_nose + Lf_body + 0.5*weights(7).lx;
+weights(k).x    = Lf_nose + Lf_body + 0.5*weights(k).lx;
 weights(k).y    = 0;
-weights(k).z    = 0.5*Df + weights(6).lz + 0.5*weights(7).lz;
+weights(k).z    = 0.5*Df + weights(k-1).lz + 0.5*weights(k).lz;
 weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
 weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
 weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
@@ -146,9 +150,9 @@ weights(k).mass = 25*g2kg;
 weights(k).lx   = 5.5*cm2m;
 weights(k).ly   = 1.9*cm2m;
 weights(k).lz   = 1*cm2m;
-weights(k).x    = Lf_nose + Lf_body + weights(6).lx + 0.5*weights(8).lx;
+weights(k).x    = Lf_nose + Lf_body + weights(k-2).lx + 0.5*weights(k).lx;
 weights(k).y    = 0;
-weights(k).z    = 0.5*Df + 0.5*weights(8).lz;
+weights(k).z    = 0.5*Df + 0.5*weights(k).lz;
 weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
 weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
 weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
@@ -160,9 +164,9 @@ weights(k).mass = 53*g2kg;
 weights(k).lx   = 3.3*cm2m;
 weights(k).ly   = 2.8*cm2m;
 weights(k).lz   = 2.8*cm2m;
-weights(k).x    = Lf - 0.5*weights(9).lx;
+weights(k).x    = Lf - 0.5*weights(k).lx;
 weights(k).y    = 0;
-weights(k).z    = 0.5*Df + 0.5*weights(9).lz;
+weights(k).z    = 0.5*Df + 0.5*weights(k).lz;
 weights(k).Ix   = (1/12)*weights(k).mass*((weights(k).ly)^2+(weights(k).lz)^2);
 weights(k).Iy   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).lz)^2);
 weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
@@ -225,7 +229,6 @@ weights(k).Iz   = (1/12)*weights(k).mass*((weights(k).lx)^2+(weights(k).ly)^2);
 
 
 if assumptions.given
-    
     k = k + 1;
     weights(k).lx    = 0;
     weights(k).ly    = 0;

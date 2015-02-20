@@ -67,7 +67,7 @@ V          = linspace(5,30,100);
 q          = 0.5*rho*V.^2;                                                 % this probably is not zero
 CLalpha    = CLalpha_w;                                         % review this
 CLw_cruise = wing.CL_cruise;
-ls         = stab_long(cg.x,wing,hstab,assumptions);
+ls         = stab_long(wing,hstab,assumptions,assumptions.battery_m,1,1);
 Cmalpha    = ls.Cmalpha;
 deltaE     = ((T_cruise*z_prop./(q*S_w*c_w) + (CLw_cruise - CL0)*Cmalpha)/(CLalpha*Cm_deltaE - Cmalpha*CL_deltaE));
 
