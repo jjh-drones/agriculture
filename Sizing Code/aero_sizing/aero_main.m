@@ -29,7 +29,7 @@ mission.M_second   = mission.V_second/mission.a_second;
 
 % aileron sizing
 mission.turn_angle      = 90;
-mission.turn_sec        = 0.54;
+mission.turn_sec        = 0.55;
 
 % elevator sizing
 mission.rot_launch_sec  = 1;

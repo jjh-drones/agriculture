@@ -338,7 +338,7 @@ cg.Izz  = Izz;
 
 %% Write report
 k  = 1;
-nc = 10;
+nc = 14;
 while k < nc
     A(nc*(k-1)+ 1, :) = {'NAME: ',weights(k).name};
     A(nc*(k-1)+ 2, :) = {'MASS: ',weights(k).mass};
