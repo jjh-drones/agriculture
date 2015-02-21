@@ -17,7 +17,7 @@
   Beta  =   0.00000     qc/2V =   0.00000
   Mach  =     0.000     rb/2V =  -0.00000     r'b/2V =  -0.00000
 
-  CXtot =  -0.00458     Cltot =   0.00000     Cl'tot =   0.00000
+  CXtot =  -0.00458     Cltot =  -0.00000     Cl'tot =  -0.00000
   CYtot =  -0.00000     Cmtot =  -0.01505
   CZtot =  -0.30105     Cntot =   0.00000     Cn'tot =   0.00000
 
@@ -25,7 +25,7 @@
   CDtot =   0.00458
   CDvis =   0.00000     CDind =   0.00458
   CLff  =   0.30105     CDff  =   0.00458    | Trefftz
-  CYff  =  -0.00000         e =    0.9006    | Plane  
+  CYff  =  -0.00000         e =    0.9005    | Plane  
 
    aileron         =   0.00000
    elevator        =   0.00000
@@ -37,29 +37,29 @@
 
                     axial   vel. u     sideslip vel. v      normal  vel. w
                   ----------------    ----------------    ----------------
- x force CX  |    CXu =  -0.009151    CXv =   0.000000    CXw =   0.169936
+ x force CX  |    CXu =  -0.009153    CXv =   0.000000    CXw =   0.169914
  y force CY  |    CYu =  -0.000000    CYv =  -0.132829    CYw =  -0.000000
- z force CZ  |    CZu =  -0.602105    CZv =   0.000000    CZw =  -4.913487
- x mom.  Cl  |    Clu =   0.000000    Clv =  -0.025128    Clw =   0.000000
- y mom.  Cm  |    Cmu =  -0.030092    Cmv =  -0.000000    Cmw =  -0.917390
+ z force CZ  |    CZu =  -0.602105    CZv =   0.000000    CZw =  -4.913417
+ x mom.  Cl  |    Clu =  -0.000000    Clv =  -0.025128    Clw =  -0.000000
+ y mom.  Cm  |    Cmu =  -0.030095    Cmv =  -0.000000    Cmw =  -0.917330
  z mom.  Cn  |    Cnu =   0.000000    Cnv =   0.051224    Cnw =   0.000000
 
                       roll rate  p       pitch rate  q         yaw rate  r
                   ----------------    ----------------    ----------------
- x force CX  |    CXp =  -0.000000    CXq =  -0.117835    CXr =  -0.000000
- y force CY  |    CYp =   0.044407    CYq =  -0.000000    CYr =   0.112865
- z force CZ  |    CZp =   0.000000    CZq =  -8.042305    CZr =  -0.000000
- x mom.  Cl  |    Clp =  -0.485062    Clq =  -0.000000    Clr =   0.086371
- y mom.  Cm  |    Cmp =   0.000000    Cmq = -11.118814    Cmr =  -0.000000
- z mom.  Cn  |    Cnp =  -0.020413    Cnq =   0.000000    Cnr =  -0.045671
+ x force CX  |    CXp =   0.000000    CXq =  -0.117861    CXr =  -0.000000
+ y force CY  |    CYp =   0.044416    CYq =  -0.000000    CYr =   0.112864
+ z force CZ  |    CZp =   0.000000    CZq =  -8.042164    CZr =  -0.000000
+ x mom.  Cl  |    Clp =  -0.485489    Clq =  -0.000000    Clr =   0.086409
+ y mom.  Cm  |    Cmp =   0.000000    Cmq = -11.118795    Cmr =   0.000000
+ z mom.  Cn  |    Cnp =  -0.020430    Cnq =   0.000000    Cnr =  -0.045671
 
                   aileron      d1     elevator     d2     rudder       d3 
                   ----------------    ----------------    ----------------
  x force CX  |   CXd1 =   0.000000   CXd2 =  -0.000016   CXd3 =  -0.000000
- y force CY  |   CYd1 =   0.000062   CYd2 =  -0.000000   CYd3 =  -0.001553
+ y force CY  |   CYd1 =   0.000124   CYd2 =  -0.000000   CYd3 =  -0.001553
  z force CZ  |   CZd1 =   0.000000   CZd2 =  -0.007575   CZd3 =   0.000000
- x mom.  Cl  |   Cld1 =  -0.004537   Cld2 =  -0.000000   Cld3 =  -0.000060
+ x mom.  Cl  |   Cld1 =  -0.006202   Cld2 =   0.000000   Cld3 =  -0.000060
  y mom.  Cm  |   Cmd1 =   0.000000   Cmd2 =  -0.019749   Cmd3 =   0.000000
- z mom.  Cn  |   Cnd1 =   0.000052   Cnd2 =   0.000000   Cnd3 =   0.000640
+ z mom.  Cn  |   Cnd1 =   0.000037   Cnd2 =   0.000000   Cnd3 =   0.000640
 
 
