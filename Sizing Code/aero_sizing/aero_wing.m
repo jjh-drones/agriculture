@@ -23,7 +23,7 @@ delta               = 0.25;
 
 %%Manouverability Calculations
 
-wing.n = (assumptions.Turn_radius*mission.g/(mission.V)^2)^(-2)+1;
+wing.n = sqrt((assumptions.Turn_radius*mission.g/(mission.V)^2)^(-2)+1);
 
 if 1
 for kk = 1:size(Airfoil_List,1),
