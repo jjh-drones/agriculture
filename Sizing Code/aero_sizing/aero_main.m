@@ -57,7 +57,7 @@ assumptions.Df                = 2*((assumptions.Fusz*assumptions.Fusy)/pi)^0.5; 
 
 assumptions.back_angle        = 15;
 assumptions.tail_height       = 10e-2;
-assumptions.Turn_radius       = 20;       %Meters, to fullfil control points
+assumptions.Turn_radius       = 10;       %Meters, to fullfil control points
 assumptions.Lf_body           = 72e-2;
 assumptions.xHinge_h          = 0.75;
 assumptions.xMAC_h            = 0.25;     
