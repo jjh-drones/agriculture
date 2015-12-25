@@ -5,6 +5,7 @@ fname = 'OUTPUTS\INTERNAL_LAYOUT';
 cm2m = 1e-2;
 g2kg = 1e-3; 
 k    = 0;
+kk   = 0;
 
 Df      = assumptions.Fusz;
 Lf_nose = assumptions.Lf_nose;
